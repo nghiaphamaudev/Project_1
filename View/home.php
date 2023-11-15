@@ -1,5 +1,11 @@
+ 
+
  <!-- slider section -->
+ 
  <section class="slider_section ">
+      <div class="bg-box">
+          <img src="../View/images/hero-bg.jpg" alt="">
+        </div>
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -1048,7 +1054,7 @@
     <div class="container">
       <div class="heading_container heading_center psudo_white_primary mb_45">
         <h2>
-          What Says Our Customers
+          Khách hàng nói gì về chúng tôi
         </h2>
       </div>
       <div class="carousel-wrap row ">
@@ -1067,7 +1073,7 @@
                 </p>
               </div>
               <div class="img-box">
-                <img src="images/client1.jpg" alt="" class="box-img">
+                <img src="../View/images/client1.jpg" alt="" class="box-img">
               </div>
             </div>
           </div>
@@ -1085,7 +1091,7 @@
                 </p>
               </div>
               <div class="img-box">
-                <img src="images/client2.jpg" alt="" class="box-img">
+                <img src="../View/images/client2.jpg" alt="" class="box-img">
               </div>
             </div>
           </div>
