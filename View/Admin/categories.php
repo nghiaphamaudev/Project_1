@@ -6,35 +6,39 @@
                 <div class="table-title">
                 <div class="row ">
                     <div class="col-sm-6">
-                    <b style = "font-size:30px;">QUẢN LÍ DANH MỤC</b>
+                    <b style = "font-size:30px">QUẢN LÍ DANH MỤC</b>
                     </div>
-
                 </div>
                 </div>
                 <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
+                    <th>ID Danh Mục</th>
+                    <th>Tên Danh Mục</th>
+                    <th>Ngày Tạo</th>
+                    <th>Hành Động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>Thomas Hardy</td>
-                    <td>thomashardy@mail.com</td>
-                    <td>89 Chiaroscuro Rd, Portland, USA</td>
-                    <td>(171) 555-2222</td>
-                    <td>
-                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                    </td>
-                    </tr>
+                    <?php foreach ($list_categories as $value): extract($value) ?>
+                                <tr>
+                                                    <td><?=$id_categories?></td>
+                                                    <td><?=$name_categories?></td>
+                                                    <td><?=$date_created?></td>
+                                                    <td>
+                                                        <a href="../../../Dự_án_1/Controller/index_admin.php?request=edit&&id=<?=$id_categories?>" class="edit" data-toggle="modal">
+                                                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                                        </a>
+                                                        
+                                                        <a href="../../../Dự_án_1/Controller/index_admin.php?request=delete&&id=<?=$id_categories?>" onclick = "return confirm('Bạn có muốn xóa không?')" class="delete" data-toggle="modal">
+                                                            <i class="material-icons"  data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                    <?php endforeach ?>
                 </tbody>
                 </table>
-                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                <a href="../../../Dự_án_1/Controller/index_admin.php?request=create" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm Danh Mục Mới</span></a>
                     
 
             </div>

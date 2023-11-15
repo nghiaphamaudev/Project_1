@@ -63,7 +63,7 @@
               <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../Controller/index.php?request=admin">Admin</a>
+              <a class="nav-link" href="../Controller/index_admin.php">Admin</a>
             </li>
           </ul>
           <div class="user_option">

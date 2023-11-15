@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,16 +31,16 @@
         <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
                                                                                    class="brand-logo"><i
                 class="fas fa-anchor"></i> <span>BRAND</span></a></header>
-        <nav class="dashboard-nav-list"><a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>
+        <nav class="dashboard-nav-list"><a href="../../../Dự_án_1/Controller/index_home.php" class="dashboard-nav-item"><i class="fas fa-home"></i>
             Home </a><a
-                href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard
+                href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> Dashboard
         </a><a
                 href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
-            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
                     class="fas fa-photo-video"></i> Danh Mục </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Danh sách</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Tạo mới</a> 
+                    <a href="../../../Dự_án_1/Controller/index_admin.php?request=categories" class="dashboard-nav-dropdown-item">Danh sách</a>
+                        <a href="../../../Dự_án_1/Controller/index_admin.php?request=create" class="dashboard-nav-dropdown-item">Tạo mới</a> 
                 </div>
             </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
@@ -65,5 +68,5 @@
                     href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
         </nav>
     </div>
-    
+
     
