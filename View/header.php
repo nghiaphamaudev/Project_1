@@ -12,8 +12,11 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="../View/images/favicon.png" type="">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <title> Feane </title>
+  <title> BTN FastFood </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="../View/css/bootstrap.css" />
@@ -30,6 +33,8 @@
   <!-- responsive style -->
   <link href="../View/css/responsive.css" rel="stylesheet" />
 
+  <link rel="stylesheet" href="../View/css/detail-product.css">
+
 </head>
 
 <body>
@@ -41,9 +46,9 @@
   <header class="header_section bg-dark">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
-          <span>
-            Feane
+        <a class="navbar-brand" href="../../Dự_án_1/Controller/index-home.php?request=">
+          <span >
+            BTN FastFood
           </span>
         </a>
 
@@ -54,16 +59,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  mx-auto ">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="../../Dự_án_1/Controller/index-home.php?request=">Trang Chủ <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="menu.html">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="../../Dự_án_1/Controller/index-home.php?request=about">Thông Tin</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../Controller/index_admin.php">Admin</a>
+              <a class="nav-link" href="../Controller/index-admin.php">Admin</a>
             </li>
           </ul>
           <div class="user_option">
@@ -130,7 +135,7 @@
               </button>
             </form>
             <a href="" class="order_online">
-              Order Online
+              Đặt Ngay
             </a>
           </div>
         </div>

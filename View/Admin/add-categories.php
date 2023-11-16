@@ -1,3 +1,5 @@
+
+
 <div class='dashboard-app'>
         <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
         <div class='dashboard-content'>
@@ -12,22 +14,24 @@
                     </form>
         </div>
     </div>
-    <script src="../js/alert.js"></script>
-   
-    <?php 
-    if(isset($_SESSION['status']) && $_SESSION['status'] !=" "){
-        ?>
-            <script> 
-            swal({
-                    title: "Good job!",
-                    text: "You clicked the button!",
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script src="../js/alert.js"></script>
+    <?php
+        if(isset($_SESSION['status']) && $_SESSION['status']!= "")
+        {
+         ?>   
+            <script>
+                swal({
+                    title: "<?php echo $_SESSION['status']; ?>",
+                    // text: "You clicked the button!",
                     icon: "success",
-                    button: "Aww yiss!",
-                });
+                    button: "Tiếp Tục",
+                    });
             </script>
         <?php
-        unset($_SESSION['status']);
-    }
+            unset($_SESSION['status']);
+        }
     ?>
+    
     
 </div>

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +30,8 @@
 <body>
 <div class='dashboard'>
     <div class="dashboard-nav">
-        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
-                                                                                   class="brand-logo"><i
-                class="fas fa-anchor"></i> <span>BRAND</span></a></header>
-        <nav class="dashboard-nav-list"><a href="../../../Dự_án_1/Controller/index_home.php" class="dashboard-nav-item"><i class="fas fa-home"></i>
+        <header><a href="#!" class="menu-toggle"><i class="fa-sharp fa-solid fa-utensils" style="color: #ffffff;"></i></a><a href="#" class="brand-logo"><i class="fa-sharp fa-solid fa-utensils" style="color: #ffffff;"></i> <span>BTN FastFood</span></a></header>
+        <nav class="dashboard-nav-list"><a href="../../../Dự_án_1/Controller/index-home.php" class="dashboard-nav-item"><i class="fas fa-home"></i>
             Home </a><a
                 href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> Dashboard
         </a><a
@@ -39,26 +39,23 @@
             <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
                     class="fas fa-photo-video"></i> Danh Mục </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../../../Dự_án_1/Controller/index_admin.php?request=categories" class="dashboard-nav-dropdown-item">Danh sách</a>
-                        <a href="../../../Dự_án_1/Controller/index_admin.php?request=create" class="dashboard-nav-dropdown-item">Tạo mới</a> 
+                    <a href="../../../Dự_án_1/Controller/index-admin.php?request=categories" class="dashboard-nav-dropdown-item">Danh sách</a>
+                        <a href="../../../Dự_án_1/Controller/index-admin.php?request=create" class="dashboard-nav-dropdown-item">Tạo mới</a> 
                 </div>
             </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
-                    class="fas fa-users"></i> Users </a>
-                <div class='dashboard-nav-dropdown-menu'><a href="#"
-                                                            class="dashboard-nav-dropdown-item">All</a><a
-                        href="#" class="dashboard-nav-dropdown-item">Subscribed</a><a
-                        href="#"
-                        class="dashboard-nav-dropdown-item">Non-subscribed</a><a
-                        href="#" class="dashboard-nav-dropdown-item">Banned</a><a
-                        href="#" class="dashboard-nav-dropdown-item">New</a></div>
+                    class="fas fa-users"></i> Người Dùng </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="#" class="dashboard-nav-dropdown-item">Cập Nhật</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Phân Quyền</a>
+                </div>
             </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
-                    class="fas fa-money-check-alt"></i> Payments </a>
-                <div class='dashboard-nav-dropdown-menu'><a href="#"
-                                                            class="dashboard-nav-dropdown-item">All</a><a
-                        href="#" class="dashboard-nav-dropdown-item">Recent</a><a
-                        href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                    class="fas fa-money-check-alt"></i> Sản Phẩm </a>
+                <div class='dashboard-nav-dropdown-menu'><a 
+                        href="../../../Dự_án_1/Controller/index-admin.php?request=product" class="dashboard-nav-dropdown-item">Danh sách</a><a
+                        href="../../../Dự_án_1/Controller/index-admin.php?request=create-product" class="dashboard-nav-dropdown-item">Thêm sản phẩm</a><a
+                        href="../../../Dự_án_1/Controller/index-admin.php?request=topping" class="dashboard-nav-dropdown-item"> Topping</a>
                 </div>
             </div>
             <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a
