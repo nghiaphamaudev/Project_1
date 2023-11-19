@@ -264,7 +264,9 @@
             <div class="box">
               <div>
                 <div class="img-box">
-                <img href= "../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>" src="../../Dự_án_1/View/images/<?=$images?>" alt="">
+                <a href="../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
+                  <img src="../../Dự_án_1/View/images/<?=$images?>" alt="">
+                </a>
                 </div>
                 <div class="detail-box">
                   <h5>
