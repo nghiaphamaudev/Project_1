@@ -1,57 +1,31 @@
-
-<form>
-  <!-- Email input -->
-  <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Email address</label>
-  </div>
-
-  <!-- Password input -->
-  <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Password</label>
-  </div>
-
-  <!-- 2 column grid layout for inline styling -->
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <!-- Checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div>
-    </div>
-
-    <div class="col">
-      <!-- Simple link -->
-      <a href="#!">Forgot password?</a>
-    </div>
-  </div>
-
-  <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-  <!-- Register buttons -->
-  <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
-    <p>or sign up with:</p>
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-facebook-f"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-google"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-twitter"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-github"></i>
-    </button>
-  </div>
-</form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-</body>
-</html>
+<div class="global-container">
+	<div class="card login-form">
+	<div class="card-body">
+		<h3 class="card-title text-center">Đăng Kí</h3>
+		<div class="card-text">
+			<!--
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+			<form method="post" action = "../../Dự_án_1/Controller/index-home.php?request=add-data-user">
+				<!-- to error: add class "has-danger" -->
+				<div class="form-group">
+					<label for="exampleInputEmail1">Email </label>
+					<input type="email" class="form-control form-control-sm" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Họ và Tên </label>
+					<input type="text" class="form-control form-control-sm" name="fullName" id="exampleInputEmail1" aria-describedby="emailHelp">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">Mật Khẩu</label>
+					<input type="password" class="form-control form-control-sm" name="password" id="exampleInputPassword1">
+				</div>
+				<input type="submit" name="submit" value="Đăng Kí" class="btn btn-primary btn-block">
+				
+				<div class="sign-up">
+					Bạn đã có tài khoản? <a href="../../Dự_án_1/Controller/index-home.php?request=login">Đăng nhập ngay</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

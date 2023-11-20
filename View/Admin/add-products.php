@@ -34,22 +34,7 @@
                     </form>
         </div>
     </div>
-     <script src="../js/alert.js"></script>
    
-    <?php 
-    if(isset($_SESSION['status']) && $_SESSION['status'] !=" "){
-        ?>
-            <script> 
-            swal({
-                    title: "Hoàn thành!",
-                    text: "You clicked the button!",
-                    icon: "success",
-                    button: "Aww yiss!",
-                });
-            </script>
-        <?php
-        unset($_SESSION['status']);
-    }
-    ?> -->
+
     
 </div>

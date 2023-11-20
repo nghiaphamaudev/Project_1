@@ -71,6 +71,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_products = Load_All_Data_Products();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/products.php";
                 break;
                 
@@ -85,6 +86,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     Add_Data_Products($id_categories,$name_products,$file_name, $price);
                 }
                 $list_categories = Load_All_Data_Categories();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-products.php";
                 break;
             
@@ -105,10 +107,12 @@ if(isset($_GET['request']) && $_GET['request']){
                     $id_categories = $_POST['id_categories'];
                     $description =$_POST['description'];
                     $id = $_POST['id_product'];
+                    $_SESSION['status'] = "Update successfully";
                     Upload_Images($file_name);
                     Update_Data_Products($id_categories,$name_products,$file_name,$price,$id,$description);
                 }
                 $list_products = Load_All_Data_Products();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/products.php";
                 break;
 

@@ -42,16 +42,16 @@
 	        			<p><?=$description?></p>
 	        			<div class="row">
 	        				<div class="col-md-6">
-	        					<label for="size">Kích Cỡ</label>
+	        					<label for="size"><b>Kích Cỡ</b></label>
 								<select id="size" name="size" class="form-control">
-									<option>S</option>
-									<option>M</option>
-									<option>L</option>
-									<option>XL</option>
+									<option value="1">S</option>
+									<option value="">M</option>
+									<option value="">L</option>
+									<option value="">XL</option>
 								</select>
 	        				</div>
 	        				<div class="col-md-6">
-	        					<label for="color">Thêm</label>
+	        					<label for="color"><b>Thêm</b></label>
 								<select id="color" name="name_topping" class="form-control">
 									<?php foreach ($list_topping  as $value ) {
 										extract($value);
@@ -61,14 +61,18 @@
 								</select>
 	        				</div>
 	        			</div>
-	        			<div class="product-count">
+						<!-- <div class="product-price-discount"><span style="font: size 10px;">Vận Chuyển</span><span class="line-through">$30.00</span></div> -->
+						<div class="product-count">
+						    <label for="size">Vận Chuyển</label>
+						</div>
+	        			<div class="product-count">	
 	        				<label for="size">Quantity</label>
 	        				<form action="#" class="display-flex">
 							    <div class="qtyminus">-</div>
 							    <input type="text" name="quantity" value="1" class="qty">
 							    <div class="qtyplus">+</div>
 							</form>
-							<a href="#" class="round-black-btn">Add to Cart</a>
+							<a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
 	        			</div>
 	        		</div>
 	        	</div>
@@ -76,10 +80,10 @@
 	        <div class="product-info-tabs">
 		        <ul class="nav nav-tabs" id="myTab" role="tablist">
 				  	<li class="nav-item">
-				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Mô Tả</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Đánh Giá (0)</a>
 				  	</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
@@ -95,10 +99,10 @@
 						Ẩm Thực Nước Mỹ
 				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 				  		<div class="review-heading">REVIEWS</div>
-				  		<p class="mb-20">There are no reviews yet.</p>
+				  		<p class="mb-20">Không có đánh giá nào gần đây.</p>
 				  		<form class="review-form">
 		        			<div class="form-group">
-			        			<label>Your rating</label>
+			        			<label>Bình Chọn</label>
 			        			<div class="reviews-counter">
 									<div class="rate">
 									    <input type="radio" id="star5" name="rate" value="5" />
@@ -115,22 +119,22 @@
 								</div>
 							</div>
 		        			<div class="form-group">
-			        			<label>Your message</label>
+			        			<label>Bình Luận</label>
 			        			<textarea class="form-control" rows="10"></textarea>
 			        		</div>
 			        		<div class="row">
 				        		<div class="col-md-6">
 				        			<div class="form-group">
-					        			<input type="text" name="" class="form-control" placeholder="Name*">
+					        			<input type="text" name="" class="form-control" placeholder="Tên*">
 					        		</div>
 					        	</div>
 				        		<div class="col-md-6">
 				        			<div class="form-group">
-					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
+					        			<input type="text" name="" class="form-control" placeholder="Email*">
 					        		</div>
 					        	</div>
 					        </div>
-					        <button class="round-black-btn">Submit Review</button>
+					        <button class="round-black-btn">Đánh Giá</button>
 			        	</form>
 				  	</div>
 				</div>
