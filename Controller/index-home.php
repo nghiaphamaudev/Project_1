@@ -64,7 +64,10 @@ if(isset($_GET['request']) && $_GET['request']){
         case "about":
             include "../View/infor.php";
             break;
-            
+          
+        case "card":
+            include "../View/card.php";
+            break;
         default:
             include "../View/home.php";
             break;
