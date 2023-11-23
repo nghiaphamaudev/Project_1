@@ -6,15 +6,16 @@
   }
 
   function Check_Data_User($email, $password){
-    $sql = "SELECT `full_name`,`email`, `password`  FROM `user` WHERE `email` = '$email' AND `password` = '$password' ";
+    $sql = "SELECT `id_user`, `full_name`,`email`, `password`  FROM `user` WHERE `email` = '$email' AND `password` = '$password' ";
     $list_one_data_user = pdo_query_one($sql);
     return $list_one_data_user;
   }
 
-  // function Load_One_Data_User($id){
-  //   $sql =""
-  // }
-
+  function Load_all(){
+    $sql = "SELECT * FROM `user`";
+    $list_data = pdo_query($sql);
+     return $list_data;
+  }
 
 
 

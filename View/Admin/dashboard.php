@@ -12,7 +12,8 @@
         <div class='dashboard-content'>
             <div class='container'>
             <div class='card'>
-            <?php 
+                        <?php 
+                           
                           if(isset($_SESSION['user'])){
                             extract($_SESSION['user']);
                   ?>

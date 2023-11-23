@@ -22,7 +22,7 @@
 				<input type="submit" name="submit" value="Đăng Kí" class="btn btn-primary btn-block">
 				
 				<div class="sign-up">
-					Bạn đã có tài khoản? <a href="../../Dự_án_1/Controller/index-home.php?request=login">Đăng nhập ngay</a>
+					Bạn đã có tài khoản? <a href="../../Dự_án_1/Controller/index-home.php?request=login"><b>Đăng nhập ngay</b></a>
 				</div>
 			</form>
 		</div>

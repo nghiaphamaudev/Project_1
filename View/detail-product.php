@@ -40,22 +40,22 @@
 		        			<div class="product-price-discount"><span>$<?=$original_price?>.00</span><span class="line-through">$30.00</span></div>
 		        		</div>
 	        			<p><?=$description?></p>
-	        			<div class="row">
-	        				<div class="col-md-6">
-	        					<label for="size"><b>Kích Cỡ</b></label>
-								<select id="size" name="size" class="form-control">
-									<option value="1">S</option>
-									<option value="">M</option>
-									<option value="">L</option>
-									<option value="">XL</option>
-								</select>
-	        				</div>
+						<form action="../../Dự_án_1/Controller/index-home.php?request=select-option" method ="post">
+						<div class="row">
+							<input type="hidden" name="id_product" value="<?=$id_products?>">
+							<input type="hidden" name="price_product" value="<?=$original_price?>">
+							<input type="hidden" name="name_product" value="<?=$name_products?>">
+							<input type="hidden" name="price_delivery" value="<?=$price_delivery?>">
+							<input type="hidden" name="images" value="<?=$images?>">
+
+
 	        				<div class="col-md-6">
 	        					<label for="color"><b>Thêm</b></label>
-								<select id="color" name="name_topping" class="form-control">
+								<select id="color" name="id_topping" class="form-control">
 									<?php foreach ($list_topping  as $value ) {
 										extract($value);
-										echo '<option value="'.$id_topping.'">'.$name_topping.'</option>';
+										$selected = ($id_topping === 10) ? 'selected' : '';
+										echo '<option value="'.$id_topping.'" '.$selected.'>'.$name_topping.'</option>';
 									}
 									 ?>
 								</select>
@@ -63,17 +63,22 @@
 	        			</div>
 						<!-- <div class="product-price-discount"><span style="font: size 10px;">Vận Chuyển</span><span class="line-through">$30.00</span></div> -->
 						<div class="product-count">
-						    <label for="size">Vận Chuyển</label>
+						    <label for="size">Vận Chuyển: <a><?=$price_delivery?>.00</a></label>
 						</div>
 	        			<div class="product-count">	
 	        				<label for="size">Quantity</label>
-	        				<form action="#" class="display-flex">
+	        				<div action="#" class="display-flex">
 							    <div class="qtyminus">-</div>
-							    <input type="text" name="quantity" value="1" class="qty">
+							    <input type="number" name="quantity" value="1" class="qty">
 							    <div class="qtyplus">+</div>
-							</form>
-							<a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
+							</div>
+							<input type="submit" name="submit" class="round-black-btn" value="Thêm vào giỏ hàng">
+							<?php if(isset($message)){
+								echo $message;
+							} ?>
 	        			</div>
+						</form>
+	        			
 	        		</div>
 	        	</div>
 	        </div>
@@ -146,3 +151,4 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="../View/js/detail-product.js"></script>

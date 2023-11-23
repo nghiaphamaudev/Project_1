@@ -2,6 +2,8 @@
 include "../Model/pdo.php";
 include "../Model/action-categories.php";
 include "../Model/action-product.php";
+include "../Model/action-account.php";
+include "../Model/action-shopping-cart.php";
 include "../View/Admin/sidebar.php";
 
 if(isset($_GET['request']) && $_GET['request']){
@@ -166,6 +168,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     
         }
 }else{
+    $list_data = Load_all();
     include "../View/Admin/dashboard.php";
 }
 

@@ -48,7 +48,7 @@
    }
 
    function Load_One_Data_Products($id){
-        $sql = "SELECT `id_products`, `description` ,`id_categories`, `name_products`, `images`, `original_price`, `date_created` FROM `products` WHERE `id_products`=".$id;
+        $sql = "SELECT `id_products`, `description` ,`id_categories`, `name_products`, `images`, `original_price`, `date_created`, `price_delivery` FROM `products` WHERE `id_products`=".$id;
         $list_one_data_product = pdo_query($sql);
         return $list_one_data_product;
    }
@@ -79,5 +79,15 @@
         $sql = "DELETE FROM `topping` WHERE `id_topping` =".$id;
         pdo_query($sql);
     }
+
+    function Load_Price_Topping($id_topping){
+        $sql = "SELECT `price_topping`, `name_topping` FROM `topping` WHERE `id_topping` =".$id_topping;
+        $price_topping = pdo_query_one($sql);
+        return $price_topping;
+    }
+
+    
+
+ 
 
 ?>

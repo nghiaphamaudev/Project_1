@@ -22,10 +22,13 @@
 				<input type="submit" name="submit" value="Đăng Nhập" class="btn btn-primary btn-block">
 				
 				<div class="sign-up">
-					Bạn chưa có tài khoản? <a href="../../Dự_án_1/Controller/index-home.php?request=create-user">Tạo tài khoản</a>
+					Bạn chưa có tài khoản? <a href="../../Dự_án_1/Controller/index-home.php?request=create-user"><b>Tạo tài khoản</b></a>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 </div>
+<?php if(isset($inform))
+	echo $inform;
+?>
