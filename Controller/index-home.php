@@ -1,11 +1,13 @@
 <?php
 session_start();
+ob_start();
+include "../View/header.php";
 include "../Model/pdo.php";
 include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
-include "../View/header.php";
+
 
 $list_categories = Load_All_Data_Categories();
 $list_products = Load_All_Data_Products();
@@ -23,15 +25,14 @@ if(isset($_GET['request']) && $_GET['request']){
             include "../View/detail-product.php";
             break;
 
-        case "user" :
         case "login":
             include "../View/login.php";
             break;
 
         case "log-out":
-            unset($_SESSION['user']);
-            include "../View/login.php";
-            break;
+                session_unset();
+                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
+                break;    
         
         case "add-data-user":
             if(isset($_POST['submit']) && $_POST['submit']){
@@ -53,13 +54,15 @@ if(isset($_GET['request']) && $_GET['request']){
 
                 if(is_array($list_one_data_user)){
                     $_SESSION['user'] = $list_one_data_user;
-                    include "../View/home.php";
-                    break;
+                    header("Location:../../../../Dự_án_1/Controller/index-home.php");
+                    exit;
                 }else{
                     $inform = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
+                    include "../View/login.php";
+                    break;
                 }
             }
-            include "../View/login.php";
+            include "../View/home.php";
             break;
     
         case "create-user":
@@ -69,11 +72,11 @@ if(isset($_GET['request']) && $_GET['request']){
         case "about":
             include "../View/infor.php";
             break;
-            case "select-option":
+
+        case "select-option":
                 $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
                 if (isset($_POST['submit']) && $_POST['submit']) {
                     $id_product = $_POST['id_product'];
-                    $price_delivery = (int)($_POST['price_delivery']);
                     $name_products = $_POST['name_product'];
                     $id_topping = $_POST['id_topping'];
                     $price_product = (int)($_POST['price_product']);
@@ -91,14 +94,15 @@ if(isset($_GET['request']) && $_GET['request']){
                     // Nếu id_product đã tồn tại trong mảng id_products
                     if (in_array($id_product, $id_products)) {
                         $quantity = (int)(Load_Quantity_In_Shopping_Cart($id_product));
+                        // echo $quantity;
                         $quantity_new = $quantity + $quantity_product;
-                        $total = ($quantity_new * $price_product) + $price_topping + $price_delivery;
+                        $total = ($quantity_new * $price_product) + $price_topping;
                         Update_Shopping_Cart($id_product, $quantity_new, $total, $name_topping);
                         $message = "Thêm thành công";
                     } else {
                         // Nếu chưa thì tiến hành add sản phẩm mới vào giỏ hàng
-                        $total = ($quantity_product * $price_product) + $price_topping + $price_delivery;
-                        Add_Product_Shopping_Cart($id_product, $quantity_product, $id_user, $total, $name_products, $price_product, $price_delivery, $name_topping, $images);
+                        $total = ($quantity_product * $price_product) + $price_topping ;
+                        Add_Product_Shopping_Cart($id_product, $quantity_product, $id_user, $total, $name_products, $price_product, $name_topping, $images);
                         $message = "Thêm giỏ hàng thành công";
                     }
                 }
@@ -118,6 +122,25 @@ if(isset($_GET['request']) && $_GET['request']){
             $total_cost = Total_Cost($totals);
             include "../View/shopping-cart.php";
             break;
+        
+        case "promotion":
+            if(isset($_POST['submit']) && $_POST['submit']){
+                $promotion_code = $_POST['code_promotion'];
+                if($promotion_code === "PHAMVANNGHIA"){
+                    $price_promotion = "10%";
+                }else{
+                    $message ="Code không tồn tại";
+                }
+            }
+            $id_user = $_SESSION['user']['id_user'];
+            $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            $totals = array(); 
+            foreach ($list_data_shopping_cart as $value) {
+                $totals[] = $value['total'];
+            }
+            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
+            include "../View/shopping-cart.php";
+            break;
 
         case "cancel-shopping-cart":
             $id_user = $_SESSION['user']['id_user'];
@@ -128,49 +151,74 @@ if(isset($_GET['request']) && $_GET['request']){
             foreach ($list_data_shopping_cart as $value) {
                 $totals[] = $value['total'];
             }
-            $total_cost = Total_Cost($totals);
+            $total_cost = $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
             include "../View/shopping-cart.php";
             break;
 
          case "payment":
             $id_user = $_SESSION['user']['id_user'];
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            $total_name = array();
             $totals = array(); 
             foreach ($list_data_shopping_cart as $value) {
                 $totals[] = $value['total'];
+                $product_name = $value['name_products'];
+                $quantity = $value['quantity'];
+                $name_topping = $value['name_topping'];
+                $total_name[] = "$product_name ($quantity)($name_topping)";
             }
-            $total_cost = Total_Cost($totals);
+            // var_dump($total_name);
+            $total_cost = $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100); ;
             include "../View/payment.php";
             break;
 
         case "confirm-payment":
-            // $id_user = $_SESSION['user']['id_user'];
-            // if(isset($_POST['submit']) && $_POST['submit']){
-            //     $id_cart = $_POST['id_shopping_cart'];
-            //     $name_receiver = $_POST['name_receiver'];
-            //     $phone_receiver = $_POST['phone_receiver'];
-            //     $address_receiver = $_POST['address_receiver'];
-            //     Add_Data_Bill($id_cart, $name_receiver, $id_user, $phone_receiver, $address_receiver);
-            // }
-            $list_data_bill = Load_All_Data_Bill();
-            // var_dump($list_data_bill);
-            // Cancel_Shopping_Cart($id_cart);
+            $id_user = $_SESSION['user']['id_user'];
+            if(isset($_POST['submit']) && $_POST['submit']){
+                $name_receiver = $_POST['name_receiver'];
+                $phone_receiver = $_POST['phone_receiver'];
+                $address_receiver = $_POST['address_receiver'];
+                $total_name_products = $_POST['total_name_products'];
+                $total_price = $_POST['total_price'] + 10;
+                $method = $_POST['method'];
+                $email = $_POST['email_receiver'];
+                Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_price, $email);
+            }
+            $message="Đặt hàng thành công";
+            $list_data_bill = Load_All_Data_Bill($id_user);
+            $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            $totals = array(); 
+            foreach ($list_data_shopping_cart as $value) {
+                $totals[] = $value['total'];
+            }
+            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
             include "../View/invoice.php";
             break;
         
         case "invoice":
-            $list_data_bill = Load_All_Data_Bill();
-            include "../View/invoice.php";
+            $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            $totals = array(); 
+            foreach ($list_data_shopping_cart as $value) {
+                $totals[] = $value['total'];
+            }
+            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
+            $id_user = $_SESSION['user']['id_user'];
+            $list_data_bill = Load_All_Data_Bill($id_user);
+            if(!is_array($list_data_bill)){
+                $message = "Bạn chưa có đơn hàng nào !!!";
+            }else{
+                include "../View/invoice.php";
+            }
             break;
+
         default:
             include "../View/home.php";
             break;
     }
 }else{
     include "../View/home.php";
-    // include "../View/login.php";
-    // include "../View/register.php";
-    // include "../View/detail-product.php";
 }
 
 include "../View/footer.php";
+ob_end_flush();
+?>

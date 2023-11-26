@@ -11,13 +11,4 @@
     return $list_one_data_user;
   }
 
-  function Load_all(){
-    $sql = "SELECT * FROM `user`";
-    $list_data = pdo_query($sql);
-     return $list_data;
-  }
-
-
-
-
 ?>

@@ -62,9 +62,6 @@
 	        				</div>
 	        			</div>
 						<!-- <div class="product-price-discount"><span style="font: size 10px;">Vận Chuyển</span><span class="line-through">$30.00</span></div> -->
-						<div class="product-count">
-						    <label for="size">Vận Chuyển: <a><?=$price_delivery?>.00</a></label>
-						</div>
 	        			<div class="product-count">	
 	        				<label for="size">Quantity</label>
 	        				<div action="#" class="display-flex">

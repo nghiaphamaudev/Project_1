@@ -29,7 +29,7 @@
                           <a href="#" class="d-block text-dark"><?=$name_products?></a>
                           <small>
                             <span class="text-muted">Topping: <?=$name_topping?></span>
-                            <span class="text-muted">, </span> Vận chuyển: <?=$price_delivery?>$
+                            <!-- <span class="text-muted">, </span> Vận chuyển: <?=$price_delivery?>$ -->
                           </small>
                         </div>
                       </div>
@@ -51,13 +51,30 @@
         
             <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
               <div class="mt-4">
+                <form action="../../Dự_án_1/Controller/index-home.php?request=promotion" method="post">
                 <label class="text-muted font-weight-normal">Nhập mã khuyến mãi</label>
-                <input type="text" placeholder="ABC" class="form-control">
+                <input type="text" placeholder="<?php if(isset($message)){
+                                                        echo $message;
+                                                      }else {
+                                                        echo "Nhập code khuyến mãi";
+                                                      }
+                ?>" name="code_promotion" class="form-control">
+                <div class="float-left">
+                  <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=promotion" value="Cập nhật">
+                  </div>
+                </form>
               </div>
               <div class="d-flex">
                 <div class="text-right mt-4 mr-5">
                   <label class="text-muted font-weight-normal m-0">Giảm giá</label>
-                  <div class="text-large"><strong>$0</strong></div>
+                  <div class="text-large"><strong>
+                    <?php if(isset($price_promotion)){
+                              echo $price_promotion;
+                          }else{
+                            echo "$0";
+                          }
+                  ?>
+                  </strong></div>
                 </div>
                 <div class="text-right mt-4">
                   <label class="text-muted font-weight-normal m-0">Tổng</label>
@@ -68,11 +85,10 @@
             
             <div class="display">
                   <div class="float-left">
-                    <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=shopping-cart">&#8592;Tiếp tục mua hàng</a>
+                  <!-- <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=promotion" value="Cập nhật"> -->
                   </div>
-
                   <div class="float-right">
-                    <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=update-shopping-cart">Cập nhật</a>
+                  <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=shopping-cart">&#8592;Tiếp tục mua hàng</a>
                     <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=payment">Thanh toán</a>
                     
                   </div>

@@ -13,6 +13,6 @@
                     });
             </script>
         <?php
-            unset($_SESSION['status']);
+            session_unset();
         }
     ?> 

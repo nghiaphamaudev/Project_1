@@ -1,4 +1,6 @@
+
 <?php
+session_start();
 include "../Model/pdo.php";
 include "../Model/action-categories.php";
 include "../Model/action-product.php";
@@ -168,7 +170,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     
         }
 }else{
-    $list_data = Load_all();
+    // $list_data = Load_all();
     include "../View/Admin/dashboard.php";
 }
 

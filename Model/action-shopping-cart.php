@@ -1,7 +1,7 @@
 <?php
 
-    function Add_Product_Shopping_Cart($id_products, $quantity, $id_user, $total, $name_products, $price_product, $price_delivery, $name_topping, $images){
-        $sql = "INSERT INTO `shopping_cart`( `id_products`, `quantity`, `id_user`, `total`, `name_products`, `price_products`, `price_delivery`,`name_topping`,`images`) VALUES ('$id_products','$quantity','$id_user','$total', '$name_products', '$price_product', '$price_delivery', '$name_topping', '$images')";
+    function Add_Product_Shopping_Cart($id_products, $quantity, $id_user, $total, $name_products, $price_product, $name_topping, $images){
+        $sql = "INSERT INTO `shopping_cart`( `id_products`, `quantity`, `id_user`, `total`, `name_products`, `price_products`,`name_topping`,`images`) VALUES ('$id_products','$quantity','$id_user','$total', '$name_products', '$price_product', '$name_topping', '$images')";
         pdo_execute($sql);
     }
 
@@ -35,12 +35,13 @@
         return $quantity_product;
     }
 
-    function Add_Data_Bill($id_cart, $name_receiver, $id_user, $phone_receiver, $address_receiver){
-        $sql = "INSERT INTO `bill`( `id_shopping_cart`, `id_user`, `name_receiver`, `address_delivery`, `phone_numnber`) VALUES ('$id_cart','$id_user','$name_receiver','$address_receiver','$phone_receiver')";
+    function Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_price,$email){
+        $sql = "INSERT INTO `bill`( `id_user`, `total_name_product`, `name_receiver`, `address_delivery`, `phone_numnber`, `method`, `total_price`, `email`) VALUES 
+        ('$id_user', '$total_name_products', '$name_receiver', '$address_receiver', '$phone_receiver', '$method', '$total_price', '$email')";
         pdo_execute($sql);
     }
-    function Load_All_Data_Bill(){
-        $sql = "SELECT * FROM `bill`";
+    function Load_All_Data_Bill($id_user){
+        $sql = "SELECT * FROM `bill` WHERE `id_user` = ".$id_user;
         $list_data_bill = pdo_query($sql);
         return $list_data_bill;
     }

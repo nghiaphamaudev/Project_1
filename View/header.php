@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <!-- font awesome style -->
   <link href="../View/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"> -->
 
 
@@ -57,11 +58,11 @@
   <link rel="stylesheet" href="../../Dự_án_1/View/css/login.css">
 
   <!-- <link rel="stylesheet" href="../../Dự_án_1/View/css/shopping-cart.css"> -->
-  <link rel="stylesheet" href="../../Dự_án_1/View/css/payment.css">
+  
 
 <!-- <link rel="stylesheet" href="../../Dự_án_1/View/css/"> -->
   <link rel="stylesheet" href="../../Dự_án_1/View/css/header.css">
-
+  <link rel="stylesheet" href="../../Dự_án_1/View/css/payment.css">
 
   
 
@@ -97,7 +98,7 @@
         <li><a href="../../Dự_án_1/Controller/index-home.php?request=">Trang Chủ</a></li>
         <li>
           <a  href="../../Dự_án_1/Controller/index-home.php?request=">Menu</a>
-          <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+          <i class='bx bxs-chevron-down htmlcss-arrow arrow '></i>
           <ul class="htmlCss-sub-menu sub-menu">
             <li><a href="#">Web Design</a></li>
             <li><a href="#">Login Forms</a></li>
