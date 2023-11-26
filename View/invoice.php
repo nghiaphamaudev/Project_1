@@ -95,7 +95,7 @@ Hóa Đơn
 <td class="left">
  <strong>TẠM TÍNH</strong>
 </td>
-<td class="right">$<?=$total_cost?></td>
+<td class="right">$<?=$sub_total?></td>
 </tr>
 <td class="left">
  <strong>VẬN CHUYỂN</strong>

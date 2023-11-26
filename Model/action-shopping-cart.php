@@ -31,13 +31,13 @@
 
     function Load_Quantity_In_Shopping_Cart($id_product){
         $sql = "SELECT `quantity` FROM `shopping_cart` WHERE `id_products`=".$id_product;
-        $quantity_product = pdo_query_one($sql);
+        $quantity_product = pdo_query($sql);
         return $quantity_product;
     }
 
-    function Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_price,$email){
-        $sql = "INSERT INTO `bill`( `id_user`, `total_name_product`, `name_receiver`, `address_delivery`, `phone_numnber`, `method`, `total_price`, `email`) VALUES 
-        ('$id_user', '$total_name_products', '$name_receiver', '$address_receiver', '$phone_receiver', '$method', '$total_price', '$email')";
+    function Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_price,$email, $sub_total){
+        $sql = "INSERT INTO `bill`( `id_user`, `total_name_product`, `name_receiver`, `address_delivery`, `phone_numnber`, `method`, `total_price`, `email`, `sub_total`) VALUES 
+        ('$id_user', '$total_name_products', '$name_receiver', '$address_receiver', '$phone_receiver', '$method', '$total_price', '$email', '$sub_total')";
         pdo_execute($sql);
     }
     function Load_All_Data_Bill($id_user){

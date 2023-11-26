@@ -94,7 +94,6 @@ if(isset($_GET['request']) && $_GET['request']){
                     // Nếu id_product đã tồn tại trong mảng id_products
                     if (in_array($id_product, $id_products)) {
                         $quantity = (int)(Load_Quantity_In_Shopping_Cart($id_product));
-                        // echo $quantity;
                         $quantity_new = $quantity + $quantity_product;
                         $total = ($quantity_new * $price_product) + $price_topping;
                         Update_Shopping_Cart($id_product, $quantity_new, $total, $name_topping);
@@ -124,11 +123,12 @@ if(isset($_GET['request']) && $_GET['request']){
             break;
         
         case "promotion":
-            if(isset($_POST['submit']) && $_POST['submit']){
+            if(isset($_POST['submit_promotion']) && $_POST['submit_promotion']){
                 $promotion_code = $_POST['code_promotion'];
                 if($promotion_code === "PHAMVANNGHIA"){
-                    $price_promotion = "10%";
+                    $price_promotion = 10;
                 }else{
+                    $price_promotion = 0;
                     $message ="Code không tồn tại";
                 }
             }
@@ -138,11 +138,12 @@ if(isset($_GET['request']) && $_GET['request']){
             foreach ($list_data_shopping_cart as $value) {
                 $totals[] = $value['total'];
             }
-            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
+            $total_cost = Total_Cost($totals) - ((Total_Cost($totals) * $price_promotion)/100);
             include "../View/shopping-cart.php";
             break;
 
         case "cancel-shopping-cart":
+            
             $id_user = $_SESSION['user']['id_user'];
             $id_cart = $_GET['id_cart'];
             Cancel_Shopping_Cart($id_cart);
@@ -151,7 +152,7 @@ if(isset($_GET['request']) && $_GET['request']){
             foreach ($list_data_shopping_cart as $value) {
                 $totals[] = $value['total'];
             }
-            $total_cost = $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
+             $total_cost = Total_Cost($totals);
             include "../View/shopping-cart.php";
             break;
 
@@ -159,16 +160,14 @@ if(isset($_GET['request']) && $_GET['request']){
             $id_user = $_SESSION['user']['id_user'];
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
             $total_name = array();
-            $totals = array(); 
             foreach ($list_data_shopping_cart as $value) {
-                $totals[] = $value['total'];
                 $product_name = $value['name_products'];
                 $quantity = $value['quantity'];
                 $name_topping = $value['name_topping'];
                 $total_name[] = "$product_name ($quantity)($name_topping)";
             }
             // var_dump($total_name);
-            $total_cost = $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100); ;
+            $total_cost = $_POST['sub_total'];
             include "../View/payment.php";
             break;
 
@@ -179,29 +178,20 @@ if(isset($_GET['request']) && $_GET['request']){
                 $phone_receiver = $_POST['phone_receiver'];
                 $address_receiver = $_POST['address_receiver'];
                 $total_name_products = $_POST['total_name_products'];
-                $total_price = $_POST['total_price'] + 10;
+                $sub_total = $_POST['total_price'] ;
+                $total_all = $sub_total +10;
                 $method = $_POST['method'];
                 $email = $_POST['email_receiver'];
-                Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_price, $email);
+                Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_all, $email, $sub_total);
             }
             $message="Đặt hàng thành công";
             $list_data_bill = Load_All_Data_Bill($id_user);
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
-            $totals = array(); 
-            foreach ($list_data_shopping_cart as $value) {
-                $totals[] = $value['total'];
-            }
-            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
             include "../View/invoice.php";
             break;
         
         case "invoice":
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
-            $totals = array(); 
-            foreach ($list_data_shopping_cart as $value) {
-                $totals[] = $value['total'];
-            }
-            $total_cost = Total_Cost($totals) - (Total_Cost($totals) * 10 / 100);
             $id_user = $_SESSION['user']['id_user'];
             $list_data_bill = Load_All_Data_Bill($id_user);
             if(!is_array($list_data_bill)){

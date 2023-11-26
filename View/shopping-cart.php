@@ -60,7 +60,7 @@
                                                       }
                 ?>" name="code_promotion" class="form-control">
                 <div class="float-left">
-                  <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=promotion" value="Cập nhật">
+                  <input type="submit" name="submit_promotion" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=promotion" value="Cập nhật">
                   </div>
                 </form>
               </div>
@@ -69,9 +69,9 @@
                   <label class="text-muted font-weight-normal m-0">Giảm giá</label>
                   <div class="text-large"><strong>
                     <?php if(isset($price_promotion)){
-                              echo $price_promotion;
+                              echo $price_promotion.'%';
                           }else{
-                            echo "$0";
+                            echo "0%";
                           }
                   ?>
                   </strong></div>
@@ -89,8 +89,10 @@
                   </div>
                   <div class="float-right">
                   <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=shopping-cart">&#8592;Tiếp tục mua hàng</a>
-                    <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=payment">Thanh toán</a>
-                    
+                  <form action="../../Dự_án_1/Controller/index-home.php?request=payment" method="post">
+                    <input type="hidden" name="sub_total" value="<?=$total_cost?>">
+                    <input type="submit" value="Thanh toán" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=payment">
+                  </form>
                   </div>
             </div>
            

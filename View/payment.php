@@ -40,6 +40,7 @@
                         </div>
                     </div>
                      <?php endforeach; ?>
+                     <h5>Khuyến mãi</h5>
                 </div>
                 
                  <!-- summary -->
@@ -64,7 +65,7 @@
                         <div class="col">Tổng</div>
                         <div class="col text-right">$<?=$total_cost?></div>
                     </div>
-                    <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=payment" value="Xác nhận đặt hàng">
+                    <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=confirm-payment" value="Xác nhận đặt hàng">
                     
                 </div>
             </div>
