@@ -6,9 +6,9 @@
   }
 
   function Check_Data_User($email, $password){
-    $sql = "SELECT `id_user`, `full_name`,`email`, `password`  FROM `user` WHERE `email` = '$email' AND `password` = '$password' ";
-    $list_one_data_user = pdo_query_one($sql);
-    return $list_one_data_user;
+    $sql = "SELECT *  FROM user WHERE `email` = '$email' AND `password` = '$password' ";
+    $acc = pdo_query_one($sql);
+ return $acc;
   }
 
 ?>
