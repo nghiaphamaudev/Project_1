@@ -45,7 +45,6 @@
 							<input type="hidden" name="id_product" value="<?=$id_products?>">
 							<input type="hidden" name="price_product" value="<?=$original_price?>">
 							<input type="hidden" name="name_product" value="<?=$name_products?>">
-							<input type="hidden" name="price_delivery" value="<?=$price_delivery?>">
 							<input type="hidden" name="images" value="<?=$images?>">
 
 
@@ -72,6 +71,10 @@
 							<input type="submit" name="submit" class="round-black-btn" value="Thêm vào giỏ hàng">
 							<?php if(isset($message)){
 								echo $message;
+								echo "<br>";
+								echo $quantity;
+								echo "<br>";
+								var_dump($id_products);
 							} ?>
 	        			</div>
 						</form>
