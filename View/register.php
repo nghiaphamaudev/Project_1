@@ -1,4 +1,5 @@
 <div class="global-container">
+	<?php if(isset($message)) echo $message; ?>
 	<div class="card login-form">
 	<div class="card-body">
 		<h3 class="card-title text-center">Đăng Kí</h3>

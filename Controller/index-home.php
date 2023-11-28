@@ -28,7 +28,9 @@ if(isset($_GET['request']) && $_GET['request']){
         case "login":
             include "../View/login.php";
             break;
-
+        case "menu":
+            include "../View/menu.php";
+            break;
         case "log-out":
                 session_unset();
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
@@ -66,6 +68,11 @@ if(isset($_GET['request']) && $_GET['request']){
             break;
     
         case "create-user":
+            if(isset($_SESSION['user'])){
+                session_unset();
+                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user");
+                break;
+            }
             include "../View/register.php";
             break;
 
@@ -112,15 +119,22 @@ if(isset($_GET['request']) && $_GET['request']){
             
 
         case "shopping-cart":
-            $id_user = $_SESSION['user']['id_user'];
-            $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
-            $totals = array(); 
-            foreach ($list_data_shopping_cart as $value) {
-                $totals[] = $value['total'];
+            if(isset($_SESSION['user'])){
+                $id_user = $_SESSION['user']['id_user'];
+                $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+                $totals = array(); 
+                foreach ($list_data_shopping_cart as $value) {
+                    $totals[] = $value['total'];
+                }
+                $total_cost = Total_Cost($totals);
+                include "../View/shopping-cart.php";
+                break;
+            }else{
+                $message_shopping_cart = "Bạn phải đăng nhập để sử dụng tính năng này";
+                include "../View/login.php";
+                break;
             }
-            $total_cost = Total_Cost($totals);
-            include "../View/shopping-cart.php";
-            break;
+            
         
         case "promotion":
             if(isset($_POST['submit_promotion']) && $_POST['submit_promotion']){
@@ -159,6 +173,10 @@ if(isset($_GET['request']) && $_GET['request']){
          case "payment":
             $id_user = $_SESSION['user']['id_user'];
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            if(empty($list_data_shopping_cart)){
+                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=");
+                break;
+            } ;
             $total_name = array();
             foreach ($list_data_shopping_cart as $value) {
                 $product_name = $value['name_products'];

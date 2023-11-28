@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -97,9 +96,9 @@
       <ul class="links">
         <li><a href="../../Dự_án_1/Controller/index-home.php?request=">Trang Chủ</a></li>
         <li>
-          <a  href="../../Dự_án_1/Controller/index-home.php?request=">Menu</a>
+          <a  href="../../Dự_án_1/Controller/index-home.php?request=menu">Menu</a>
           <i class='bx bxs-chevron-down htmlcss-arrow arrow '></i>
-          <ul class="htmlCss-sub-menu sub-menu">
+          <!-- <ul class="htmlCss-sub-menu sub-menu">
             <li><a href="#">Web Design</a></li>
             <li><a href="#">Login Forms</a></li>
             <li><a href="#">Card Design</a></li>
@@ -113,7 +112,7 @@
                 <li><a href="#">Glassmorphism</a></li>
               </ul>
             </li>
-          </ul>
+          </ul> -->
         </li>
         <li>
           <a href="#">Tài Khoản</a>

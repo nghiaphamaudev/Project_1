@@ -1,4 +1,4 @@
-<div class="container px-3 my-5 clearfix">
+<div class="container px-3 my-5 clearfix" >
     <!-- Shopping cart table -->
     <div class="card" style="margin-top: 20px">
         <div class="card-header">
@@ -24,7 +24,7 @@
                   <tr>
                     <td class="p-4">
                       <div class="media align-items-center">
-                        <img src="../../Dự_án_1/View/images/<?=$images?>" style="height: 50px" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                        <img src="../../Dự_án_1/View/images/<?=$images?>" style="height: 100px" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                         <div class="media-body">
                           <a href="#" class="d-block text-dark"><?=$name_products?></a>
                           <small>
@@ -88,7 +88,7 @@
                   <!-- <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=promotion" value="Cập nhật"> -->
                   </div>
                   <div class="float-right">
-                  <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=shopping-cart">&#8592;Tiếp tục mua hàng</a>
+                  <a type="button" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=menu">&#8592;Tiếp tục mua hàng</a>
                   <form action="../../Dự_án_1/Controller/index-home.php?request=payment" method="post">
                     <input type="hidden" name="sub_total" value="<?=$total_cost?>">
                     <input type="submit" value="Thanh toán" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=payment">

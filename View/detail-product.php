@@ -71,10 +71,10 @@
 							<input type="submit" name="submit" class="round-black-btn" value="Thêm vào giỏ hàng">
 							<?php if(isset($message)){
 								echo $message;
-								echo "<br>";
-								echo $quantity;
-								echo "<br>";
-								var_dump($id_products);
+								// echo "<br>";
+								// echo $quantity;
+								// echo "<br>";
+								// var_dump($id_products);
 							} ?>
 	        			</div>
 						</form>
