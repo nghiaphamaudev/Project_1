@@ -1,6 +1,8 @@
 <div class="global-container">
 	<div class="card login-form">
+		<?php if(isset($message_shopping_cart)) echo $message_shopping_cart; ?>
 	<div class="card-body">
+		
 		<h3 class="card-title text-center">Đăng Nhập</h3>
 		<div class="card-text">
 			<!--

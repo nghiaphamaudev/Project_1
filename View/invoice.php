@@ -8,20 +8,10 @@
 <?php extract($value);  ?>
   <div class="card" style="margin-top:40px; margin-bottom:40px;">
 <div class="card-header">
-  <?php if(isset($message)) echo $message ?>
   <br>
-<?php
-// Lấy thời gian thực
-$current_time = time();
 
-// Chuyển định dạng thời gian
-$formatted_time = date("Y-m-d ", $current_time);
-
-// Hiển thị thời gian
-
-?>
-Hóa Đơn
-<strong><?=$formatted_time?></strong> 
+ <strong>Hóa Đơn: </strong>
+<?=$date_created?> 
   <span class="float-right"> <strong>Trạng thái: <?php if($status === 0 ){
     echo "Chờ xác nhận";
   }else {
