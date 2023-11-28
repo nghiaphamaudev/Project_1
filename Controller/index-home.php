@@ -36,35 +36,75 @@ if(isset($_GET['request']) && $_GET['request']){
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
                 break;    
         
-        case "add-data-user":
+        case "add-data-user":  
+            include "../View/Admin/sweetalert.php";
+            include "../View/login.php";
             if(isset($_POST['submit']) && $_POST['submit']){
                 $email = $_POST['email'];
                 $fullName = $_POST['fullName'];
                 $password = $_POST['password'];
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    // Email không hợp lệ
+                    $err="Email không hợp lệ";
+                    header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
+                    exit();           
+                }
+                 if (strlen($password) < 6) {
+                    // Mật khẩu quá ngắn
+                    $err= "Mật khẩu quá ngắn. Phải có ít nhất 6 ký tự.";
+                    header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
+                    exit();
+                }   
+                 $fullName = trim($fullName);
+                 if (preg_match('/^[a-zA-ZÀ-ỹ\s]+$/u', $fullName)) {
+                  
+                } else {
+                    $err= "Họ tên không hợp lệ";
+                    header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
+                    exit();
+                }
+              
                 Insert_Data_User($email, $fullName ,$password);
-                $_SESSION['status'] = "Đăng Kí Thành Công";
+                $err= "Đăng Kí Thành Công";
+                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
             }
-            include "../View/Admin/sweetalert.php";
-            include "../View/login.php";
+
+
+         
             break;
 
          case "login-user":
+            
+            $_SESSION['']="";
             if(isset($_POST['submit']) && $_POST['submit']){
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $list_one_data_user = Check_Data_User($email, $password);
-
-                if(is_array($list_one_data_user)){
-                    $_SESSION['user'] = $list_one_data_user;
-                    header("Location:../../../../Dự_án_1/Controller/index-home.php");
-                    exit;
+                if(isset($_SESSION["check_err_login"])){
+                    unset($_SESSION['check_err_login']);
+                }
+                $_SESSION["check_err_login"] = "";
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    // Email không hợp lệ
+                    $check_err_login=   $_SESSION["check_err_login"]="Email không hợp lệ";
+                    header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login&check_err_login=$check_err_login");
+                    exit();           
                 }else{
-                    $inform = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
-                    include "../View/login.php";
-                    break;
+
+                    $list_one_data_user = Check_Data_User($email, $password);
+
+                    if(is_array($list_one_data_user)){
+                        $_SESSION['user'] = $list_one_data_user;
+                        header("Location:../Controller/index-home.php");
+                       
+                    }else{
+                        $check_err_login= $_SESSION["check_err_login"]="Tài khoản không tồn tại. Vui lòng kiểm tra lại";
+                        header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login&check_err_login=$check_err_login");
+                        break; 
+                    
                 }
             }
-            include "../View/home.php";
+            }
+         
             break;
     
         case "create-user":

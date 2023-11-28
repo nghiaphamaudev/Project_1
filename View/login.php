@@ -11,15 +11,23 @@
 				<!-- to error: add class "has-danger" -->
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email </label>
-					<input type="email" name="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<input type="email" name="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Mật Khẩu</label>
-					<input type="password" name="password" class="form-control form-control-sm" id="exampleInputPassword1">
+					<input type="password" name="password" class="form-control form-control-sm" id="exampleInputPassword1" required>
 					<!-- <br> -->
 					<a href="#" style="float:right;font-size:12px;">Quên mật khẩu?</a>
 					<br>
 				</div>
+				<?php
+			   if (isset($_GET['check_err_login'])) {
+				
+				$check_err_login = $_GET['check_err_login'];
+				echo "$check_err_login";
+			
+			} 
+				?>
 				
 				<input type="submit" name="submit" value="Đăng Nhập" class="btn btn-primary btn-block">
 				
