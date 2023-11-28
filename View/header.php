@@ -115,24 +115,35 @@
             </li>
           </ul>
         </li>
-        <li>
+        <?php 
+        if(!isset($_SESSION['user'])){
+echo '<li>
           <a href="#">Tài Khoản</a>
-          <i class='bx bxs-chevron-down js-arrow arrow '></i>
+          <i class="bx bxs-chevron-down js-arrow arrow "></i>
           <ul class="js-sub-menu sub-menu">
             <li><a href="../../Dự_án_1/Controller/index-home.php?request=create-user">Đăng Kí</a></li>
             <li><a href="../../Dự_án_1/Controller/index-home.php?request=login">Đăng Nhập</a></li>
           </ul>
-        </li>
+        </li>';
+        }else{
+          
+        }
+        ?>
+        
         <li><a href="../../Dự_án_1/Controller/index-home.php?request=about">Liên Hệ</a></li>
         <li><a href="../../Dự_án_1/Controller/index-home.php?request=shopping-cart">Giỏ Hàng</a></li>
        <?php  if(isset($_SESSION['user'])){
                 extract($_SESSION['user']);
               echo '<li>
-                        <a href="../../Dự_án_1/Controller/index-admin.php?request=">Xin chào, '.$full_name.'</a>
+                        <a href="#">Xin chào, '.$full_name.'</a>
                         <i class="bx bxs-chevron-down js-arrow arrow "></i>
                         <ul class="js-sub-menu sub-menu">
-                          <li><a href="../../Dự_án_1/Controller/index-home.php?request=log-out">Đăng Xuất</a></li>
-                          <li><a href="../../Dự_án_1/Controller/index-admin.php?request=">Admin</a></li>
+                          <li><a href="../../Dự_án_1/Controller/index-home.php?request=log-out">Đăng Xuất</a></li>  ' ;   
+                              if($role==1){
+                            echo
+                                   '<li><a href="../../Dự_án_1/Controller/index-admin.php?request=">Admin</a></li>';
+                              }
+                         echo '
                           <li><a href="../../Dự_án_1/Controller/index-home.php?request=invoice">Đơn Hàng</a></li>
                         </ul>
                   </li>';
@@ -152,3 +163,4 @@
       </nav>
     </div>
   </header>
+ 
