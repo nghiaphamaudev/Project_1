@@ -10,7 +10,7 @@
         $sql = "DELETE FROM `categories` WHERE id_categories =".$id;
         pdo_query($sql);
     }
-
+ 
     function Add_Data_Categories($name_category){
         $sql = "INSERT INTO `categories`(`name_categories`) VALUES ('$name_category')";
         pdo_execute($sql);

@@ -11,10 +11,59 @@ include "../View/Admin/sidebar.php";
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
 
-            case "home":
+            case "home": 
                 include "./index-home.php";
                 break;
-            
+            case "acc":
+                $list_user = Load_All_Data_Acc();
+                include "../View/Admin/acc.php";
+                break;
+            case "delete_acc":
+                if(isset($_GET['id']) && $_GET['id']){
+                    $id = $_GET['id'];
+                    Delete_Data_Acc($id);
+                    $_SESSION['status'] = "Delete successfully";
+                    // $_SESSION['status_code'] = "success";
+                }
+                $list_user = Load_All_Data_Acc();
+                include "../View/Admin/acc.php";
+                break;   
+            case "edit_acc":
+                if(isset($_GET['id']) && $_GET['id']){
+                    $id = $_GET['id'];
+                    $list_one_acc = Load_One_Data_Acc($id);
+                }
+                $list_user = Load_All_Data_Acc();
+                include "../View/Admin/update-acc.php";
+                break;
+            case "update_acc":
+                if(isset($_POST['submit']) && $_POST['submit']) {
+                    $id = $_POST['id_user'];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $full_name = $_POST['full_name'];
+                    $role = $_POST['role'];
+                    
+                    Update_Data_Acc($id, $email,$password,$full_name, $role);
+                    $_SESSION['status'] = "Update successfully";
+                    // $_SESSION['status_code'] = "success";
+                }
+                $list_user = Load_All_Data_Acc();
+                include "../View/Admin/acc.php";
+                break;
+
+            case "create_acc":
+                if(isset($_POST['submit']) && $_POST['submit']){
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $full_name = $_POST['full_name'];
+                    $role = $_POST['role'];
+                    Add_Data_Acc($email,$password,$full_name,$role);
+                    $_SESSION['status'] = "Add successfully";
+                }
+                include "../View/Admin/sweetalert.php";
+                include "../View/Admin/add-acc.php";
+                break; 
             case "categories":
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/categories.php";

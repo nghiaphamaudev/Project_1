@@ -12,7 +12,7 @@
                 </div>
                 <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr> 
                     <th>ID Danh Mục</th>
                     <th>Tên Danh Mục</th>
                     <th>Ngày Tạo</th>
