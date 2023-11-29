@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,12 +41,8 @@
                         <a href="../../../Dự_án_1/Controller/index-admin.php?request=create" class="dashboard-nav-dropdown-item">Tạo mới</a> 
                 </div>
             </div>
-            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
-                    class="fas fa-users"></i> Người Dùng </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Cập Nhật</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Phân Quyền</a>
-                </div>
+            <div class='dashboard-nav-dropdown'><a href="../../../Dự_án_1/Controller/index-admin.php?request=acc" class="dashboard-nav-item"><i
+                    class="fas fa-users"></i> Người Dùng </a> 
             </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
                     class="fas fa-money-check-alt"></i> Sản Phẩm </a>

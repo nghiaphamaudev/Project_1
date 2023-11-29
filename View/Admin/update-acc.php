@@ -22,7 +22,6 @@
                     </div>   
                     <select name="role" class="form-select" aria-label="Default select example">
                         
-                        <option selected>Open this select menu</option>
                         <option <?php if($role = 0){echo "selected";}else{}?> value="0">Khách</option>
                         <option <?php if($role = 1){echo "selected";}else{} ?> value="1">admin</option>
                         
