@@ -216,6 +216,10 @@ if(isset($_GET['request']) && $_GET['request']){
                         $list_topping = Load_All_Data_Topping();
                         include "../View/Admin/topping.php";
                         break;
+
+            case "statistic":
+                include "../View/Admin/chart.php";
+                break;
                     
         }
 }else{
