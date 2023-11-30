@@ -16,8 +16,8 @@
                                     <div class="rounded-full p-5 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Total Revenue</h2>
-                                   <p class="font-bold text-3xl">$3249 <span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
+                                    <h2 class="font-bold uppercase text-gray-600">Tổng Doanh Thu</h2>
+                                   <p class="font-bold text-3xl">$<?=$total_revenue;?> <span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -31,8 +31,8 @@
                                     <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Total Users</h2>
-                                    <p class="font-bold text-3xl">249 <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></p>
+                                    <h2 class="font-bold uppercase text-gray-600">Số Lượng Người Dùng</h2>
+                                    <p class="font-bold text-3xl"><?=$total_user?> </p>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +46,8 @@
                                     <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">New Users</h2>
-                                    <p class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
+                                    <h2 class="font-bold uppercase text-gray-600">Người Dùng Mới</h2>
+                                    <p class="font-bold text-3xl"><?=$total_new_user?> <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +61,8 @@
                                     <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Server Uptime</h2>
-                                    <p class="font-bold text-3xl">152 days</p>
+                                    <h2 class="font-bold uppercase text-gray-600">Số Lượng Sản Phẩm</h2>
+                                    <p class="font-bold text-3xl"><?=$total_products?><span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
                                     <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">To Do List</h2>
-                                    <p class="font-bold text-3xl">7 tasks</p>
+                                    <h2 class="font-bold uppercase text-gray-600">Số Lượng Đơn Hàng (ĐÃ HOÀN THÀNH)</h2>
+                                    <p class="font-bold text-3xl"><?=$total_bill?><span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                     <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Issues</h2>
+                                    <h2 class="font-bold uppercase text-gray-600">Tương Tác</h2>
                                     <p class="font-bold text-3xl">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h class="font-bold uppercase text-gray-600">Graph</h>
+                            <h class="font-bold uppercase text-gray-600">Doanh thu từng tháng</h>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -149,7 +149,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                            <h2 class="font-bold uppercase text-gray-600">Doanh thu theo tuần</h2>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -178,7 +178,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                            <h2 class="font-bold uppercase text-gray-600">Doanh thu theo ngày </h2>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -216,17 +216,17 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Danh mục sản phẩm (theo số lượng sp)</h5>
                         </div>
                         <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
                                 new Chart(document.getElementById("chartjs-4"), {
                                     "type": "doughnut",
                                     "data": {
-                                        "labels": ["P1", "P2", "P3"],
+                                        "labels": <?php echo json_encode($list_name_categories); ?>, 
                                         "datasets": [{
                                             "label": "Issues",
-                                            "data": [300, 50, 100],
+                                            "data": <?php echo json_encode($list_count_categories); ?>,
                                             "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
                                         }]
                                     }
@@ -285,13 +285,6 @@
                         <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
                             <h2 class="font-bold uppercase text-gray-600">Advert</h2>
                         </div>
-                        <div class="p-5 text-center">
-
-
-                            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7D52JJ&placement=wwwtailwindtoolboxcom" id="_carbonads_js"></script>
-
-
-                        </div>
                     </div>
                     <!--/Advert Card-->
                 </div>
@@ -299,7 +292,6 @@
 
                 </div>
             </div>
-        </section>
-
+                            </section>
 </div>
 

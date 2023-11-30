@@ -6,7 +6,9 @@ include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
+include "../Model/action-chart.php";
 include "../View/Admin/sidebar.php";
+
 
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
@@ -14,10 +16,12 @@ if(isset($_GET['request']) && $_GET['request']){
             case "home": 
                 include "./index-home.php";
                 break;
+
             case "acc":
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/acc.php";
                 break;
+
             case "delete_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -28,6 +32,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/acc.php";
                 break;   
+
             case "edit_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -36,6 +41,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/update-acc.php";
                 break;
+                
             case "update_acc":
                 if(isset($_POST['submit']) && $_POST['submit']) {
                     $id = $_POST['id_user'];
@@ -63,7 +69,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 }
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";
-                break; 
+                break;
+                 
             case "categories":
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/categories.php";
@@ -218,6 +225,20 @@ if(isset($_GET['request']) && $_GET['request']){
                         break;
 
             case "statistic":
+                $list_categories = Display_Categories_Circle_Diagram();
+                $total_user = Count_User();
+                $total_products = Count_Products();
+                $total_bill = Count_Completed_Invoice();
+                $total_new_user = Count_New_User();
+                $total_revenue = Total_Revenue();
+                $list_name_categories = [];
+                $list_count_categories = [];
+
+                foreach($list_categories as $value){
+                    $list_name_categories[] = $value['name_categories'];
+                    $list_count_categories[] = $value['number_cate'];
+                }
+
                 include "../View/Admin/chart.php";
                 break;
                     
