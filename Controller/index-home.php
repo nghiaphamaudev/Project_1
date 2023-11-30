@@ -7,6 +7,7 @@ include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
+include "../Model/action-chart.php";
 
 
 $list_categories = Load_All_Data_Categories();
@@ -237,12 +238,36 @@ if(isset($_GET['request']) && $_GET['request']){
                 $address_receiver = $_POST['address_receiver'];
                 $total_name_products = $_POST['total_name_products'];
                 $sub_total = $_POST['total_price'] ;
-                $total_all = $sub_total +10;
+                $total_all = (float)($sub_total +10);
                 $method = $_POST['method'];
                 $email = $_POST['email_receiver'];
+                $currentDateTime = date("Y/m/d", strtotime("2023-11-30"));
+                $data_statistical = Load_All_Data_Statiscal();
+                $exists = false;
+                foreach($data_statistical as $value){
+                    if(strtotime($currentDateTime) == strtotime($value['date_created'])){
+                        $exists = true;
+                        break;
+                    }
+                }
+                if($exists){
+                     // Dữ liệu thống kê đã tồn tại cho ngày hiện tại.
+                     // Thực hiện các bước cập nhật dữ liệu thống kê.
+                    $list_one_data_statistical = Load_One_Data_Statistical($currentDateTime);
+                    $revenue = $list_one_data_statistical['revenue'];
+                    $total = $total_all + $revenue;
+                    Update_Data_Statiscal($currentDateTime, $total);
+                } else {
+                    // Dữ liệu thống kê chưa tồn tại cho ngày hiện tại.
+                    // Thực hiện các bước thêm mới dữ liệu thống kê.
+                    Add_Data_Statiscal($currentDateTime, $total_all);
+                }
                 Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_all, $email, $sub_total);
+
             }
             $message="Đặt hàng thành công";
+            $list_one_data_statistical = Load_One_Data_Statistical($currentDateTime);
+            // foreach($list_one_data_statistical as $value){}
             $list_data_bill = Load_All_Data_Bill($id_user);
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
             include "../View/invoice.php";

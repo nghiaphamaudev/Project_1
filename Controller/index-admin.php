@@ -231,12 +231,20 @@ if(isset($_GET['request']) && $_GET['request']){
                 $total_bill = Count_Completed_Invoice();
                 $total_new_user = Count_New_User();
                 $total_revenue = Total_Revenue();
+                $list_data_revenue_day = Display_Diagram_Revenue_Days();
+                $list_days_in_day_diagram = [];
+                $list_value_in_day_diagram = [];
                 $list_name_categories = [];
                 $list_count_categories = [];
 
                 foreach($list_categories as $value){
                     $list_name_categories[] = $value['name_categories'];
                     $list_count_categories[] = $value['number_cate'];
+                }
+
+                foreach($list_data_revenue_day as $value){
+                    $list_days_in_day_diagram[] = $value['date_created'];
+                    $list_value_in_day_diagram[] = $value['revenue'];
                 }
 
                 include "../View/Admin/chart.php";

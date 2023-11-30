@@ -1,4 +1,38 @@
 <?php
+    function Add_Data_Statiscal($date_created, $revenue){
+        $sql = "INSERT INTO `statistical`(`date_created`, `revenue`) 
+        VALUES ('$date_created','$revenue')";
+        pdo_execute($sql);
+    }
+    function Update_Data_Statiscal($currentDateTime, $revenue){
+        $sql = "UPDATE `statistical` SET `revenue`= '$revenue'
+        WHERE `date_created` = '$currentDateTime'";
+        pdo_query_one($sql);
+    }
+
+     function Load_All_Data_Statiscal(){
+        $sql = "SELECT * FROM `statistical`";
+        $data_statistical =  pdo_query($sql);
+        return $data_statistical;
+        }
+    
+     function Load_One_Data_Statistical($date){
+            $sql = "SELECT  `revenue`
+                FROM `statistical` WHERE `date_created` = '".$date."'";
+            $list_one_data_statistical = pdo_query_one($sql);
+            return $list_one_data_statistical;
+    }
+        
+
+
+
+
+
+
+
+
+
+
     function Display_Categories_Circle_Diagram(){
         $sql = "SELECT `categories` .*, COUNT(products.id_categories) AS 'number_cate' FROM `products` 
         INNER JOIN `categories` ON products.id_categories = categories.id_categories GROUP BY products.id_categories";
@@ -59,43 +93,11 @@
         return $total_revenue;
     }
 
-    function Revenue_Month(){
-        // Ngày bắt đầu và kết thúc từ người dùng
-            $startDate = '2023-11-28';
-            $endDate = '2023-11-29';
-
-            // Câu truy vấn để lấy tổng doanh thu từng ngày trong khoảng thời gian
-            $sql = "SELECT DATE(`date_created`) AS `ngay`,
-                        SUM(`total_price`) AS `tong_doanh_thu`
-                    FROM `bill`
-                    WHERE `date_created` BETWEEN :start_date AND :end_date
-                    GROUP BY `ngay`
-                    ORDER BY `ngay`";
-
-            // Sử dụng PDO để thực hiện truy vấn
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':start_date', $startDate);
-            $stmt->bindParam(':end_date', $endDate);
-            $stmt->execute();
-
-            // Lấy kết quả
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            // Lưu kết quả vào bảng lưu trữ tổng doanh thu hàng ngày
-            foreach ($results as $result) {
-                $dailyRevenue = $result['tong_doanh_thu'];
-                $dailyDate = $result['ngay'];
-
-                // Thực hiện truy vấn để lưu trữ vào bảng riêng
-                $insertSql = "INSERT INTO `tong_doanh_thu_ngay` (`ngay`, `doanh_thu`)
-                            VALUES (:ngay, :doanh_thu)";
-                $insertStmt = $pdo->prepare($insertSql);
-                $insertStmt->bindParam(':ngay', $dailyDate);
-                $insertStmt->bindParam(':doanh_thu', $dailyRevenue);
-                $insertStmt->execute();
-}
-
-}
+    function Display_Diagram_Revenue_Days(){
+        $sql = "SELECT  `date_created`, `revenue` FROM `statistical` ";
+        $list_data_revenue_day = pdo_query($sql);
+        return $list_data_revenue_day;
+    }
     
 
 

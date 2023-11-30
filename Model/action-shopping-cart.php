@@ -25,7 +25,7 @@
     }
 
     function Update_Shopping_Cart($id_product, $quantity_new, $total,$name_topping){
-        $sql = "UPDATE `shopping_cart` SET `quantity`= '$quantity_new', `total`='$total', `name_topping` = '$name_topping' WHERE `id_products` =".$id_product;
+        $sql = "UPDATE `shopping_cart` SET `quantity`= '$quantity_new', `total`='$total', `name_topping` = '$name_topping' WHERE `id_products` = '$id_product'";
         pdo_query($sql);
     }
 
