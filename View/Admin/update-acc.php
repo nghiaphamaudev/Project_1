@@ -7,7 +7,7 @@
                         <?php 
                                 if(is_array($list_one_acc)){
                                     extract($list_one_acc);
-                                }
+                                } 
                         ?>
                          <input type="hidden" value="<?=$id_user?>" name="id_user" >
                         <input type="text" name="email" class="form-control" value="<?=$email?>" id="inputName" required>
