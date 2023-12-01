@@ -241,7 +241,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $total_all = (float)($sub_total +10);
                 $method = $_POST['method'];
                 $email = $_POST['email_receiver'];
-                $currentDateTime = date("Y/m/d", strtotime("2023-11-26"));
+                $currentDateTime = date("Y/m/d");
                 $data_statistical = Load_All_Data_Statiscal();
                 $exists = false;
                 foreach($data_statistical as $value){
