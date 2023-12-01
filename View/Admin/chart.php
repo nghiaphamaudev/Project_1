@@ -239,32 +239,34 @@
                             <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
                                 <h2 class="font-bold uppercase text-gray-600">Top Khách Hàng </h2>
                             </div>
-                            <div class="p-5">
-                                <table class="w-full p-5 text-gray-700">
-                                    <thead>
-                                    <tr> 
-                                        <th class="text-left text-blue-900">STT</th>
-                                        <th class="text-left text-blue-900">Tên</th>
-                                        <th class="text-left text-blue-900">Số lượng đơn hàng</th>
-                                        <th class="text-left text-blue-900">Giá trị</th>
-                                    </tr>
-                                    </thead>
+                            
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" style="text-align: center">Tên </th>
+      <th scope="col" style="text-align: center">Số đơn hàng</th>
+      <th scope="col" style="text-align: center">Tổng giá trị</th>
+    </tr>
+  </thead>
+  <tbody>
+                <?php $stt = 0; ?>
+                <?php  foreach($list_data_top_user as $value): ?>
+                    <?php extract($value); ?>
+            <tr>
+                <th scope="row"><?php echo ($stt = $stt + 1); ?></th>
+                <td style="text-align: center"><?=$full_name?></td>
+                <td style="text-align: center"><?=$number_of_purchases?></td>
+                <td style="text-align: center"><?=$total_spent?></td>
+            </tr>
 
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Phạm Văn Hòa</td>
-                                        <td>14</td>
-                                        <td>200</td>
-                                    </tr>
+            <?php endforeach; ?>
+    
+  </tbody>
+</table>
+</div>
 
-                                    
-                                    </tbody>
-                                </table>
-
-                               
-
-                            </div>
                         </div>
                         <!--/table Card-->
                     </div>

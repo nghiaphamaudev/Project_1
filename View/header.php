@@ -138,7 +138,7 @@ echo '<li>
                         <i class="bx bxs-chevron-down js-arrow arrow "></i>
                         <ul class="js-sub-menu sub-menu">
                           <li><a href="../../Dự_án_1/Controller/index-home.php?request=log-out">Đăng Xuất</a></li>  ' ;   
-                              if($role==0){
+                              if($role===1){
                             echo
                                    '<li><a href="../../Dự_án_1/Controller/index-admin.php?request=">Admin</a></li>';
                               }

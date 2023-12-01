@@ -30,6 +30,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_user = Load_All_Data_Acc();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;   
 
@@ -54,7 +55,9 @@ if(isset($_GET['request']) && $_GET['request']){
                     $_SESSION['status'] = "Update successfully";
                     // $_SESSION['status_code'] = "success";
                 }
+                
                 $list_user = Load_All_Data_Acc();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;
 
@@ -65,7 +68,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     $full_name = $_POST['full_name'];
                     $role = $_POST['role'];
                     Add_Data_Acc($email,$password,$full_name,$role);
-                    $_SESSION['status'] = "Add successfully";
+                    $_SESSION['status'] = "Create successfully";
                 }
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";

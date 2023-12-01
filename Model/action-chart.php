@@ -125,17 +125,10 @@
         return $list_data_revenue_months;
     }
     function Display_Diagram_Top_User(){
-        $sql = "SELECT 
-        id_user,
-        COUNT(id_user) as appearance_count,
-        SUM(total_price) as total_amount
-        FROM 
-            bill
-        GROUP BY 
-            id_user
-        ORDER BY 
-            appearance_count DESC
-        LIMIT 5;
+        $sql = "SELECT u.full_name, COUNT(b.id_user) AS number_of_purchases, 
+        SUM(b.total_price) AS total_spent FROM user u JOIN bill b ON u.id_user = b.id_user
+         GROUP BY u.id_user, u.full_name 
+         ORDER BY total_spent DESC LIMIT 5;
         ";
         $list_data_top_user = pdo_query($sql);
         return $list_data_top_user;

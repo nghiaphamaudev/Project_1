@@ -29,16 +29,17 @@ if(isset($_GET['request']) && $_GET['request']){
         case "login":
             include "../View/login.php";
             break;
+
         case "menu":
             include "../View/menu.php";
             break;
+
         case "log-out":
                 session_unset();
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
                 break;    
         
         case "add-data-user":  
-            include "../View/Admin/sweetalert.php";
             include "../View/login.php";
             if(isset($_POST['submit']) && $_POST['submit']){
                 $email = $_POST['email'];
@@ -69,9 +70,6 @@ if(isset($_GET['request']) && $_GET['request']){
                 $err= "Đăng Kí Thành Công";
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
             }
-
-
-         
             break;
 
          case "login-user":
@@ -182,6 +180,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $promotion_code = $_POST['code_promotion'];
                 if($promotion_code === "PHAMVANNGHIA"){
                     $price_promotion = 10;
+                    $_SESSION['status'] = "Add Promotion successfully";
                 }else{
                     $price_promotion = 0;
                     $message ="Code không tồn tại";
@@ -194,6 +193,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $totals[] = $value['total'];
             }
             $total_cost = Total_Cost($totals) - ((Total_Cost($totals) * $price_promotion)/100);
+            include "../View/Admin/sweetalert.php";
             include "../View/shopping-cart.php";
             break;
 
@@ -243,6 +243,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $email = $_POST['email_receiver'];
                 $currentDateTime = date("Y/m/d");
                 $data_statistical = Load_All_Data_Statiscal();
+                $_SESSION['status'] = "Payment is successfully";
                 $exists = false;
                 foreach($data_statistical as $value){
                     if(strtotime($currentDateTime) == strtotime($value['date_created'])){
@@ -270,6 +271,7 @@ if(isset($_GET['request']) && $_GET['request']){
             // foreach($list_one_data_statistical as $value){}
             $list_data_bill = Load_All_Data_Bill($id_user);
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            include "../View/Admin/sweetalert.php";
             include "../View/invoice.php";
             break;
         
