@@ -1,8 +1,13 @@
+<?php if(isset($message_shopping_cart )){
+  echo '<div class="card-header justify-content-center">
+  <span class="float-right " style="text-align:center"> <strong> '.$message_shopping_cart .'</strong></span>
+</div>';
+// var_dump($list_one_data_statistical);
+}
+?>
 <div class="global-container">
 	<div class="card login-form">
-		<?php if(isset($message_shopping_cart)) echo $message_shopping_cart; ?>
 	<div class="card-body">
-		
 		<h3 class="card-title text-center">Đăng Nhập</h3>
 		<div class="card-text">
 			<!--

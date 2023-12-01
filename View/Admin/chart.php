@@ -115,18 +115,12 @@
                                 new Chart(document.getElementById("chartjs-7"), {
                                     "type": "bar",
                                     "data": {
-                                        "labels": ["January", "February", "March", "April"],
+                                        "labels": <?php echo json_encode($list_months_in_months_diagram); ?>,
                                         "datasets": [{
-                                            "label": "Page Impressions",
-                                            "data": [10, 20, 30, 40],
+                                            "label": "Tháng",
+                                            "data": <?php echo json_encode($list_value_in_months_diagram); ?>,
                                             "borderColor": "rgb(255, 99, 132)",
                                             "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                        }, {
-                                            "label": "Adsense Clicks",
-                                            "data": [5, 15, 10, 30],
-                                            "type": "line",
-                                            "fill": false,
-                                            "borderColor": "rgb(54, 162, 235)"
                                         }]
                                     },
                                     "options": {
@@ -157,10 +151,10 @@
                                 new Chart(document.getElementById("chartjs-1"), {
                                     "type": "bar",
                                     "data": {
-                                        "labels": <?php echo json_encode($list_days_in_day_diagram); ?>,
+                                        "labels": <?php echo json_encode($list_weeks_in_weeks_diagram); ?>,
                                         "datasets": [{
-                                            "label": "Likes",
-                                            "data": <?php echo json_encode($list_value_in_day_diagram); ?>,
+                                            "label": "Tuần (01-11 -> 30-11-2023)",
+                                            "data": <?php echo json_encode($list_value_in_weeks_diagram); ?>,
                                             "fill": false,
                                             "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
                                             "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
@@ -182,9 +176,7 @@
                     </div>
                     <!--/Graph Card-->
                 </div>
-
-
-
+                
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-xl">
@@ -245,38 +237,32 @@
                         <!--Table Card-->
                         <div class="bg-white border-transparent rounded-lg shadow-xl">
                             <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                                <h2 class="font-bold uppercase text-gray-600">Top Khách Hàng </h2>
                             </div>
                             <div class="p-5">
                                 <table class="w-full p-5 text-gray-700">
                                     <thead>
-                                    <tr>
-                                        <th class="text-left text-blue-900">Name</th>
-                                        <th class="text-left text-blue-900">Side</th>
-                                        <th class="text-left text-blue-900">Role</th>
+                                    <tr> 
+                                        <th class="text-left text-blue-900">STT</th>
+                                        <th class="text-left text-blue-900">Tên</th>
+                                        <th class="text-left text-blue-900">Số lượng đơn hàng</th>
+                                        <th class="text-left text-blue-900">Giá trị</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
                                     <tr>
-                                        <td>Obi Wan Kenobi</td>
-                                        <td>Light</td>
-                                        <td>Jedi</td>
+                                        <td>1</td>
+                                        <td>Phạm Văn Hòa</td>
+                                        <td>14</td>
+                                        <td>200</td>
                                     </tr>
-                                    <tr>
-                                        <td>Greedo</td>
-                                        <td>South</td>
-                                        <td>Scumbag</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Darth Vader</td>
-                                        <td>Dark</td>
-                                        <td>Sith</td>
-                                    </tr>
+
+                                    
                                     </tbody>
                                 </table>
 
-                                <p class="py-2"><a href="#">See More issues...</a></p>
+                               
 
                             </div>
                         </div>

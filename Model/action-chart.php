@@ -83,11 +83,11 @@
     }
 
     function Total_Revenue(){
-        $sql = "SELECT `total_price` FROM `bill`";
+        $sql = "SELECT `revenue` FROM `statistical`";
         $total = pdo_query($sql);
         $total_revenue = 0;
         foreach($total as $value){
-            $total_revenue += $value['total_price'];
+            $total_revenue += $value['revenue'];
         }
 
         return $total_revenue;
@@ -98,6 +98,54 @@
         $list_data_revenue_day = pdo_query($sql);
         return $list_data_revenue_day;
     }
+
+    function Display_Diagram_Revenue_Weeks(){
+        $sql = "SELECT CONCAT('Tuần ', WEEK(date_created)) 
+        as week_label, SUM(revenue) as weekly_revenue 
+        FROM statistical WHERE date_created BETWEEN '2023-11-01' AND '2023-11-30' 
+        GROUP BY week_label ORDER BY WEEK(date_created)";
+        $list_data_revenue_weeks = pdo_query($sql);
+        return $list_data_revenue_weeks;
+    }
+
+    function Display_Diagram_Revenue_Months(){
+        $sql = "SELECT 
+        YEAR(date_created) as year,
+        MONTH(date_created) as month,
+        CONCAT('Tháng ', MONTH(date_created)) as month_label,
+        SUM(revenue) as monthly_revenue
+        FROM 
+            statistical
+        GROUP BY 
+            year, month, month_label
+        ORDER BY 
+            year, month;
+        ";
+        $list_data_revenue_months = pdo_query($sql);
+        return $list_data_revenue_months;
+    }
+    function Display_Diagram_Top_User(){
+        $sql = "SELECT 
+        id_user,
+        COUNT(id_user) as appearance_count,
+        SUM(total_price) as total_amount
+        FROM 
+            bill
+        GROUP BY 
+            id_user
+        ORDER BY 
+            appearance_count DESC
+        LIMIT 5;
+        ";
+        $list_data_top_user = pdo_query($sql);
+        return $list_data_top_user;
+    }
+
+    
+
+    
+
+    
     
 
 

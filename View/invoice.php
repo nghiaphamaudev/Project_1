@@ -2,7 +2,7 @@
   echo '<div class="card-header">
   <span class="float-right"> <strong> '.$message .'</strong></span>
 </div>';
-var_dump($list_one_data_statistical);
+// var_dump($list_one_data_statistical);
 }
 ?>
 <?php foreach ($list_data_bill as $value ): ?>

@@ -232,10 +232,18 @@ if(isset($_GET['request']) && $_GET['request']){
                 $total_new_user = Count_New_User();
                 $total_revenue = Total_Revenue();
                 $list_data_revenue_day = Display_Diagram_Revenue_Days();
+                $list_data_revenue_weeks = Display_Diagram_Revenue_Weeks();
+                $list_data_revenue_months = Display_Diagram_Revenue_Months();
+                $list_data_top_user= Display_Diagram_Top_User();
                 $list_days_in_day_diagram = [];
                 $list_value_in_day_diagram = [];
                 $list_name_categories = [];
                 $list_count_categories = [];
+                $list_weeks_in_weeks_diagram = [];
+                $list_value_in_weeks_diagram = [];
+                $list_months_in_months_diagram = [];
+                $list_value_in_months_diagram = [];
+
 
                 foreach($list_categories as $value){
                     $list_name_categories[] = $value['name_categories'];
@@ -245,6 +253,16 @@ if(isset($_GET['request']) && $_GET['request']){
                 foreach($list_data_revenue_day as $value){
                     $list_days_in_day_diagram[] = $value['date_created'];
                     $list_value_in_day_diagram[] = $value['revenue'];
+                }
+
+                foreach($list_data_revenue_weeks as $value){
+                    $list_weeks_in_weeks_diagram[]= $value['week_label'];
+                    $list_value_in_weeks_diagram[]= $value['weekly_revenue'];
+                }
+
+                foreach($list_data_revenue_months as $value){
+                    $list_months_in_months_diagram[]= $value['month_label'];
+                    $list_value_in_months_diagram[]= $value['monthly_revenue'];
                 }
 
                 include "../View/Admin/chart.php";
