@@ -1,4 +1,38 @@
 <?php
+    function Add_Data_Statiscal($date_created, $revenue){
+        $sql = "INSERT INTO `statistical`(`date_created`, `revenue`) 
+        VALUES ('$date_created','$revenue')";
+        pdo_execute($sql);
+    }
+    function Update_Data_Statiscal($currentDateTime, $revenue){
+        $sql = "UPDATE `statistical` SET `revenue`= '$revenue'
+        WHERE `date_created` = '$currentDateTime'";
+        pdo_query_one($sql);
+    }
+
+     function Load_All_Data_Statiscal(){
+        $sql = "SELECT * FROM `statistical`";
+        $data_statistical =  pdo_query($sql);
+        return $data_statistical;
+        }
+    
+     function Load_One_Data_Statistical($date){
+            $sql = "SELECT  `revenue`
+                FROM `statistical` WHERE `date_created` = '".$date."'";
+            $list_one_data_statistical = pdo_query_one($sql);
+            return $list_one_data_statistical;
+    }
+        
+
+
+
+
+
+
+
+
+
+
     function Display_Categories_Circle_Diagram(){
         $sql = "SELECT `categories` .*, COUNT(products.id_categories) AS 'number_cate' FROM `products` 
         INNER JOIN `categories` ON products.id_categories = categories.id_categories GROUP BY products.id_categories";
@@ -49,53 +83,62 @@
     }
 
     function Total_Revenue(){
-        $sql = "SELECT `total_price` FROM `bill`";
+        $sql = "SELECT `revenue` FROM `statistical`";
         $total = pdo_query($sql);
         $total_revenue = 0;
         foreach($total as $value){
-            $total_revenue += $value['total_price'];
+            $total_revenue += $value['revenue'];
         }
 
         return $total_revenue;
     }
 
-    function Revenue_Month(){
-        // Ngày bắt đầu và kết thúc từ người dùng
-            $startDate = '2023-11-28';
-            $endDate = '2023-11-29';
+    function Display_Diagram_Revenue_Days(){
+        $sql = "SELECT  `date_created`, `revenue` FROM `statistical` ";
+        $list_data_revenue_day = pdo_query($sql);
+        return $list_data_revenue_day;
+    }
 
-            // Câu truy vấn để lấy tổng doanh thu từng ngày trong khoảng thời gian
-            $sql = "SELECT DATE(`date_created`) AS `ngay`,
-                        SUM(`total_price`) AS `tong_doanh_thu`
-                    FROM `bill`
-                    WHERE `date_created` BETWEEN :start_date AND :end_date
-                    GROUP BY `ngay`
-                    ORDER BY `ngay`";
+    function Display_Diagram_Revenue_Weeks(){
+        $sql = "SELECT CONCAT('Tuần ', WEEK(date_created)) 
+        as week_label, SUM(revenue) as weekly_revenue 
+        FROM statistical WHERE date_created BETWEEN '2023-11-01' AND '2023-11-30' 
+        GROUP BY week_label ORDER BY WEEK(date_created)";
+        $list_data_revenue_weeks = pdo_query($sql);
+        return $list_data_revenue_weeks;
+    }
 
-            // Sử dụng PDO để thực hiện truy vấn
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':start_date', $startDate);
-            $stmt->bindParam(':end_date', $endDate);
-            $stmt->execute();
+    function Display_Diagram_Revenue_Months(){
+        $sql = "SELECT 
+        YEAR(date_created) as year,
+        MONTH(date_created) as month,
+        CONCAT('Tháng ', MONTH(date_created)) as month_label,
+        SUM(revenue) as monthly_revenue
+        FROM 
+            statistical
+        GROUP BY 
+            year, month, month_label
+        ORDER BY 
+            year, month;
+        ";
+        $list_data_revenue_months = pdo_query($sql);
+        return $list_data_revenue_months;
+    }
+    function Display_Diagram_Top_User(){
+        $sql = "SELECT u.full_name, COUNT(b.id_user) AS number_of_purchases, 
+        SUM(b.total_price) AS total_spent FROM user u JOIN bill b ON u.id_user = b.id_user
+         GROUP BY u.id_user, u.full_name 
+         ORDER BY total_spent DESC LIMIT 5;
+        ";
+        $list_data_top_user = pdo_query($sql);
+        return $list_data_top_user;
+    }
 
-            // Lấy kết quả
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
 
-            // Lưu kết quả vào bảng lưu trữ tổng doanh thu hàng ngày
-            foreach ($results as $result) {
-                $dailyRevenue = $result['tong_doanh_thu'];
-                $dailyDate = $result['ngay'];
+    
 
-                // Thực hiện truy vấn để lưu trữ vào bảng riêng
-                $insertSql = "INSERT INTO `tong_doanh_thu_ngay` (`ngay`, `doanh_thu`)
-                            VALUES (:ngay, :doanh_thu)";
-                $insertStmt = $pdo->prepare($insertSql);
-                $insertStmt->bindParam(':ngay', $dailyDate);
-                $insertStmt->bindParam(':doanh_thu', $dailyRevenue);
-                $insertStmt->execute();
-}
-
-}
+    
     
 
 

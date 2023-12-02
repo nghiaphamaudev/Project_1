@@ -7,6 +7,7 @@ include "../Model/action-categories.php";
 include_once "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
+include "../Model/action-chart.php";
 
 
 $list_categories = Load_All_Data_Categories();
@@ -28,16 +29,17 @@ if(isset($_GET['request']) && $_GET['request']){
         case "login":
             include "../View/login.php";
             break;
+
         case "menu":
             include "../View/menu.php";
             break;
+
         case "log-out":
                 session_unset();
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
                 break;    
         
         case "add-data-user":  
-            include "../View/Admin/sweetalert.php";
             include "../View/login.php";
             if(isset($_POST['submit']) && $_POST['submit']){
                 $email = $_POST['email'];
@@ -68,9 +70,6 @@ if(isset($_GET['request']) && $_GET['request']){
                 $err= "Đăng Kí Thành Công";
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
             }
-
-
-         
             break;
 
          case "login-user":
@@ -181,6 +180,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $promotion_code = $_POST['code_promotion'];
                 if($promotion_code === "PHAMVANNGHIA"){
                     $price_promotion = 10;
+                    $_SESSION['status'] = "Add Promotion successfully";
                 }else{
                     $price_promotion = 0;
                     $message ="Code không tồn tại";
@@ -193,6 +193,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $totals[] = $value['total'];
             }
             $total_cost = Total_Cost($totals) - ((Total_Cost($totals) * $price_promotion)/100);
+            include "../View/Admin/sweetalert.php";
             include "../View/shopping-cart.php";
             break;
 
@@ -237,14 +238,40 @@ if(isset($_GET['request']) && $_GET['request']){
                 $address_receiver = $_POST['address_receiver'];
                 $total_name_products = $_POST['total_name_products'];
                 $sub_total = $_POST['total_price'] ;
-                $total_all = $sub_total +10;
+                $total_all = (float)($sub_total +10);
                 $method = $_POST['method'];
                 $email = $_POST['email_receiver'];
+                $currentDateTime = date("Y/m/d");
+                $data_statistical = Load_All_Data_Statiscal();
+                $_SESSION['status'] = "Payment is successfully";
+                $exists = false;
+                foreach($data_statistical as $value){
+                    if(strtotime($currentDateTime) == strtotime($value['date_created'])){
+                        $exists = true;
+                        break;
+                    }
+                }
+                if($exists){
+                     // Dữ liệu thống kê đã tồn tại cho ngày hiện tại.
+                     // Thực hiện các bước cập nhật dữ liệu thống kê.
+                    $list_one_data_statistical = Load_One_Data_Statistical($currentDateTime);
+                    $revenue = $list_one_data_statistical['revenue'];
+                    $total = $total_all + $revenue;
+                    Update_Data_Statiscal($currentDateTime, $total);
+                } else {
+                    // Dữ liệu thống kê chưa tồn tại cho ngày hiện tại.
+                    // Thực hiện các bước thêm mới dữ liệu thống kê.
+                    Add_Data_Statiscal($currentDateTime, $total_all);
+                }
                 Add_Data_Bill($id_user, $total_name_products, $name_receiver, $address_receiver, $phone_receiver, $method, $total_all, $email, $sub_total);
+
             }
             $message="Đặt hàng thành công";
+            $list_one_data_statistical = Load_One_Data_Statistical($currentDateTime);
+            // foreach($list_one_data_statistical as $value){}
             $list_data_bill = Load_All_Data_Bill($id_user);
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            include "../View/Admin/sweetalert.php";
             include "../View/invoice.php";
             break;
         

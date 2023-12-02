@@ -19,34 +19,19 @@
                     <div class="form-group">
                         <label for="inputName" class="control-label">Tên</label>
                         <input type="text" name="full_name" class="form-control" value="<?=$full_name?>"  id="inputName"  required>
-                    </div>   
+                    </div>  
+                    <label for="inputName" class="control-label">Quyền truy cập </label> <br>
                     <select name="role" class="form-select" aria-label="Default select example">
                         
-                        <option <?php if($role = 0){echo "selected";}else{}?> value="0">Khách</option>
-                        <option <?php if($role = 1){echo "selected";}else{} ?> value="1">admin</option>
+                        <option <?php if($role === 0){echo "selected";}else{}?> value="0">Khách</option>
+                        <option <?php if($role === 1){echo "selected";}else{} ?> value="1">Admin</option>
                         
 </select>
                     <div class="form-group">
-                       <input type="submit" name="submit" value="Cập nhật Tài Khoản" class="btn btn-primary">
+                       <input type="submit" style="margin-top:20px" name="submit" value="Cập nhật Tài Khoản" class="btn btn-primary">
                     </div>
                     </form>
         </div>
     </div>
     <script src="../js/alert.js"></script>
-   
-   <?php 
-   if(isset($_SESSION['status']) && $_SESSION['status'] !=" "){
-       ?>
-           <script> 
-           swal({
-                   title: "Good job!",
-                   text: "You clicked the button!",
-                   icon: "success",
-                   button: "Aww yiss!",
-               });
-           </script>
-       <?php
-       unset($_SESSION['status']);
-   }
-   ?>
 </div>
