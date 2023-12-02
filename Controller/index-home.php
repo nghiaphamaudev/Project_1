@@ -2,9 +2,9 @@
 session_start();
 ob_start();
 include "../View/header.php";
-include "../Model/pdo.php";
+include_once "../Model/pdo.php";
 include "../Model/action-categories.php";
-include "../Model/action-product.php";
+include_once "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
 

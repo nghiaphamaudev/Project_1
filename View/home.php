@@ -1,4 +1,3 @@
- 
 
  <!-- slider section -->
  
@@ -245,101 +244,19 @@
           Thực Đơn Của Chúng Tôi
         </h2>
       </div>
-
+    
       <ul class="filters_menu">
-        <li class="active" data-filter="*">All</li>
         <?php
                   foreach ($list_categories as $value) {
                         extract($value);
-                        echo '<li>'.$name_categories.'</li>';
+                        echo ' <li><a href="#" class="changeContentLink" data-id="'.$id_categories.'">'.$name_categories.'</a></li>';
                   }
          ?>
       </ul>
-
-      <div class="filters-content">
-        <div class="row grid">
-        <?php foreach ($list_products as $value) : ?>
-        <?php extract($value); ?>
-                  <div class="col-sm-6 col-lg-4 all pizza">
-            <div class="box">
-              <div>
-                <div class="img-box">
-                <a href="../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
-                  <img src="../../Dự_án_1/View/images/<?=$images?>" alt="">
-                </a>
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    <?=$name_products?>
-                  </h5>
-                  <p>
-                   <?=$description?>
-                  </p>
-                  <div class="options">
-                    <h6 href= "../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
-                    $<?=$original_price?>
-                    </h6>
-                    <a href= "../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
-                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                        <g>
-                          <g>
-                            <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                          </g>
-                        </g>
-                        <g>
-                          <g>
-                            <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                          </g>
-                        </g>
-                        <g>
-                          <g>
-                            <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                          </g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
+     
+       
+      <div class="filters-content" id="content">
+      <!-- phần ajax thay đổi  -->
       </div>
       <div class="btn-box">
         <a href="">
@@ -498,5 +415,48 @@
       </div>
     </div>
   </section>
+     <script>
+        // Hàm xử lý khi thay đổi nội dung và hiển thị giá trị id
+        function changeContent(dynamicId) {
+            // Gửi thêm biến 'id'
+            var dataToSend = { id: dynamicId };
 
-  <!-- end client section -->
+            // Chuyển đối tượng thành chuỗi query string
+            var queryString = $.param(dataToSend);
+
+            // Sử dụng AJAX để lấy nội dung mới
+            $.ajax({
+                url: '../View/new-content.php?' + queryString, // Đường dẫn tới nguồn dữ liệu mới
+                method: 'GET',
+                success: function (data) {
+                    // Cập nhật nội dung của phần cần thay đổi
+                    $('#content').html(data);
+
+                  
+                },
+                error: function (error) {
+                    console.log('Error loading new content:', error);
+                }
+            });
+        }
+
+        // Sự kiện click trên tất cả các thẻ a có class 'changeContentLink'
+        $('.changeContentLink').click(function(event) {
+            // Ngăn chặn hành vi mặc định của sự kiện click
+            event.preventDefault();
+
+            // Lấy giá trị 'id' từ thuộc tính 'data-id' của thẻ a
+            var dynamicId = $(this).data('id');
+            // Gọi hàm để thay đổi nội dung và hiển thị giá trị id
+            changeContent(dynamicId);
+        });
+
+        // Tự động kích hoạt sự kiện click cho thẻ a đầu tiên khi trang được tải
+        $(document).ready(function() {
+            // Lấy giá trị 'id' của thẻ a đầu tiên
+            var initialId = $('.changeContentLink:first').data('id');
+
+            // Gọi hàm để thay đổi nội dung và hiển thị giá trị id
+            changeContent(initialId);
+        });
+    </script>

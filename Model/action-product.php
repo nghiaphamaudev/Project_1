@@ -85,7 +85,16 @@
         $price_topping = pdo_query_one($sql);
         return $price_topping;
     }
-
+    function Load_All_Categories_Products($id){
+        $sql="SELECT * FROM `products` WHERE 1 ";
+       
+        if($id>0){
+            $sql.="AND id_categories = ".$id."";
+        }
+        
+        $list_categories=pdo_query($sql);
+        return  $list_categories;
+    }
     
 
  
