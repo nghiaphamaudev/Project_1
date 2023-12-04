@@ -10,15 +10,15 @@
 				<!-- to error: add class "has-danger" -->
 				<div class="form-group"> 
 					<label for="exampleInputEmail1">Email </label>
-					<input type="email" class="form-control form-control-sm" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<input type="email" class="form-control form-control-sm"  name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Họ và Tên </label>
-					<input type="text" class="form-control form-control-sm" name="fullName" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<input type="text" class="form-control form-control-sm"  name="fullName" id="exampleInputEmail1" aria-describedby="emailHelp">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Mật Khẩu</label>
-					<input type="password" class="form-control form-control-sm" name="password" id="exampleInputPassword1">
+					<input type="password" class="form-control form-control-sm"  name="password" id="exampleInputPassword1">
 				</div>
 				<?php
 			   if (isset($_GET['err'])) {

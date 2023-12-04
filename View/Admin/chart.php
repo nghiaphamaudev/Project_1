@@ -258,7 +258,7 @@
                 <th scope="row"><?php echo ($stt = $stt + 1); ?></th>
                 <td style="text-align: center"><?=$full_name?></td>
                 <td style="text-align: center"><?=$number_of_purchases?></td>
-                <td style="text-align: center"><?=$total_spent?></td>
+                <td style="text-align: center"><?=round($total_spent *100)/100?></td>
             </tr>
 
             <?php endforeach; ?>
