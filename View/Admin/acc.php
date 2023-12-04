@@ -29,10 +29,10 @@
                                                     <td><?=$password?></td>
                                                     <td><?=$full_name?></td>
                                                     <td><?php 
-                                                    if($role=0){
-                                                        echo "khách";
+                                                    if($role===0){
+                                                        echo "Khách";
                                                     }else{
-                                                        echo "admin";
+                                                        echo "Admin";
                                                     }
                                                     ?></td>
                                                     <td>

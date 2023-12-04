@@ -6,9 +6,14 @@ include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
+<<<<<<< HEAD
 include "../Model/action-order.php";
 include "../Model/action-confirm.php";
+=======
+include "../Model/action-chart.php";
+>>>>>>> f7dcf08a092cfacca54006e4db46ea40167a9786
 include "../View/Admin/sidebar.php";
+
 
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
@@ -16,10 +21,12 @@ if(isset($_GET['request']) && $_GET['request']){
             case "home": 
                 include "./index-home.php";
                 break;
+
             case "acc":
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/acc.php";
                 break;
+
             case "delete_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -28,8 +35,10 @@ if(isset($_GET['request']) && $_GET['request']){
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_user = Load_All_Data_Acc();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;   
+
             case "edit_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -38,6 +47,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/update-acc.php";
                 break;
+                
             case "update_acc":
                 if(isset($_POST['submit']) && $_POST['submit']) {
                     $id = $_POST['id_user'];
@@ -50,7 +60,9 @@ if(isset($_GET['request']) && $_GET['request']){
                     $_SESSION['status'] = "Update successfully";
                     // $_SESSION['status_code'] = "success";
                 }
+                
                 $list_user = Load_All_Data_Acc();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;
 
@@ -61,11 +73,12 @@ if(isset($_GET['request']) && $_GET['request']){
                     $full_name = $_POST['full_name'];
                     $role = $_POST['role'];
                     Add_Data_Acc($email,$password,$full_name,$role);
-                    $_SESSION['status'] = "Add successfully";
+                    $_SESSION['status'] = "Create successfully";
                 }
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";
-                break; 
+                break;
+                 
             case "categories":
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/categories.php";
@@ -220,6 +233,46 @@ if(isset($_GET['request']) && $_GET['request']){
                         break;
 
             case "statistic":
+                $list_categories = Display_Categories_Circle_Diagram();
+                $total_user = Count_User();
+                $total_products = Count_Products();
+                $total_bill = Count_Completed_Invoice();
+                $total_new_user = Count_New_User();
+                $total_revenue = Total_Revenue();
+                $list_data_revenue_day = Display_Diagram_Revenue_Days();
+                $list_data_revenue_weeks = Display_Diagram_Revenue_Weeks();
+                $list_data_revenue_months = Display_Diagram_Revenue_Months();
+                $list_data_top_user= Display_Diagram_Top_User();
+                $list_days_in_day_diagram = [];
+                $list_value_in_day_diagram = [];
+                $list_name_categories = [];
+                $list_count_categories = [];
+                $list_weeks_in_weeks_diagram = [];
+                $list_value_in_weeks_diagram = [];
+                $list_months_in_months_diagram = [];
+                $list_value_in_months_diagram = [];
+
+
+                foreach($list_categories as $value){
+                    $list_name_categories[] = $value['name_categories'];
+                    $list_count_categories[] = $value['number_cate'];
+                }
+
+                foreach($list_data_revenue_day as $value){
+                    $list_days_in_day_diagram[] = $value['date_created'];
+                    $list_value_in_day_diagram[] = $value['revenue'];
+                }
+
+                foreach($list_data_revenue_weeks as $value){
+                    $list_weeks_in_weeks_diagram[]= $value['week_label'];
+                    $list_value_in_weeks_diagram[]= $value['weekly_revenue'];
+                }
+
+                foreach($list_data_revenue_months as $value){
+                    $list_months_in_months_diagram[]= $value['month_label'];
+                    $list_value_in_months_diagram[]= $value['monthly_revenue'];
+                }
+
                 include "../View/Admin/chart.php";
                 break;
              case "order":

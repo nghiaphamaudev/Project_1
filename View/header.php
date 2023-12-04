@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <!-- font awesome style -->
   <link href="../View/css/font-awesome.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"> -->
 
 
@@ -63,8 +63,8 @@
   <link rel="stylesheet" href="../../Dự_án_1/View/css/header.css">
   <link rel="stylesheet" href="../../Dự_án_1/View/css/payment.css">
 
-  
-
+  <!-- thư viện jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -114,8 +114,8 @@
             </li>
           </ul> -->
         </li>
-        <?php 
-        if(!isset($_SESSION['user'])){
+        <?php
+if(!isset($_SESSION['user'])){
 echo '<li>
           <a href="#">Tài Khoản</a>
           <i class="bx bxs-chevron-down js-arrow arrow "></i>
@@ -138,7 +138,7 @@ echo '<li>
                         <i class="bx bxs-chevron-down js-arrow arrow "></i>
                         <ul class="js-sub-menu sub-menu">
                           <li><a href="../../Dự_án_1/Controller/index-home.php?request=log-out">Đăng Xuất</a></li>  ' ;   
-                              if($role==1){
+                              if($role===1){
                             echo
                                    '<li><a href="../../Dự_án_1/Controller/index-admin.php?request=">Admin</a></li>';
                               }
@@ -162,4 +162,3 @@ echo '<li>
       </nav>
     </div>
   </header>
- 
