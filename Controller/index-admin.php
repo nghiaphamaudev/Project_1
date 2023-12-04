@@ -6,6 +6,8 @@ include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
+include "../Model/action-order.php";
+include "../Model/action-confirm.php";
 include "../View/Admin/sidebar.php";
 
 if(isset($_GET['request']) && $_GET['request']){
@@ -220,6 +222,42 @@ if(isset($_GET['request']) && $_GET['request']){
             case "statistic":
                 include "../View/Admin/chart.php";
                 break;
+             case "order":
+                 $list_bill = Load_All_Data_order();
+                 include "../View/Admin/order.php";
+                break; 
+                    case "edit_order": 
+                         if(isset($_POST['submit']) && $_POST['submit']){
+                            $id_status= $_POST['id_status'];
+                        if(isset($_GET['id']) && $_GET['id']){
+                            $id = $_GET['id'];
+                     
+                            Update_Data_Order($id,$id_status);
+                            $_SESSION['status'] = "Update successfully";
+                            // $_SESSION['status_code'] = "success";
+                        }}
+                        $list_bill = Load_All_Data_order();
+                        include "../View/Admin/order.php";
+                        break;
+                case "confirm":
+                            $list_bill = Load_All_Data_confirm();
+                            include "../View/Admin/confirm.php";
+                           break; 
+                               case "edit_confirm": 
+                                    if(isset($_POST['submit']) && $_POST['submit']){
+                                       $id_state= $_POST['id_state'];
+                                   if(isset($_GET['id']) && $_GET['id']){
+                                       $id = $_GET['id'];
+                                
+                                       Update_Data_confirm($id,$id_state);
+                                       $_SESSION['state'] = "Update successfully";
+                                       // $_SESSION['state_code'] = "success";
+                                   }}
+                                   $list_bill = Load_All_Data_confirm();
+                                   include "../View/Admin/confirm.php";
+                                   break;           
+                
+
                     
         }
 }else{
