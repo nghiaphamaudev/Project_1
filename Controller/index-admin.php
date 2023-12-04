@@ -6,14 +6,10 @@ include "../Model/action-categories.php";
 include "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
-<<<<<<< HEAD
 include "../Model/action-order.php";
 include "../Model/action-confirm.php";
-=======
-include "../Model/action-chart.php";
->>>>>>> f7dcf08a092cfacca54006e4db46ea40167a9786
 include "../View/Admin/sidebar.php";
-
+include "../Model/action-chart.php";
 
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
