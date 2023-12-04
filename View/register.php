@@ -24,7 +24,7 @@
 			   if (isset($_GET['err'])) {
 				
 				$error = $_GET['err'];
-				echo "Có lỗi xảy ra: $error";
+				echo "$error";
 			} 
 				?>
 				<input type="submit" name="submit" value="Đăng Kí" class="btn btn-primary btn-block">

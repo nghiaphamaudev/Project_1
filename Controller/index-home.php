@@ -2,13 +2,13 @@
 session_start();
 ob_start();
 include "../View/header.php";
-include "../Model/pdo.php";
+include_once "../Model/pdo.php";
 include "../Model/action-categories.php";
-include "../Model/action-product.php";
+include_once "../Model/action-product.php";
 include "../Model/action-account.php";
 include "../Model/action-shopping-cart.php";
 include "../Model/action-chart.php";
-
+include "../Model/action-reviews.php";
 
 $list_categories = Load_All_Data_Categories();
 $list_products = Load_All_Data_Products();
@@ -19,6 +19,19 @@ if(isset($_GET['request']) && $_GET['request']){
 
     switch($_GET['request']){
         case "detail":
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Lấy dữ liệu từ form
+                if(isset($_SESSION['user'])){
+                    extract($_SESSION['user']);
+                $user = $id_user;
+            }else{
+                $user = 0;
+            }
+                $id_products = $_POST['idproduct_rating'];   
+                $comment = $_POST["comment"];
+                $rating = $_POST["rating"];
+                Insert_Reviews($id_products, $user, $comment, $rating);
+            }
             if(isset($_GET['id']) && $_GET['id']){
                 $id = $_GET['id'];
                 $list_one_data_product = Load_One_Data_Products($id);

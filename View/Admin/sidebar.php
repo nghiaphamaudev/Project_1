@@ -58,9 +58,16 @@
                         href="../../../Dự_án_1/Controller/index-admin.php?request=topping" class="dashboard-nav-dropdown-item"> Topping</a>
                 </div>
             </div>
-            <a href="#" class="dashboard-nav-item"><i class="fa-solid fa-receipt"></i> Đơn Hàng </a><a
-                    href="../../../Dự_án_1/Controller/index-admin.php?request=statistic" class="dashboard-nav-item"><i class="fa-solid fa-chart-line"></i> Thông Kê </a>
+            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fa-solid fa-receipt"></i> Đơn hàng </a>
+                <div class='dashboard-nav-dropdown-menu'>
+            <a href="../../../Dự_án_1/Controller/index-admin.php?request=order" class="dashboard-nav-item"><i class="fa-solid fa-receipt"></i> Đơn Hàng </a><a
+            href="../../../Dự_án_1/Controller/index-admin.php?request=order" class="dashboard-nav-dropdown-item">Quản lí đơn hàng</a><a
+            href="../../../Dự_án_1/Controller/index-admin.php?request=confirm" class="dashboard-nav-dropdown-item">Xác nhận đơn</a>
+            </div>
+            </div>
+             <a  href="../../../Dự_án_1/Controller/index-admin.php?request=statistic" class="dashboard-nav-item"><i class="fa-solid fa-chart-line"></i> Thông Kê </a>
           <div class="nav-item-divider"></div>
+          
           <a
                     href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
         </nav>
