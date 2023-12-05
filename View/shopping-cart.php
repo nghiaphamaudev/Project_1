@@ -2,7 +2,7 @@
     <!-- Shopping cart table -->
     <div class="card" style="margin-top: 20px">
         <div class="card-header">
-            <h2 style="font-family:Arial">Đơn Hàng</h2>
+            <h2 style="font-family:Arial">Giỏ Hàng</h2>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -28,15 +28,15 @@
                         <div class="media-body">
                           <a href="#" class="d-block text-dark"><?=$name_products?></a>
                           <small>
-                            <span class="text-muted">Topping: <?=$name_topping?></span>
+                            <span class="text-muted">Topping: <?=$name_topping?>(<?=currency_format($price_topping, 'VND')  ?>)</span>
                             <!-- <span class="text-muted">, </span> Vận chuyển: <?=$price_delivery?>$ -->
                           </small>
                         </div>
                       </div>
                     </td>
-                    <td class="text-center font-weight-semibold align-middle p-4"><?=$price_products?>$</td>
-                    <td class="align-middle p-4"><input type="text" class="form-control text-center" value="<?=$quantity?>"></td>
-                    <td class="text-center font-weight-semibold align-middle p-4">$<?=$total?></td>
+                    <td class="text-center font-weight-semibold align-middle p-4"><?=currency_format($price_products, 'VND')?></td>
+                    <td class="align-middle p-4" style="text-align: center"><?=$quantity?></td>
+                    <td class="text-center font-weight-semibold align-middle p-4"><?=currency_format($total, 'VND')?></td>
                     <td class="text-center align-middle px-0">
                       <a href="../../Dự_án_1/Controller/index-home.php?request=cancel-shopping-cart&&id_cart=<?=$id_cart?>" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">
                         <i class="fa-solid fa-rectangle-xmark" style="color: #ff3050; font-size:25px"></i>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="text-right mt-4">
                   <label class="text-muted font-weight-normal m-0">Tổng</label>
-                  <div class="text-large"><strong>$<?=$total_cost?></strong></div>
+                  <div class="text-large"><strong><?=currency_format($total_cost, 'VND')?></strong></div>
                 </div>
               </div>
             </div>

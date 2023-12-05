@@ -1,7 +1,7 @@
 <?php
 
-    function Add_Product_Shopping_Cart($id_products, $quantity, $id_user, $total, $name_products, $price_product, $name_topping, $images){
-        $sql = "INSERT INTO `shopping_cart`( `id_products`, `quantity`, `id_user`, `total`, `name_products`, `price_products`,`name_topping`,`images`) VALUES ('$id_products','$quantity','$id_user','$total', '$name_products', '$price_product', '$name_topping', '$images')";
+    function Add_Product_Shopping_Cart($id_products, $quantity, $id_user, $total, $name_products, $price_product, $name_topping,$price_topping, $images){
+        $sql = "INSERT INTO `shopping_cart`( `id_products`, `quantity`, `id_user`, `total`, `name_products`, `price_products`,`name_topping`,`images`, `price_topping`) VALUES ('$id_products','$quantity','$id_user','$total', '$name_products', '$price_product', '$name_topping', '$images', '$price_topping')";
         pdo_execute($sql);
     }
 

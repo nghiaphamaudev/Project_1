@@ -155,16 +155,16 @@ if(isset($_GET['request']) && $_GET['request']){
                         $quantity = (int)(Load_Quantity_In_Shopping_Cart($id_product));
                         $quantity_new = $quantity + $quantity_product;
                         $total = ($quantity_new * $price_product) + $price_topping;
-                        Update_Shopping_Cart($id_product, $quantity_new, $total, $name_topping);
-                        $message = "Thêm thành công";
+                        Update_Shopping_Cart($id_product, $quantity_new, $total, $name_topping, $price_topping);
+                        $_SESSION['status'] = "Thêm giỏ hàng thành công";
                     } else {
                         // Nếu chưa thì tiến hành add sản phẩm mới vào giỏ hàng
                         $total = ($quantity_product * $price_product) + $price_topping ;
-                        Add_Product_Shopping_Cart($id_product, $quantity_product, $id_user, $total, $name_products, $price_product, $name_topping, $images);
-                        $message = "Thêm giỏ hàng thành công";
+                        Add_Product_Shopping_Cart($id_product, $quantity_product, $id_user, $total, $name_products, $price_product, $name_topping,$price_topping, $images);
+                        $_SESSION['status'] = "Thêm giỏ hàng thành công";
                     }
                 }
-            
+                include "../View/Admin/sweetalert.php";
                 $list_one_data_product = Load_One_Data_Products($id_product);
                 include "../View/detail-product.php";
                 break;
@@ -193,7 +193,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 $promotion_code = $_POST['code_promotion'];
                 if($promotion_code === "PHAMVANNGHIA"){
                     $price_promotion = 10;
-                    $_SESSION['status'] = "Add Promotion successfully";
+                    $_SESSION['code'] = '10%';
+                    $_SESSION['status'] = "Áp mã giảm giá thành công";
                 }else{
                     $price_promotion = 0;
                     $message ="Code không tồn tại";
@@ -244,6 +245,7 @@ if(isset($_GET['request']) && $_GET['request']){
             break;
 
         case "confirm-payment":
+            unset($_SESSION['code']);
             $id_user = $_SESSION['user']['id_user'];
             if(isset($_POST['submit']) && $_POST['submit']){
                 $name_receiver = $_POST['name_receiver'];
@@ -251,12 +253,12 @@ if(isset($_GET['request']) && $_GET['request']){
                 $address_receiver = $_POST['address_receiver'];
                 $total_name_products = $_POST['total_name_products'];
                 $sub_total = $_POST['total_price'] ;
-                $total_all = (float)($sub_total +10);
+                $total_all = (float)($sub_total +10000);
                 $method = $_POST['method'];
                 $email = $_POST['email_receiver'];
                 $currentDateTime = date("Y/m/d");
                 $data_statistical = Load_All_Data_Statiscal();
-                $_SESSION['status'] = "Payment is successfully";
+                $_SESSION['status'] = "Thanh toán thành công";
                 $exists = false;
                 foreach($data_statistical as $value){
                     if(strtotime($currentDateTime) == strtotime($value['date_created'])){

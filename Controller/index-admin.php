@@ -27,7 +27,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
                     Delete_Data_Acc($id);
-                    $_SESSION['status'] = "Delete successfully";
+                    $_SESSION['status'] = "Xóa thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_user = Load_All_Data_Acc();
@@ -53,7 +53,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     $role = $_POST['role'];
                     
                     Update_Data_Acc($id, $email,$password,$full_name, $role);
-                    $_SESSION['status'] = "Update successfully";
+                    $_SESSION['status'] = "Cập nhật thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 
@@ -69,7 +69,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     $full_name = $_POST['full_name'];
                     $role = $_POST['role'];
                     Add_Data_Acc($email,$password,$full_name,$role);
-                    $_SESSION['status'] = "Create successfully";
+                    $_SESSION['status'] = "Tạo thành công";
                 }
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";
@@ -84,10 +84,11 @@ if(isset($_GET['request']) && $_GET['request']){
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
                     Delete_Data_Categories($id);
-                    $_SESSION['status'] = "Delete successfully";
+                    $_SESSION['status'] = "Xóa thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_categories = Load_All_Data_Categories();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/categories.php";
                 break;
             
@@ -95,7 +96,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $name_category = $_POST['name_category'];
                     Add_Data_Categories($name_category);
-                    $_SESSION['status'] = "Add successfully";
+                    $_SESSION['status'] = "Thêm thành công";
                 }
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-categories.php";
@@ -115,10 +116,11 @@ if(isset($_GET['request']) && $_GET['request']){
                     $id = $_POST['id_category'];
                     $name_categories = $_POST['name_category'];
                     Update_Data_Categories($id, $name_categories);
-                    $_SESSION['status'] = "Update successfully";
+                    $_SESSION['status'] = "Cập nhật thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_categories = Load_All_Data_Categories();
+                include "../View/Admin/sweetalert.php";
                 include "../View/Admin/categories.php";
                 break;
 
@@ -131,7 +133,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
                     Delete_Data_Products($id);
-                    $_SESSION['status'] = "Delete successfully";
+                    $_SESSION['status'] = "Xóa thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_products = Load_All_Data_Products();
@@ -144,10 +146,11 @@ if(isset($_GET['request']) && $_GET['request']){
                     $name_products = $_POST['name_product'];
                     $file_name = $_FILES['images']['name'];
                     $price = $_POST['price'];
+                    $description = $_POST['description'];
                     $id_categories = $_POST['id_categories'];
-                    $_SESSION['status'] = "Delete successfully";
+                    $_SESSION['status'] = "Thêm thành công";
                     Upload_Images($file_name);
-                    Add_Data_Products($id_categories,$name_products,$file_name, $price);
+                    Add_Data_Products($id_categories,$name_products,$file_name, $price, $description);
                 }
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/sweetalert.php";
@@ -171,7 +174,7 @@ if(isset($_GET['request']) && $_GET['request']){
                     $id_categories = $_POST['id_categories'];
                     $description =$_POST['description'];
                     $id = $_POST['id_product'];
-                    $_SESSION['status'] = "Update successfully";
+                    $_SESSION['status'] = "Cập nhật thành công";
                     Upload_Images($file_name);
                     Update_Data_Products($id_categories,$name_products,$file_name,$price,$id,$description);
                 }
@@ -200,9 +203,10 @@ if(isset($_GET['request']) && $_GET['request']){
                     $name_topping = $_POST['name_topping'];
                     $price_topping =$_POST['price_topping'];
                     Update_Data_Topping($id, $name_topping,$price_topping);
-                    $_SESSION['status'] = "Update successfully";
+                    $_SESSION['status'] = "Cập nhật thành công";
                     // $_SESSION['status_code'] = "success";
                 }
+                include "../View/Admin/sweetalert.php";
                 $list_topping = Load_All_Data_Topping();
                 include "../View/Admin/topping.php";
                 break;
@@ -212,8 +216,10 @@ if(isset($_GET['request']) && $_GET['request']){
                         $name_topping = $_POST['name_topping'];
                         $price_topping =$_POST['price_topping'];
                         Add_Data_Topping($name_topping,$price_topping);
+                        $_SESSION['status'] = "Thêm thành công";
                     }
                     $list_topping = Load_All_Data_Topping();
+                    include "../View/Admin/sweetalert.php";
                     include "../View/Admin/add-topping.php";
                     break;
 
@@ -221,10 +227,11 @@ if(isset($_GET['request']) && $_GET['request']){
                     if(isset($_GET['id']) && $_GET['id']){
                             $id = $_GET['id'];
                             Delete_Data_Topping($id);
-                            $_SESSION['status'] = "Delete successfully";
+                            $_SESSION['status'] = "Xóa thành công";
                             // $_SESSION['status_code'] = "success";
                     }
                         $list_topping = Load_All_Data_Topping();
+                        include "../View/Admin/sweetalert.php";
                         include "../View/Admin/topping.php";
                         break;
 
@@ -271,24 +278,26 @@ if(isset($_GET['request']) && $_GET['request']){
 
                 include "../View/Admin/chart.php";
                 break;
-             case "order":
+
+            case "order":
                  $list_bill = Load_All_Data_order();
                  include "../View/Admin/order.php";
-                break; 
-                    case "edit_order": 
+                 break; 
+            case "edit_order": 
                          if(isset($_POST['submit']) && $_POST['submit']){
                             $id_status= $_POST['id_status'];
                         if(isset($_GET['id']) && $_GET['id']){
                             $id = $_GET['id'];
                      
                             Update_Data_Order($id,$id_status);
-                            $_SESSION['status'] = "Update successfully";
+                            $_SESSION['status'] = "Cập nhật thành công";
                             // $_SESSION['status_code'] = "success";
                         }}
+                        include "../View/Admin/sweetalert.php";
                         $list_bill = Load_All_Data_order();
                         include "../View/Admin/order.php";
                         break;
-                case "confirm":
+            case "confirm":
                             $list_bill = Load_All_Data_confirm();
                             include "../View/Admin/confirm.php";
                            break; 
@@ -299,7 +308,7 @@ if(isset($_GET['request']) && $_GET['request']){
                                        $id = $_GET['id'];
                                 
                                        Update_Data_confirm($id,$id_state);
-                                       $_SESSION['state'] = "Update successfully";
+                                       $_SESSION['state'] = "Cập nhật thành công";
                                        // $_SESSION['state_code'] = "success";
                                    }}
                                    $list_bill = Load_All_Data_confirm();

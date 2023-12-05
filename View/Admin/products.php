@@ -30,7 +30,7 @@
                                                             <td><?=$id_products?></td>
                                                             <td><?=$name_products?></td>
                                                             <td><img src="../../../Dự_án_1/View/images/<?=$images?>" width="80px" alt=""></td>
-                                                            <td><?=$original_price?>$</td>
+                                                            <td><?=$original_price?> VND</td>
                                                             <td><?=$name_categories?></td>
                                                             <td><?=$date_created?></td>
                                                             <td><?=$description?></td>

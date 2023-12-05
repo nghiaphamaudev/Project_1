@@ -86,19 +86,19 @@
 <td class="left">
  <strong>TẠM TÍNH</strong>
 </td>
-<td class="right">$<?=$sub_total?></td>
+<td class="right"><?=currency_format($sub_total, 'VND')?></td>
 </tr>
 <td class="left">
  <strong>VẬN CHUYỂN</strong>
 </td>
-<td class="right">+$10</td>
+<td class="right">+<?=currency_format(10000, 'VND') ?></td>
 </tr>
 <tr>
 <td class="left">
 <strong>TỔNG</strong>
 </td>
 <td class="right">
-<strong>$<?=$total_price?></strong>
+<strong><?=currency_format($total_price, 'VND')?></strong>
 </td>
 </tr>
 </tbody>
