@@ -17,4 +17,10 @@
         $sql = "DELETE FROM `reviews` WHERE id_review =".$id;
         pdo_query($sql);
       }
+      function Load_One_Data_Reviews($id){  
+        $sql = "SELECT p.id_products, p.name_products, AVG(c.rating) AS avg_rating, COUNT(c.id_review) AS total_comments FROM products p LEFT JOIN reviews c ON p.id_products = c.id_products WHERE p.id_products=13;";
+        $list_comment = pdo_query_one($sql);
+        return $list_comment;
+      }
+
 ?>
