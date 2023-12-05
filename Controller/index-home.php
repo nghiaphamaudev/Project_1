@@ -44,6 +44,7 @@ if(isset($_GET['request']) && $_GET['request']){
             break;
 
         case "menu":
+            unset($_SESSION['code']);
             include "../View/menu.php";
             break;
 
@@ -306,6 +307,7 @@ if(isset($_GET['request']) && $_GET['request']){
             break;
     }
 }else{
+    unset($_SESSION['code']);
     include "../View/home.php";
 }
 
