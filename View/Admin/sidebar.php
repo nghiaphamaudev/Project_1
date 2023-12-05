@@ -45,7 +45,7 @@
                     class="fas fa-photo-video"></i> Danh Mục </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../../../Dự_án_1/Controller/index-admin.php?request=categories" class="dashboard-nav-dropdown-item">Danh sách</a>
-                        <a href="../../../Dự_án_1/Controller/index-admin.php?request=create" class="dashboard-nav-dropdown-item">Tạo mới</a> 
+                     
                 </div>
             </div>
             <div class='dashboard-nav-dropdown'><a href="../../../Dự_án_1/Controller/index-admin.php?request=acc" class="dashboard-nav-item"><i

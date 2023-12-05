@@ -63,9 +63,9 @@
 								</div>
 								<span>3 Reviews</span>
 							</div>
-							<div class="product-price-discount"><span>$
-									<?= $original_price ?>.00
-								</span><span class="line-through">$30.00</span></div>
+							<div class="product-price-discount"><span>
+									<?=currency_format($original_price, 'VND') ?>
+								</span><span class="line-through"><?php echo currency_format(30000, 'VND'); ?></span></div>
 						</div>
 						<p>
 							<?= $description ?>
@@ -99,13 +99,7 @@
 									<div class="qtyplus">+</div>
 								</div>
 								<input type="submit" name="submit" class="round-black-btn" value="Thêm vào giỏ hàng">
-								<?php if (isset($message)) {
-									echo $message;
-									// echo "<br>";
-									// echo $quantity;
-									// echo "<br>";
-									// var_dump($id_products);
-								} ?>
+								
 							</div>
 						</form>
 

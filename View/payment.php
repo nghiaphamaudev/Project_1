@@ -35,12 +35,32 @@
                             <div class="col">
                                <h6>X<?=$quantity?></h6>
                             </div>
-                            <div class="col">$<?=$total?></div>
-                           
+                            <div class="col"><?=currency_format($total, 'VND')?></div>
                         </div>
+                        
                     </div>
                      <?php endforeach; ?>
-                     <h5>Khuyến mãi</h5>
+                     <div class="row border-top border-bottom">
+                        <input type="hidden" name="id_shopping_cart" value="<?=$id_cart?>">
+                        <div class="row main align-items-center">
+                            <div class="col">
+                                <div class="row text-muted"><h6><b>Khuyến Mãi</b> </h6></div>
+                            </div>
+                            <div class="col"></div>
+                            <!-- <div class="col"></div> -->
+                            <div class="col" style="margin-left: 100px">
+                            <?php if(isset($_SESSION['code'])){
+                                    echo $_SESSION['code'];
+                            }else{
+                                echo "0%";
+                            } 
+                            ?>
+                            </div>
+                        </div>
+                        
+                    </div>
+                            
+                    
                 </div>
                 
                  <!-- summary -->
@@ -63,7 +83,7 @@
                         </select>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">Tổng</div>
-                        <div class="col text-right">$<?=$total_cost?></div>
+                        <div class="col text-right"><?=currency_format($total_cost, 'VND')?></div>
                     </div>
                     <input type="submit" name="submit" class="btn btn-lg btn-primary mt-2" href="../../Dự_án_1/Controller/index-home.php?request=confirm-payment" value="Xác nhận đặt hàng">
                     

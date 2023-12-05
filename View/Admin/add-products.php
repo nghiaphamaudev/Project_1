@@ -14,6 +14,10 @@
                         <label for="inputName" class="control-label">Giá</label>
                         <input type="number" name="price" class="form-control" id="inputName"  required>
                     </div>
+                    <div class="form-group">
+                        <label for="inputName" class="control-label">Mô Tả</label>
+                        <input type="text" name="description"  class="form-control" id="inputName"  required>
+                    </div>
 
                     <div class="form-group">
                         <label for="inputName" class="control-label">Danh mục</label><br>

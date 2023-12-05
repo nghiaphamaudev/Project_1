@@ -18,8 +18,8 @@
     }   
 
 
-    function Add_Data_Products($id_categories,$name_products,$images, $price){
-        $sql = "INSERT INTO `products`(`id_categories`, `name_products`, `images`, `original_price`) VALUES ('$id_categories','$name_products','$images','$price')";
+    function Add_Data_Products($id_categories,$name_products,$images, $price, $description){
+        $sql = "INSERT INTO `products`(`id_categories`, `name_products`, `images`, `original_price`, `description`) VALUES ('$id_categories','$name_products','$images','$price','$description')";
         pdo_execute($sql);
     }
 
@@ -95,7 +95,23 @@
         $list_categories=pdo_query($sql);
         return  $list_categories;
     }
-    
+    /**
+ *
+ * Chuyển đổi chuỗi kí tự thành dạng slug dùng cho việc tạo friendly url.
+ *
+ * @access    public
+ * @param    string
+ * @return    string
+ */
+if (!function_exists('currency_format')) {
+
+    function currency_format($number, $suffix = 'đ') {
+        if (!empty($number)) {
+            return number_format($number, 0, ',', '.') . "{$suffix}";
+        }
+    }
+
+}
 
  
 
