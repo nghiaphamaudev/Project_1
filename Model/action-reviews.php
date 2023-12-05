@@ -18,5 +18,13 @@
         //die;
         pdo_execute($sql);
     }
-
+    function Load_All_Data_Reviews(){
+        $sql = "SELECT * FROM `reviews`";
+        $list_comment = pdo_query($sql);
+        return $list_comment;
+    }
+    function Delete_Data_Reviews($id){
+        $sql = "DELETE FROM `reviews` WHERE id_review =".$id;
+        pdo_query($sql);
+      }
 ?>

@@ -2,21 +2,21 @@
 <!-- ... (đoạn mã CSS trước) ... -->
 
 <style>
-    .rating-container {
-        display: inline-block;
-    }
+	.rating-container {
+		display: inline-block;
+	}
 
-    .star {
-        font-size: 24px;
-        cursor: pointer;
-        color: #ccc;
-        transition: color 0.3s ease-in-out;
-    }
+	.star {
+		font-size: 24px;
+		cursor: pointer;
+		color: #ccc;
+		transition: color 0.3s ease-in-out;
+	}
 
-    .star:hover,
-    .star.selected {
-        color: #ffcc00;
-    }
+	.star:hover,
+	.star.selected {
+		color: #ffcc00;
+	}
 </style>
 
 <!-- ... (đoạn mã CSS sau) ... -->
@@ -139,11 +139,57 @@
 						Ẩm Thực Nước Mỹ
 						<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 							<div class="review-heading">REVIEWS</div>
-							<p class="mb-20">Không có đánh giá nào gần đây.</p>
+
+							<div class="card p-3 mb-2">
+
+								<div class="d-flex flex-row">
+									<div class="d-flex flex-column ms-2">
+										<h6 class="mb-1 text-primary">Emma</h6>
+										<p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+											lectus nibh, efficitur in bibendum id, pellentesque quis nibh. Ut dictum
+											facilisis dui, non faucibus dolor sit amet lorem auctor vitae. Class aptent
+											taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+											Quisque risus mauris</p>
+									</div>
+								</div>
+
+								<div class="d-flex justify-content-between">
+									<div class="d-flex flex-row gap-3 align-items-center">
+										<div class="d-flex align-items-center">
+
+											<div class="rating-container" id="ratingContainer">
+												<span class="star" data-rating="1">&#9733;</span>
+												<span class="star" data-rating="2">&#9733;</span>
+												<span class="star" data-rating="3">&#9733;</span>
+												<span class="star" data-rating="4">&#9733;</span>
+												<span class="star" data-rating="5">&#9733;</span>
+												<input type="hidden" name="rating" id="ratingInput" value="0">
+											</div>
+
+										</div>
+
+										<div class="d-flex align-items-center">
+											<a href="../../../Dự_án_1/Controller/index-admin.php?request=edit_acc&&id=<?=$id_user?>" class="edit" data-toggle="modal">
+											<i class="bi bi-pencil-square"></i> Sửa
+                                                        </a>
+                                                        
+                                                        <a href="../../../Dự_án_1/Controller/index-admin.php?request=delete_reviews&&id=<?=$id_review?>" onclick = "return confirm('Bạn có muốn xóa không?')" class="delete" data-toggle="modal">
+														<i class="bi bi-trash"></i> Xóa
+                                                        </a>
+										</div>
+									</div>
+
+									<div class="d-flex flex-row">
+									<i class="bi bi-calendar-check"></i>
+										<span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span>
+									</div>
+								</div>
+							</div>
 
 
 
-							<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST" class="review-form">
+							<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST"
+								class="review-form">
 								<input hidden name="idproduct_rating" value="<?= $id_products ?>">
 								<?php echo $id_products; ?>
 								<div class="form-group">
@@ -159,25 +205,12 @@
 										</div>
 									</div>
 								</div>
+
 								<div class="form-group">
 									<label>Bình Luận</label>
 									<textarea class="form-control" name="comment" rows="10"></textarea>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" name="" class="form-control" placeholder="Tên*">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" name="" class="form-control" placeholder="Email*">
-										</div>
-									</div>
-								</div>
 								<button type="submit" name="submit_comment">Đánh Giá</button>
-
-
 							</form>
 						</div>
 					</div>
@@ -195,35 +228,35 @@
 		crossorigin="anonymous"></script>
 	<script src="../View/js/detail-product.js"></script>
 
-<!-- ... (đoạn mã JavaScript trước) ... -->
+	<!-- ... (đoạn mã JavaScript trước) ... -->
 
-<script>
-    // Đánh giá sao
-    const ratingContainer = document.getElementById('ratingContainer');
-    const ratingInput = document.getElementById('ratingInput');
-    let currentRating = 0;
+	<script>
+		// Đánh giá sao
+		const ratingContainer = document.getElementById('ratingContainer');
+		const ratingInput = document.getElementById('ratingInput');
+		let currentRating = 0;
 
-    const stars = ratingContainer.querySelectorAll('.star');
-    stars.forEach((star) => {
-        star.addEventListener('click', () => {
-            const rating = parseInt(star.getAttribute('data-rating'));
-            currentRating = rating;
-            ratingInput.value = currentRating; // Cập nhật giá trị trong input hidden
-            updateStars();
-        });
-    });
+		const stars = ratingContainer.querySelectorAll('.star');
+		stars.forEach((star) => {
+			star.addEventListener('click', () => {
+				const rating = parseInt(star.getAttribute('data-rating'));
+				currentRating = rating;
+				ratingInput.value = currentRating; // Cập nhật giá trị trong input hidden
+				updateStars();
+			});
+		});
 
-    function updateStars() {
-        stars.forEach((star, index) => {
-            if (index < currentRating) {
-                star.classList.add('selected');
-            } else {
-                star.classList.remove('selected');
-            }
-        });
-    }
+		function updateStars() {
+			stars.forEach((star, index) => {
+				if (index < currentRating) {
+					star.classList.add('selected');
+				} else {
+					star.classList.remove('selected');
+				}
+			});
+		}
 
-    // ... (các hàm khác) ...
-</script>
+		// ... (các hàm khác) ...
+	</script>
 
-<!-- ... (đoạn mã JavaScript sau) ... -->
+	<!-- ... (đoạn mã JavaScript sau) ... -->

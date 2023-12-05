@@ -1,5 +1,5 @@
 <?php
-
+ 
   function Insert_Data_User($email, $fullName ,$password){
     $sql = "INSERT INTO `user`( `email`, `password`, `full_name`) VALUES ('$email','$password','$fullName')";
     pdo_execute($sql);

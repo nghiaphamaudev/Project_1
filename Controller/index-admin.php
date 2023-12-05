@@ -10,6 +10,7 @@ include "../Model/action-order.php";
 include "../Model/action-confirm.php";
 include "../View/Admin/sidebar.php";
 include "../Model/action-chart.php";
+include "../Model/action-reviews.php";
 
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
@@ -17,11 +18,27 @@ if(isset($_GET['request']) && $_GET['request']){
             case "home": 
                 include "./index-home.php";
                 break;
-
+            case "reviews":
+                $list_reviews = Load_All_Data_Reviews();
+                include "../View/Admin/reviews.php";
+                break;
+            case "delete_reviews":
+                if(isset($_GET['id']) && $_GET['id']){
+                    $id = $_GET['id'];
+                    Delete_Data_Reviews($id);
+                    $_SESSION['status'] = "Delete successfully";
+                    // $_SESSION['status_code'] = "success";
+                }
+                $list_reviews = Load_All_Data_Reviews();
+                include "../View/Admin/sweetalert.php";
+                include "../View/Admin/reviews.php";
+                break;   
             case "acc":
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/acc.php";
                 break;
+
+         
 
             case "delete_acc":
                 if(isset($_GET['id']) && $_GET['id']){
