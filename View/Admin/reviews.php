@@ -26,17 +26,13 @@
                     <?php foreach ($list_reviews as $value): extract($value)?>
                                 <tr>
                                                     <td><?=$id_review?></td>
-                                                    <td><?=$id_products?></td>
-                                                    <td><?=$id_user?></td>
+                                                    <td><?=$name_products?></td>
+                                                    <td><?=$full_name?></td>
                                                     <td><?=$comment?></td>
                                                     <td><?=$rating?> <span style="display: inline-block; width: 20px; height: 20px; background-color: #ffd700; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
    "></span></td>
                                                     <td><?=$Created_at?></td>
-                                                    <td>
-                                                        <a href="../../../Dự_án_1/Controller/index-admin.php?request=edit_acc&&id=<?=$id_user?>" class="edit" data-toggle="modal">
-                                                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                                        </a>
-                                                        
+                                                    <td>                                                                         
                                                         <a href="../../../Dự_án_1/Controller/index-admin.php?request=delete_reviews&&id=<?=$id_review?>" onclick = "return confirm('Bạn có muốn xóa không?')" class="delete" data-toggle="modal">
                                                             <i class="material-icons"  data-toggle="tooltip" title="Delete">&#xE872;</i>
                                                         </a>

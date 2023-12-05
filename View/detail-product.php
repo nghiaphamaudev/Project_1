@@ -1,6 +1,11 @@
 <!------ Include the above in your HEAD tag ---------->
 <!-- ... (đoạn mã CSS trước) ... -->
-
+<style>
+	/* CSS để làm sáng sao */
+	.load_all_star.bright {
+		color: yellow;
+	}
+</style>
 <style>
 	.rating-container {
 		display: inline-block;
@@ -49,6 +54,8 @@
 								<?= $name_products ?>
 							</div>
 							<div class="reviews-counter">
+						
+
 								<div class="rate">
 									<input type="radio" id="star5" name="rate" value="5" checked />
 									<label for="star5" title="text">5 stars</label>
@@ -62,10 +69,13 @@
 									<label for="star1" title="text">1 star</label>
 								</div>
 								<span>3 Reviews</span>
+							
 							</div>
 							<div class="product-price-discount"><span>
-									<?=currency_format($original_price, 'VND') ?>
-								</span><span class="line-through"><?php echo currency_format(30000, 'VND'); ?></span></div>
+									<?= currency_format($original_price, 'VND') ?>
+								</span><span class="line-through">
+									<?php echo currency_format(30000, 'VND'); ?>
+								</span></div>
 						</div>
 						<p>
 							<?= $description ?>
@@ -99,7 +109,7 @@
 									<div class="qtyplus">+</div>
 								</div>
 								<input type="submit" name="submit" class="round-black-btn" value="Thêm vào giỏ hàng">
-								
+
 							</div>
 						</form>
 
@@ -120,72 +130,84 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="description" role="tabpanel"
 						aria-labelledby="description-tab">
-						Đôi Nét Về Món Pizza Trong Văn Hoá Ẩm Thực Của Mỹ
-						Chuyên mục hôm nay, Pizza Express xin được gửi đến các bạn đôi điều về món Pizza trong ẩm thực của
-						nước Mỹ.
-						Hãy cùng theo dõi bài viết để hiểu hơn về ẩm thực nước bạn nhé:
-						Để được miễn phí giao hàng, gọi ngay Pizza Express tại đây
-						Ẩm Thực Nước Mỹ. Đôi Nét Về Món Pizza Trong Văn Hoá Ẩm Thực Của Mỹ
-						Chuyên mục hôm nay, Pizza Express xin được gửi đến các bạn đôi điều về món Pizza trong ẩm thực của
-						nước Mỹ.
-						Hãy cùng theo dõi bài viết để hiểu hơn về ẩm thực nước bạn nhé:
-						Để được miễn phí giao hàng, gọi ngay Pizza Express tại đây
-						Ẩm Thực Nước Mỹ
+						<?= $description ?>
 						<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 							<div class="review-heading">REVIEWS</div>
 
-							<div class="card p-3 mb-2">
+							<?php foreach ($list_reviews as $value):
+								extract($value); ?>
 
-								<div class="d-flex flex-row">
-									<div class="d-flex flex-column ms-2">
-										<h6 class="mb-1 text-primary">Emma</h6>
-										<p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-											lectus nibh, efficitur in bibendum id, pellentesque quis nibh. Ut dictum
-											facilisis dui, non faucibus dolor sit amet lorem auctor vitae. Class aptent
-											taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-											Quisque risus mauris</p>
+
+								<div class="card p-3 mb-2">
+									<div class="d-flex flex-row">
+										<div class="d-flex flex-column ms-2">
+											<h6 class="mb-1 text-primary">
+												<?= $full_name ?>
+											</h6>
+											<p class="comment-text">
+												<?= $comment ?>
+											</p>
+										</div>
 									</div>
-								</div>
 
-								<div class="d-flex justify-content-between">
-									<div class="d-flex flex-row gap-3 align-items-center">
-										<div class="d-flex align-items-center">
+									<div class="d-flex justify-content-between">
+										<div class="d-flex flex-row gap-3 align-items-center">
+											<div class="d-flex align-items-center">
 
-											<div class="rating-container" id="ratingContainer">
-												<span class="star" data-rating="1">&#9733;</span>
-												<span class="star" data-rating="2">&#9733;</span>
-												<span class="star" data-rating="3">&#9733;</span>
-												<span class="star" data-rating="4">&#9733;</span>
-												<span class="star" data-rating="5">&#9733;</span>
-												<input type="hidden" name="rating" id="ratingInput" value="0">
+												<div id="comment-container-<?= $id_review ?>">
+													<span class="load_all_star" data-rating="1">&#9733;</span>
+													<span class="load_all_star" data-rating="2">&#9733;</span>
+													<span class="load_all_star" data-rating="3">&#9733;</span>
+													<span class="load_all_star" data-rating="4">&#9733;</span>
+													<span class="load_all_star" data-rating="5">&#9733;</span>
+												</div>
+												<script>
+													document.addEventListener('DOMContentLoaded', function () {
+														// Lấy id từ nguồn dữ liệu (ví dụ: id = 4)
+														var id = <?= $rating ?>;
+
+														// Lấy tất cả các sao trong container
+														var stars = document.querySelectorAll('#comment-container-<?= $id_review ?> .load_all_star');
+
+														// Lặp qua từng sao và kiểm tra liệu nó có ít hơn hoặc bằng id hay không
+														stars.forEach(function (star) {
+															var rating = parseInt(star.getAttribute('data-rating'));
+															if (rating <= id) {
+																// Thêm lớp hoặc style để làm sáng sao
+																star.classList.add('bright'); // hoặc star.style.color = 'yellow';
+															}
+														});
+													});
+
+												</script>
+
 											</div>
 
+											<div class="d-flex align-items-center">
+												<form
+													action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>&&idd=<?= $id_review ?>"
+													method="POST">
+													<button style="background-color: #ffffff; border: none; " type="submit"
+														name="submit_delete"><i class="bi bi-trash"></i> Xóa</button>
+												</form>
+
+											</div>
 										</div>
 
-										<div class="d-flex align-items-center">
-											<a href="../../../Dự_án_1/Controller/index-admin.php?request=edit_acc&&id=<?=$id_user?>" class="edit" data-toggle="modal">
-											<i class="bi bi-pencil-square"></i> Sửa
-                                                        </a>
-                                                        
-                                                        <a href="../../../Dự_án_1/Controller/index-admin.php?request=delete_reviews&&id=<?=$id_review?>" onclick = "return confirm('Bạn có muốn xóa không?')" class="delete" data-toggle="modal">
-														<i class="bi bi-trash"></i> Xóa
-                                                        </a>
+										<div class="d-flex flex-row">
+											<i class="bi bi-calendar-check"></i>
+											<span class="text-muted fw-normal fs-10">
+												<?= $Created_at ?>
+											</span>
 										</div>
-									</div>
-
-									<div class="d-flex flex-row">
-									<i class="bi bi-calendar-check"></i>
-										<span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span>
 									</div>
 								</div>
-							</div>
-
+							<?php endforeach; ?>
 
 
 							<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST"
 								class="review-form">
 								<input hidden name="idproduct_rating" value="<?= $id_products ?>">
-								<?php echo $id_products; ?>
 								<div class="form-group">
 									<label for="rating">Bình Chọn</label>
 									<div class="reviews-counter">
