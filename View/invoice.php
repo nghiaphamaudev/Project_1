@@ -42,37 +42,14 @@
 <div><strong>Số điện thoại: </strong><?=$phone_numnber?></div>
 <div><strong>Email: </strong><?=$email?></div>
 </div>
-
-
-
 </div>
-
 <div class="table-responsive-sm">
 <h5> <strong>Thông tin đơn đơn hàng</strong> </h5>
 <span><?=$total_name_product?>
 </span>
 <h5> <strong>Phương thức thanh toán</strong> </h5>
 <span>Tiền mặt</span>
-
-<!-- <table class="table table-striped">
-<thead>
-<tr>
-<th class="center">STT</th>
-<th>Tên Sản Phẩm</th>
-<th>Topping</th>
-
-<th class="right">Unit Cost</th>
-  <th class="center">Qty</th>
-<th class="right">Total</th>
-</tr>
-</thead>
-<tbody>
-    <tr>
-    <td class="center">1</td>
-    <td class="left strong">Origin License</td>
-    <td class="left">Extended License</td>
-</tbody>
-</table> -->
+</table> 
 </div>
 <div class="row">
 <div class="col-lg-4 col-sm-5">
@@ -103,6 +80,18 @@
 </tr>
 </tbody>
 </table>
+<form action="../../Dự_án_1/Controller/index-home.php?request=confirm-delivery&&id_invoice=<?=$id_bill?>" method="post">
+  <?php
+    if($state === 1){
+      echo '<submit type="submit" id="myButton" class="unnormal"  disabled style="margin-right: 20px;cursor: not-allowed;">Đã nhận được hàng</button>';
+    }else{
+      echo '<button type="submit" id="myButton" class="normal" style="margin-right: 20px">Đã nhận được hàng</button>';
+    }
+   ?>
+  
+</form>
+
+
 
 </div>
 
@@ -110,4 +99,19 @@
 
 </div>
 </div>
+
 <?php endforeach; ?>
+
+
+<!-- <script>
+    function disableButton(status) {
+        var button = document.getElementById("myButton");
+        if (status === 1) {
+            button.disabled = true; // Vô hiệu hóa nút
+            button.style.opacity = 0.5; // Đặt mức độ đục màu
+        }else{
+          button.disabled = false; // Vô hiệu hóa nút
+          button.style.opacity = 0; 
+        }
+    }
+</script> -->

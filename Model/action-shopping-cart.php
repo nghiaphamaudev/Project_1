@@ -46,4 +46,13 @@
         return $list_data_bill;
     }
 
+    function Update_State_Invoice($id_bill){
+        $sql = "UPDATE `bill` SET `state`= 1 WHERE `id_bill` = '$id_bill'";
+        pdo_query($sql);
+    }
+    function Delete_shopping_Cart($id_user){
+        $sql = "DELETE FROM `shopping_cart` WHERE `id_user` = '$id_user'";
+        pdo_query($sql);
+    }
+
 ?>

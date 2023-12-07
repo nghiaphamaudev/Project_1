@@ -24,7 +24,6 @@
                             <th>
                             <th>Tổng tiền</th>
                             <th>Ngày tạo đơn </th>
-                            <th>Trạng thái </th>
                             <th>Hành động </th>
                         </tr>
                     </thead>
@@ -56,25 +55,11 @@
                                 <?=$method?>
                             </td>
                             <td>
-                                <?=$total_price?>
-                            </td>
-                            <td>
-                                <?=$sub_total?>
+                            <?php echo currency_format($total_price, 'VND'); ?>
                             </td>
                             <td>
                                 <?=$date_created?>
                             </td>
-
-                            <td>
-                                <?php if($status==0){
-                                                        echo "Chờ xác nhận";
-
-                                                    }else{
-                                                        echo" Đã xác nhận";
-                                                    }
-                                                    ?>
-                            </td>
-
 
                            
                             <td> 

@@ -317,20 +317,20 @@ if(isset($_GET['request']) && $_GET['request']){
             case "confirm":
                             $list_bill = Load_All_Data_confirm();
                             include "../View/Admin/confirm.php";
-                           break; 
-                               case "edit_confirm": 
-                                    if(isset($_POST['submit']) && $_POST['submit']){
-                                       $id_state= $_POST['id_state'];
-                                   if(isset($_GET['id']) && $_GET['id']){
-                                       $id = $_GET['id'];
-                                
-                                       Update_Data_confirm($id,$id_state);
-                                       $_SESSION['state'] = "Cập nhật thành công";
-                                       // $_SESSION['state_code'] = "success";
-                                   }}
-                                   $list_bill = Load_All_Data_confirm();
-                                   include "../View/Admin/confirm.php";
-                                   break;           
+                            break; 
+            case "edit_confirm": 
+                if(isset($_POST['submit']) && $_POST['submit']){
+                    $id_state= $_POST['id_state'];
+                if(isset($_GET['id']) && $_GET['id']){
+                    $id = $_GET['id'];
+            
+                    Update_Data_confirm($id,$id_state);
+                    $_SESSION['state'] = "Cập nhật thành công";
+                    // $_SESSION['state_code'] = "success";
+                }}
+                $list_bill = Load_All_Data_confirm();
+                include "../View/Admin/confirm.php";
+                break;           
                 
 
                     

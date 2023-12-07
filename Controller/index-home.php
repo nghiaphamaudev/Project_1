@@ -46,7 +46,7 @@ if (isset($_GET['request']) && $_GET['request']) {
                 $list_one_data_reviews=Load_One_Data_Reviews($id);
                 $list_one_data_product = Load_One_Data_Products($id);
                 $list_one_data_reviews=Load_One_Data_Reviews($id); 
-                 $list_reviews = Load_All_Data_Reviews($id);
+                $list_reviews = Load_All_Data_Reviews($id);
             }
            
             include "../View/detail-product.php";
@@ -179,7 +179,10 @@ if (isset($_GET['request']) && $_GET['request']) {
                 }
             }
             include "../View/Admin/sweetalert.php";
-            $list_one_data_product = Load_One_Data_Products($id_product);
+                $list_one_data_product = Load_One_Data_Products($id_product);
+                $list_one_data_reviews=Load_One_Data_Reviews($id_product);
+                $list_one_data_reviews=Load_One_Data_Reviews($id_product); 
+                $list_reviews = Load_All_Data_Reviews($id_product);
             include "../View/detail-product.php";
             break;
 
@@ -300,6 +303,7 @@ if (isset($_GET['request']) && $_GET['request']) {
             // foreach($list_one_data_statistical as $value){}
             $list_data_bill = Load_All_Data_Bill($id_user);
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
+            Delete_shopping_Cart($id_user);
             include "../View/Admin/sweetalert.php";
             include "../View/invoice.php";
             break;
@@ -313,6 +317,14 @@ if (isset($_GET['request']) && $_GET['request']) {
             } else {
                 include "../View/invoice.php";
             }
+            break;
+
+        case "confirm-delivery":
+            $id_bill = $_GET['id_invoice'];
+            Update_State_Invoice($id_bill);
+            $id_user = $_SESSION['user']['id_user'];
+            $list_data_bill = Load_All_Data_Bill($id_user);
+            include "../View/invoice.php";
             break;
 
         default:

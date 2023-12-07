@@ -62,7 +62,7 @@
                 <div class='dashboard-nav-dropdown-menu'>
             <a
             href="../../../Dự_án_1/Controller/index-admin.php?request=order" class="dashboard-nav-dropdown-item">Quản lí đơn hàng</a><a
-            href="../../../Dự_án_1/Controller/index-admin.php?request=confirm" class="dashboard-nav-dropdown-item">Xác nhận đơn</a>
+            href="../../../Dự_án_1/Controller/index-admin.php?request=confirm" class="dashboard-nav-dropdown-item">Trạng Thái</a>
             </div>
             </div>
              <a  href="../../../Dự_án_1/Controller/index-admin.php?request=statistic" class="dashboard-nav-item"><i class="fa-solid fa-chart-line"></i> Thông Kê </a>

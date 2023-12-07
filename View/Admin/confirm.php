@@ -14,18 +14,16 @@
                     <thead>
                         <tr>
                             <th>ID hóa đơn </th>
-                            <th>Tài Khoản</th>
                             <th>Tổng sản phẩm </th>
                             <th>Tên người nhận</th>
                             <th>Địa chỉ người nhận </th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
                             <th>Phương thức
-                            <th>
                             <th>Tổng tiền</th>
                             <th>Ngày tạo đơn </th>
                             <th>Trạng thái </th>
-                            <th>Hành động </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -33,9 +31,6 @@
                         <tr>
                             <td>
                                 <?=$id_bill?>
-                            </td>
-                            <td>
-                                <?=$id_user?>
                             </td>
                             <td>
                                 <?=$total_name_product?>
@@ -56,10 +51,7 @@
                                 <?=$method?>
                             </td>
                             <td>
-                                <?=$total_price?>
-                            </td>
-                            <td>
-                                <?=$sub_total?>
+                            <?php echo currency_format($total_price, 'VND'); ?>
                             </td>
                             <td>
                                 <?=$date_created?>
@@ -76,28 +68,6 @@
 
 
                            
-                            <td> 
-                                
-                    <form data-toggle="validator" action="../../../Dự_án_1/Controller/index-admin.php?request=edit_confirm&&id=<?=$id_bill?>"  enctype="multipart/form-data" role="form" method="post" >
-                    <div class="form-group"> 
-                    <div class="form-group">
-                        <select class="form-select" name="id_state" aria-label="Default select example">
-                      
-                            
-                                     <option <?php if($status==0){ echo"selected";}?> value="0">Chưa nhận được hàng</option>
-                                     <option <?php if($status==1){ echo"selected";}?> value="1">Đã nhận được hàng</option>
-                            
-                            
-                        </select>
-                    </div>
-                            </td>
-                            <td>
-                            <div class="form-group">
-                        <input type="submit" name="submit" value="Xác nhận" class="btn btn-primary">
-                    </div>
-                    </form>
-                              
-                            </td>
                         </tr>
                         <?php endforeach ?>
                     </tbody>

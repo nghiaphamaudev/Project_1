@@ -8,7 +8,7 @@
 
 	/* CSS để làm sáng sao */
 	.starrrrr.bright {
-		color: yellow;
+		color: #ffc700;
 	}
 </style>
 <style>
@@ -27,6 +27,20 @@
 	.star.selected {
 		color: #ffcc00;
 	}
+
+	.submit-btn {
+    background-color: #4CAF50; /* Màu nền mặc định */
+    color: white; /* Màu chữ mặc định */
+    padding: 10px 20px; /* Căn lề và kích thước nút */
+
+    /* Hiệu ứng chuyển màu khi hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Đổi màu nền khi hover */
+.submit-btn:hover {
+    background-color: #45a049;
+}
 </style>
 
 <!-- ... (đoạn mã CSS sau) ... -->
@@ -159,41 +173,43 @@
 						aria-labelledby="description-tab">
 						<?= $description ?>
 						<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-							<div class="review-heading">REVIEWS</div>
+							<div class="review-heading" style="margin-bottom: 20px">REVIEWS</div>
 
 							<?php foreach ($list_reviews as $value):
 								extract($value); ?>
 
 
 								<div class="card p-3 mb-2">
-									<div class="d-flex flex-row">
-									<i class="bi bi-calendar-check">
-											<span class="text-muted fw-normal fs-10">
-												<?=$Created_at ?>
-											</span>
-										</i>
-										<div class="d-flex flex-column ms-2">
-											<h6 class="mb-1 text-primary">
-												<?= $full_name ?>
-											</h6>
-											<div id="comment-container-<?= $id_review ?>">
-													<span class="load_all_star" data-rating="1">&#9733;</span>
-													<span class="load_all_star" data-rating="2">&#9733;</span>
-													<span class="load_all_star" data-rating="3">&#9733;</span>
-													<span class="load_all_star" data-rating="4">&#9733;</span>
-													<span class="load_all_star" data-rating="5">&#9733;</span>
-												</div>
-											<p class="comment-text">
-												<?= $comment ?>
-											</p>
-										</div>
-									</div>
+								<div class="d-flex flex-row">
+    <div class="d-flex flex-column ms-2">
+        <h6 class="mb-1 text-primary">
+		<i class="fa-solid fa-circle-user"></i>
+            <?= $full_name ?>
+        </h6>
+        <div id="comment-container-<?= $id_review ?>">
+            <span class="load_all_star" data-rating="1">&#9733;</span>
+            <span class="load_all_star" data-rating="2">&#9733;</span>
+            <span class="load_all_star" data-rating="3">&#9733;</span>
+            <span class="load_all_star" data-rating="4">&#9733;</span>
+            <span class="load_all_star" data-rating="5">&#9733;</span>
+        </div>
+        <p class="comment-text">
+            <?= $comment ?>
+        </p>
+    </div>
+    <div class="ms-auto"> <!-- Chuyển cột này sang phải bằng cách sử dụng lớp 'ms-auto' -->
+        <i class="bi bi-calendar-check">
+            <span class="text-muted fw-normal fs-10 comment-time">
+                <?=$Created_at ?>
+            </span>
+        </i>
+    </div>
+</div>
+
 
 									<div class="d-flex justify-content-between">
 										<div class="d-flex flex-row gap-3 align-items-center">
 											<div class="d-flex align-items-center">
-
-												
 												<script>
 													document.addEventListener('DOMContentLoaded', function () {
 														// Lấy id từ nguồn dữ liệu (ví dụ: id = 4)
@@ -216,23 +232,22 @@
 
 											</div>
 
-											<div class="d-flex align-items-center">
+											
 												<form
 													action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>&&idd=<?= $id_review ?>"
 													method="POST">
-													<button style="background-color: #ffffff; border: none; " type="submit"
-														name="submit_delete"><i class="bi bi-trash"></i> Xóa</button>
+													
 												</form>
 
-											</div>
+											
 										</div>
 
-										<div class="d-flex flex-row">
+										<!-- <div class="d-flex flex-row">
 											<i class="bi bi-calendar-check"></i>
 											<span class="text-muted fw-normal fs-10">
-												<?= $Created_at ?>
+												
 											</span>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							<?php endforeach; ?>
@@ -257,9 +272,9 @@
 
 								<div class="form-group">
 									<label>Bình Luận</label>
-									<textarea class="form-control" name="comment" rows="10"></textarea>
+									<textarea class="form-control" required name="comment" rows="10"></textarea>
 								</div>
-								<button type="submit" name="submit_comment">Đánh Giá</button>
+								<button type="submit" name="submit_comment" >Đánh Giá</button>
 							</form>
 						</div>
 					</div>

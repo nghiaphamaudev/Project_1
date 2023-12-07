@@ -65,6 +65,34 @@
 
   <!-- thư viện jquery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    .unnormal {
+  border: 2px solid #000; /* Màu sắc và độ rộng của khung */
+  background-color: rgba(255, 255, 255, 0.5); /* Màu nền với độ mờ */
+  padding: 10px 20px; /* Kích thước padding của nút */
+  border-radius: 5px; /* Độ cong của góc nút */
+  cursor: not-allowed; /* Biểu tượng con trỏ khi nút bị vô hiệu hóa */
+}
+.normal {
+  /* Thiết lập các thuộc tính CSS tùy thuộc vào yêu cầu của bạn */
+  /* Ví dụ: */
+  border: 2px solid #008000; /* Màu sắc và độ rộng của khung */
+  background-color: #008000; /* Màu nền không mờ */
+  color: #fff; /* Màu chữ */
+  padding: 10px 20px; /* Kích thước padding của nút */
+  border-radius: 5px; /* Độ cong của góc nút */
+  cursor: pointer; /* Biểu tượng con trỏ khi di chuột qua nút */
+}
+
+/* (Thêm) Hiệu ứng khi di chuột qua nút */
+.unnormal:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* Màu nền với độ mờ khi di chuột qua */
+}
+
+.normal:hover {
+  background-color: #006600; /* Màu nền có thay đổi khi di chuột qua */
+}
+  </style>
 </head>
 
 <body>

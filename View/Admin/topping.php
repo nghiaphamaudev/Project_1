@@ -25,7 +25,7 @@
                                         <tr>
                                                             <td><?=$id_topping?></td>
                                                             <td><?=$name_topping?></td>
-                                                            <td><?=$price_topping?>VND</td>
+                                                            <td><?php echo currency_format($price_topping, 'VND'); ?></td>
                                                             <td>
                                                                 <a href="../../../Dự_án_1/Controller/index-admin.php?request=edit-topping&&id=<?=$id_topping?>" class="edit" data-toggle="modal">
                                                                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
