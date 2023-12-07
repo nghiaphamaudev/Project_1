@@ -3,7 +3,7 @@
 <style>
 	/* CSS để làm sáng sao */
 	.load_all_star.bright {
-		color: yellow;
+		color: #ffc700;
 	}
 </style>
 <style>
@@ -140,10 +140,22 @@
 
 								<div class="card p-3 mb-2">
 									<div class="d-flex flex-row">
+									<i class="bi bi-calendar-check">
+											<span class="text-muted fw-normal fs-10">
+												<?=$Created_at ?>
+											</span>
+										</i>
 										<div class="d-flex flex-column ms-2">
 											<h6 class="mb-1 text-primary">
 												<?= $full_name ?>
 											</h6>
+											<div id="comment-container-<?= $id_review ?>">
+													<span class="load_all_star" data-rating="1">&#9733;</span>
+													<span class="load_all_star" data-rating="2">&#9733;</span>
+													<span class="load_all_star" data-rating="3">&#9733;</span>
+													<span class="load_all_star" data-rating="4">&#9733;</span>
+													<span class="load_all_star" data-rating="5">&#9733;</span>
+												</div>
 											<p class="comment-text">
 												<?= $comment ?>
 											</p>
@@ -154,13 +166,7 @@
 										<div class="d-flex flex-row gap-3 align-items-center">
 											<div class="d-flex align-items-center">
 
-												<div id="comment-container-<?= $id_review ?>">
-													<span class="load_all_star" data-rating="1">&#9733;</span>
-													<span class="load_all_star" data-rating="2">&#9733;</span>
-													<span class="load_all_star" data-rating="3">&#9733;</span>
-													<span class="load_all_star" data-rating="4">&#9733;</span>
-													<span class="load_all_star" data-rating="5">&#9733;</span>
-												</div>
+												
 												<script>
 													document.addEventListener('DOMContentLoaded', function () {
 														// Lấy id từ nguồn dữ liệu (ví dụ: id = 4)
