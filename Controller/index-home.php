@@ -24,7 +24,7 @@ if (isset($_GET['request']) && $_GET['request']) {
                 $id = $_GET['idd'];
                 Delete_Data_Reviews($id);
             }
-            $list_reviews = Load_All_Data_Reviews();
+           
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Lấy dữ liệu từ form
                 if (isset($_SESSION['user'])) {
@@ -33,7 +33,7 @@ if (isset($_GET['request']) && $_GET['request']) {
                 } else {
                     $user = 0;
                 }
-               if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_comment'])) {
+               if (isset($_POST['submit_comment'])) {
                     $id_products = $_POST['idproduct_rating'];
                     $comment = $_POST["comment"];
                     $rating = $_POST["rating"];
@@ -43,8 +43,12 @@ if (isset($_GET['request']) && $_GET['request']) {
             
             if (isset($_GET['id']) && $_GET['id']) {
                 $id = $_GET['id'];
+                $list_one_data_reviews=Load_One_Data_Reviews($id);
                 $list_one_data_product = Load_One_Data_Products($id);
+                $list_one_data_reviews=Load_One_Data_Reviews($id); 
+                 $list_reviews = Load_All_Data_Reviews($id);
             }
+           
             include "../View/detail-product.php";
             break;
 

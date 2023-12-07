@@ -5,6 +5,11 @@
 	.load_all_star.bright {
 		color: #ffc700;
 	}
+
+	/* CSS để làm sáng sao */
+	.starrrrr.bright {
+		color: yellow;
+	}
 </style>
 <style>
 	.rating-container {
@@ -54,22 +59,44 @@
 								<?= $name_products ?>
 							</div>
 							<div class="reviews-counter">
-						
+								<?php
 
-								<div class="rate">
-									<input type="radio" id="star5" name="rate" value="5" checked />
-									<label for="star5" title="text">5 stars</label>
-									<input type="radio" id="star4" name="rate" value="4" checked />
-									<label for="star4" title="text">4 stars</label>
-									<input type="radio" id="star3" name="rate" value="3" checked />
-									<label for="star3" title="text">3 stars</label>
-									<input type="radio" id="star2" name="rate" value="2" />
-									<label for="star2" title="text">2 stars</label>
-									<input type="radio" id="star1" name="rate" value="1" />
-									<label for="star1" title="text">1 star</label>
+								extract($list_one_data_reviews);
+								?>
+
+								<div id="rating-container">
+									<span class="starrrrr" data-rating="1">&#9733;</span>
+									<span class="starrrrr" data-rating="2">&#9733;</span>
+									<span class="starrrrr" data-rating="3">&#9733;</span>
+									<span class="starrrrr" data-rating="4">&#9733;</span>
+									<span class="starrrrr" data-rating="5">&#9733;</span>
 								</div>
-								<span>3 Reviews</span>
-							
+
+								<script>
+									document.addEventListener('DOMContentLoaded', function () {
+										// Lấy rating từ nguồn dữ liệu (ví dụ: rating có thể là float từ 0 đến 5)
+										var rating = <?= $list_one_data_reviews['avg_rating']; ?>; // Ví dụ sử dụng Math.random(), bạn có thể thay thế bằng dữ liệu thực từ nguồn dữ liệu
+
+										// Lấy tất cả các sao trong container
+										var stars = document.querySelectorAll('#rating-container .starrrrr');
+
+										// Lặp qua từng sao và kiểm tra liệu nó có ít hơn hoặc bằng rating hay không
+										stars.forEach(function (star, index) {
+											var starRating = parseFloat(star.getAttribute('data-rating'));
+
+											if (starRating <= rating) {
+												// Đối với các ngôi sao ít hơn hoặc bằng rating, làm sáng toàn bộ ngôi sao
+												star.classList.add('bright');
+											}
+										});
+									});
+
+								</script>
+								<span>
+								<?= $list_one_data_reviews['total_comments']; ?>
+								reviews
+								</span>
+
 							</div>
 							<div class="product-price-discount"><span>
 									<?= currency_format($original_price, 'VND') ?>
@@ -124,7 +151,7 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
-							aria-controls="review" aria-selected="false">Đánh Giá (0)</a>
+							aria-controls="review" aria-selected="false">Đánh Giá (<?= $list_one_data_reviews['total_comments']; ?>)</a>
 					</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
