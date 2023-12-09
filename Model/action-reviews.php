@@ -8,7 +8,7 @@
         //die;
         pdo_execute($sql);
     }
-    function Load_All_Data_Reviews($id){
+    function Load_All_Data_Reviews($id=0){
         $sql = "SELECT reviews.id_review,products.name_products, user.full_name ,reviews.comment, reviews.rating , reviews.Created_at FROM `reviews` LEFT JOIN user ON reviews.id_user = user.id_user LEFT JOIN products ON reviews.id_products = products.id_products WHERE reviews.id_products = $id";
         $list_comment = pdo_query($sql);
         return $list_comment;
