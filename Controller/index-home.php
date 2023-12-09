@@ -46,7 +46,7 @@ if (isset($_GET['request']) && $_GET['request']) {
                 $list_one_data_reviews=Load_One_Data_Reviews($id);
                 $list_one_data_product = Load_One_Data_Products($id);
                 $list_one_data_reviews=Load_One_Data_Reviews($id); 
-                $list_reviews = Load_All_Data_Reviews($id);
+                $list_reviews = Load_All_Data_Reviews_User($id);
             }
            
             include "../View/detail-product.php";
