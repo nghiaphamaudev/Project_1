@@ -41,8 +41,7 @@
         <nav class="dashboard-nav-list">
         <a href="../../../Dự_án_1/Controller/index-home.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Home </a>
         <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
-                    class="fas fa-photo-video"></i> Danh Mục </a>
+            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fa-solid fa-list"></i> Danh Mục </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../../../Dự_án_1/Controller/index-admin.php?request=categories" class="dashboard-nav-dropdown-item">Danh sách</a>
                      
@@ -52,7 +51,7 @@
                     class="fas fa-users"></i> Người Dùng </a> 
             </div>
             <div class='dashboard-nav-dropdown'><a href="../../../Dự_án_1/Controller/index-admin.php?request=reviews" class="dashboard-nav-item">
-                 Bình Luận </a> 
+            <i class="fa-solid fa-message"></i> Bình Luận </a> 
             </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fa-brands fa-product-hunt"></i> Sản Phẩm </a>
                 <div class='dashboard-nav-dropdown-menu'><a 

@@ -330,7 +330,12 @@ if(isset($_GET['request']) && $_GET['request']){
                 }}
                 $list_bill = Load_All_Data_confirm();
                 include "../View/Admin/confirm.php";
-                break;           
+                break;  
+                
+            case "log-out":
+                session_unset();
+                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
+                break;         
                 
 
                     
