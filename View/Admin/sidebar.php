@@ -51,6 +51,9 @@
             <div class='dashboard-nav-dropdown'><a href="../../../Dự_án_1/Controller/index-admin.php?request=acc" class="dashboard-nav-item"><i
                     class="fas fa-users"></i> Người Dùng </a> 
             </div>
+            <div class='dashboard-nav-dropdown'><a href="../../../Dự_án_1/Controller/index-admin.php?request=reviews" class="dashboard-nav-item">
+                 Bình Luận </a> 
+            </div>
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fa-brands fa-product-hunt"></i> Sản Phẩm </a>
                 <div class='dashboard-nav-dropdown-menu'><a 
                         href="../../../Dự_án_1/Controller/index-admin.php?request=product" class="dashboard-nav-dropdown-item">Danh sách</a><a
