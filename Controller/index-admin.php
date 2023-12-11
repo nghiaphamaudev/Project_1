@@ -26,7 +26,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
                     Delete_Data_Reviews($id);
-                    $_SESSION['status'] = "Delete successfully";
+                    $_SESSION['status'] = "Xóa thành công";
                     // $_SESSION['status_code'] = "success";
                 }
                 $list_reviews = Load_All_Data_Reviews();
@@ -330,15 +330,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 }}
                 $list_bill = Load_All_Data_confirm();
                 include "../View/Admin/confirm.php";
-                break;  
-                
-            case "log-out":
-                session_unset();
-                header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
-                break;         
-                
-
-                    
+                break;          
         }
 }else{
     // $list_data = Load_all();
