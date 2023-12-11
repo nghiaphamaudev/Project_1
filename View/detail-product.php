@@ -243,13 +243,14 @@
 
 											</div>
 											<div class="d-flex align-items-center">
-												<?php  if ($id_user == $_SESSION['user']['id_user']) { ?>
+												<?php  if(isset($_SESSION['user']['id_user'])) {
+													if ($id_user == $_SESSION['user']['id_user']) { ?>
 													<i class="bi bi-trash-fill"></i>
 													<a
 														href="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>&&idd=<?= $id_review ?>">
 														<span class="ms-1 fs-10">Xóa</span></a>
 												<?php
-												}
+												}}
 												?>
 											</div>
 										</div>
@@ -264,7 +265,7 @@
 								</div>
 							<?php endforeach; ?>
 
-							<?php if ($user = 0) {
+							<?php if ($user == 0) {
 							} else { ?>
 
 								<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST"

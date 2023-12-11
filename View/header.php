@@ -73,6 +73,7 @@
   border-radius: 5px; /* Độ cong của góc nút */
   cursor: not-allowed; /* Biểu tượng con trỏ khi nút bị vô hiệu hóa */
 }
+
 .normal {
   /* Thiết lập các thuộc tính CSS tùy thuộc vào yêu cầu của bạn */
   /* Ví dụ: */
@@ -82,6 +83,16 @@
   padding: 10px 20px; /* Kích thước padding của nút */
   border-radius: 5px; /* Độ cong của góc nút */
   cursor: pointer; /* Biểu tượng con trỏ khi di chuột qua nút */
+}
+.normals {
+  /* Thiết lập các thuộc tính CSS tùy thuộc vào yêu cầu của bạn */
+  /* Ví dụ: */
+  border: 2px solid #008000; /* Màu sắc và độ rộng của khung */
+  background-color: #008000; /* Màu nền không mờ */
+  color: #fff; /* Màu chữ */
+  padding: 10px 20px; /* Kích thước padding của nút */
+  border-radius: 5px; /* Độ cong của góc nút */
+  cursor: not-allowed; /* Biểu tượng con trỏ khi di chuột qua nút */
 }
 
 /* (Thêm) Hiệu ứng khi di chuột qua nút */

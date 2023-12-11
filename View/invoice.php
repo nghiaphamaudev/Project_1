@@ -82,11 +82,16 @@
 </table>
 <form action="../../Dự_án_1/Controller/index-home.php?request=confirm-delivery&&id_invoice=<?=$id_bill?>" method="post">
   <?php
-    if($state === 1){
+    if($status === 0) {
+      echo '<button type="submit" id="myButton" disabled class="normals" style="margin-right: 20px">Đã nhận được hàng</button>';
+    }else{
+      if($state === 1){
       echo '<submit type="submit" id="myButton" class="unnormal"  disabled style="margin-right: 20px;cursor: not-allowed;">Đã nhận được hàng</button>';
     }else{
       echo '<button type="submit" id="myButton" class="normal" style="margin-right: 20px">Đã nhận được hàng</button>';
     }
+    }
+    
    ?>
   
 </form>
