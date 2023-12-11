@@ -24,15 +24,15 @@ if (isset($_GET['request']) && $_GET['request']) {
                 $id = $_GET['idd'];
                 Delete_Data_Reviews($id);
             }
-           
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Lấy dữ liệu từ form
-                if (isset($_SESSION['user'])) {
+              if (isset($_SESSION['user'])) {
                     extract($_SESSION['user']);
                     $user = $id_user;
                 } else {
                     $user = 0;
                 }
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Lấy dữ liệu từ form
+             
                if (isset($_POST['submit_comment'])) {
                     $id_products = $_POST['idproduct_rating'];
                     $comment = $_POST["comment"];
