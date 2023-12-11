@@ -10,6 +10,10 @@
 	.starrrrr.bright {
 		color: #ffc700;
 	}
+
+	.comment-text {
+		max-width: 700px;
+	}
 </style>
 <style>
 	.rating-container {
@@ -29,18 +33,21 @@
 	}
 
 	.submit-btn {
-    background-color: #4CAF50; /* Màu nền mặc định */
-    color: white; /* Màu chữ mặc định */
-    padding: 10px 20px; /* Căn lề và kích thước nút */
+		background-color: #4CAF50;
+		/* Màu nền mặc định */
+		color: white;
+		/* Màu chữ mặc định */
+		padding: 10px 20px;
+		/* Căn lề và kích thước nút */
 
-    /* Hiệu ứng chuyển màu khi hover */
-    transition: background-color 0.3s ease;
-}
+		/* Hiệu ứng chuyển màu khi hover */
+		transition: background-color 0.3s ease;
+	}
 
-/* Đổi màu nền khi hover */
-.submit-btn:hover {
-    background-color: #45a049;
-}
+	/* Đổi màu nền khi hover */
+	.submit-btn:hover {
+		background-color: #45a049;
+	}
 </style>
 
 <!-- ... (đoạn mã CSS sau) ... -->
@@ -107,8 +114,8 @@
 
 								</script>
 								<span>
-								<?= $list_one_data_reviews['total_comments']; ?>
-								reviews
+									<?= $list_one_data_reviews['total_comments']; ?>
+									reviews
 								</span>
 
 							</div>
@@ -165,7 +172,9 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
-							aria-controls="review" aria-selected="false">Đánh Giá (<?= $list_one_data_reviews['total_comments']; ?>)</a>
+							aria-controls="review" aria-selected="false">Đánh Giá (
+							<?= $list_one_data_reviews['total_comments']; ?>)
+						</a>
 					</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
@@ -175,36 +184,38 @@
 						<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 							<div class="review-heading" style="margin-bottom: 20px">REVIEWS</div>
 
+
 							<?php foreach ($list_reviews as $value):
 								extract($value); ?>
 
 
 								<div class="card p-3 mb-2">
-								<div class="d-flex flex-row">
-    <div class="d-flex flex-column ms-2">
-        <h6 class="mb-1 text-primary">
-		<i class="fa-solid fa-circle-user"></i>
-            <?= $full_name ?>
-        </h6>
-        <div id="comment-container-<?= $id_review ?>">
-            <span class="load_all_star" data-rating="1">&#9733;</span>
-            <span class="load_all_star" data-rating="2">&#9733;</span>
-            <span class="load_all_star" data-rating="3">&#9733;</span>
-            <span class="load_all_star" data-rating="4">&#9733;</span>
-            <span class="load_all_star" data-rating="5">&#9733;</span>
-        </div>
-        <p class="comment-text">
-            <?= $comment ?>
-        </p>
-    </div>
-    <div class="ms-auto"> <!-- Chuyển cột này sang phải bằng cách sử dụng lớp 'ms-auto' -->
-        <i class="bi bi-calendar-check">
-            <span class="text-muted fw-normal fs-10 comment-time">
-                <?=$Created_at ?>
-            </span>
-        </i>
-    </div>
-</div>
+									<div class="d-flex flex-row">
+										<div class="d-flex flex-column ms-2">
+											<h6 class="mb-1 text-primary">
+												<i class="fa-solid fa-circle-user"></i>
+												<?= $full_name ?>
+
+											</h6>
+											<div id="comment-container-<?= $id_review ?>">
+												<span class="load_all_star" data-rating="1">&#9733;</span>
+												<span class="load_all_star" data-rating="2">&#9733;</span>
+												<span class="load_all_star" data-rating="3">&#9733;</span>
+												<span class="load_all_star" data-rating="4">&#9733;</span>
+												<span class="load_all_star" data-rating="5">&#9733;</span>
+											</div>
+											<p class="comment-text">
+												<?= $comment ?>
+											</p>
+										</div>
+										<div class="ms-auto"> <!-- Chuyển cột này sang phải bằng cách sử dụng lớp 'ms-auto' -->
+											<i class="bi bi-calendar-check">
+												<span class="text-muted fw-normal fs-10 comment-time">
+													<?= $Created_at ?>
+												</span>
+											</i>
+										</div>
+									</div>
 
 
 									<div class="d-flex justify-content-between">
@@ -231,15 +242,16 @@
 												</script>
 
 											</div>
-
-											
-												<form
-													action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>&&idd=<?= $id_review ?>"
-													method="POST">
-													
-												</form>
-
-											
+											<div class="d-flex align-items-center">
+												<?php if ($id_user == $_SESSION['user']['id_user']) { ?>
+													<i class="bi bi-trash-fill"></i>
+													<a
+														href="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>&&idd=<?= $id_review ?>">
+														<span class="ms-1 fs-10">Xóa</span></a>
+												<?php
+												}
+												?>
+											</div>
 										</div>
 
 										<!-- <div class="d-flex flex-row">
@@ -252,30 +264,33 @@
 								</div>
 							<?php endforeach; ?>
 
+							<?php if ($user = 0) {
+							} else { ?>
 
-							<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST"
-								class="review-form">
-								<input hidden name="idproduct_rating" value="<?= $id_products ?>">
-								<div class="form-group">
-									<label for="rating">Bình Chọn</label>
-									<div class="reviews-counter">
-										<div class="rating-container" id="ratingContainer">
-											<span class="star" data-rating="1">&#9733;</span>
-											<span class="star" data-rating="2">&#9733;</span>
-											<span class="star" data-rating="3">&#9733;</span>
-											<span class="star" data-rating="4">&#9733;</span>
-											<span class="star" data-rating="5">&#9733;</span>
-											<input type="hidden" name="rating" id="ratingInput" value="0">
+								<form action="../Controller/index-home.php?request=detail&&id=<?= $id_products ?>" method="POST"
+									class="review-form">
+									<input hidden name="idproduct_rating" value="<?= $id_products ?>">
+									<div class="form-group">
+										<label for="rating">Bình Chọn</label>
+										<div class="reviews-counter">
+											<div class="rating-container" id="ratingContainer">
+												<span class="star" data-rating="1">&#9733;</span>
+												<span class="star" data-rating="2">&#9733;</span>
+												<span class="star" data-rating="3">&#9733;</span>
+												<span class="star" data-rating="4">&#9733;</span>
+												<span class="star" data-rating="5">&#9733;</span>
+												<input type="hidden" name="rating" id="ratingInput" value="0">
+											</div>
 										</div>
 									</div>
-								</div>
 
-								<div class="form-group">
-									<label>Bình Luận</label>
-									<textarea class="form-control" required name="comment" rows="10"></textarea>
-								</div>
-								<button type="submit" name="submit_comment" >Đánh Giá</button>
-							</form>
+									<div class="form-group">
+										<label>Bình Luận</label>
+										<textarea class="form-control" required name="comment" rows="10"></textarea>
+									</div>
+									<button type="submit" name="submit_comment">Đánh Giá</button>
+								</form>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
