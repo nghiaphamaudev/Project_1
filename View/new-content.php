@@ -30,7 +30,7 @@ $list_productss=Load_All_Categories_Products($id, $text);
                   </p>
                   <div class="options">
                     <h6 href= "../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
-                    <?=currency_format($original_price, 'VND')?> 
+                    <?=currency_format($original_price, ' VND')?> 
                     </h6>
                     <a href= "../../Dự_án_1/Controller/index-home.php?request=detail&&id=<?=$id_products?>">
                       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">

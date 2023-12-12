@@ -1,27 +1,30 @@
 
 <?php
 session_start();
-include "../Model/pdo.php";
-include "../Model/action-categories.php";
-include "../Model/action-product.php";
-include "../Model/action-account.php";
-include "../Model/action-shopping-cart.php";
-include "../Model/action-order.php";
-include "../Model/action-confirm.php";
-include "../View/Admin/sidebar.php";
-include "../Model/action-chart.php";
-include "../Model/action-reviews.php";
+include_once "../Model/pdo.php";
+include_once "../Model/action-categories.php";
+include_once "../Model/action-product.php";
+include_once "../Model/action-account.php";
+include_once "../Model/action-shopping-cart.php";
+include_once "../Model/action-order.php";
+include_once "../Model/action-confirm.php";
+include_once "../View/Admin/sidebar.php";
+include_once "../Model/action-chart.php";
+include_once "../Model/action-reviews.php";
 
 if(isset($_GET['request']) && $_GET['request']){
         switch($_GET['request']){
-
+            
+            //trở về trang home
             case "home": 
                 include "./index-home.php";
                 break;
+            // thông tin bình luận
             case "reviews":
                 $list_reviews = Load_All_Data_Reviews();
                 include "../View/Admin/reviews.php";
                 break;
+            //xóa bình luận
             case "delete_reviews":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -33,13 +36,14 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/reviews.php";
                 break;   
+            
+                //đén trang quản lí acc
             case "acc":
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/acc.php";
                 break;
-
-         
-
+                
+                //xoác acc
             case "delete_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -51,7 +55,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;   
-
+            
+                //chỉnh sửa thông tin acc
             case "edit_acc":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -60,7 +65,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/update-acc.php";
                 break;
-                
+            
+                //cập nhật thông tin người dùng
             case "update_acc":
                 if(isset($_POST['submit']) && $_POST['submit']) {
                     $id = $_POST['id_user'];
@@ -78,7 +84,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/acc.php";
                 break;
-
+            
+                //tạo acc mới trong admin
             case "create_acc":
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $email = $_POST['email'];
@@ -91,12 +98,14 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";
                 break;
-                 
+            
+            //hiện danh mục tron admin
             case "categories":
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/categories.php";
                 break;
             
+                //xóa danh mục trong amdin
             case "delete":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -109,6 +118,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/categories.php";
                 break;
             
+            //tạo danh mục
             case "create":
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $name_category = $_POST['name_category'];
@@ -119,6 +129,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/add-categories.php";
                 break;
             
+                //cập nhật danh mục
             case "edit":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -127,7 +138,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 $list_categories = Load_All_Data_Categories();
                 include "../View/Admin/update-categories.php";
                 break;
-            
+            //cấp nhật
             case "update":
                 if(isset($_POST['submit']) && $_POST['submit']) {
                     $id = $_POST['id_category'];
@@ -141,11 +152,12 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/categories.php";
                 break;
 
+            //load thông tin sản phẩm
             case "product":
                 $list_products = Load_All_Data_Products();
                 include "../View/Admin/products.php";
                 break;
-            
+            //xóa sản phẩm
             case "delete-product":
                 if(isset($_GET['id']) && $_GET['id']){
                     $id = $_GET['id'];
@@ -157,7 +169,8 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/products.php";
                 break;
-                
+            
+            //tạo sản phẩm
             case "create-product":
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $name_products = $_POST['name_product'];
@@ -199,7 +212,7 @@ if(isset($_GET['request']) && $_GET['request']){
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/products.php";
                 break;
-
+            //thông tin về các lựa chọn đi kèm
             case "topping":
                 $list_topping = Load_All_Data_Topping();
                 include "../View/Admin/topping.php";
@@ -251,7 +264,8 @@ if(isset($_GET['request']) && $_GET['request']){
                         include "../View/Admin/sweetalert.php";
                         include "../View/Admin/topping.php";
                         break;
-
+            
+            // thông kê
             case "statistic":
                 $list_categories = Display_Categories_Circle_Diagram();
                 $total_user = Count_User();
@@ -295,11 +309,13 @@ if(isset($_GET['request']) && $_GET['request']){
 
                 include "../View/Admin/chart.php";
                 break;
-
+            
+            //quản lí đơn hàng
             case "order":
                  $list_bill = Load_All_Data_order();
                  include "../View/Admin/order.php";
                  break; 
+            //sửa trạng thái đơn hàng : đã xác nhận  / Chưa xác nhận
             case "edit_order": 
                          if(isset($_POST['submit']) && $_POST['submit']){
                             $id_status= $_POST['id_status'];
@@ -314,20 +330,21 @@ if(isset($_GET['request']) && $_GET['request']){
                         $list_bill = Load_All_Data_order();
                         include "../View/Admin/order.php";
                         break;
+            // đơn hàng đã đc xác nhận
             case "confirm":
                             $list_bill = Load_All_Data_confirm();
                             include "../View/Admin/confirm.php";
-                            break; 
+                            break;
+            // đã nhận đc hàng ('KHách hàng) 
             case "edit_confirm": 
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $id_state= $_POST['id_state'];
-                if(isset($_GET['id']) && $_GET['id']){
-                    $id = $_GET['id'];
-            
-                    Update_Data_confirm($id,$id_state);
-                    $_SESSION['state'] = "Cập nhật thành công";
-                    // $_SESSION['state_code'] = "success";
-                }}
+                    if(isset($_GET['id']) && $_GET['id']){
+                        $id = $_GET['id'];
+                        Update_Data_confirm($id,$id_state);
+                        $_SESSION['state'] = "Cập nhật thành công";
+                    }
+                }
                 $list_bill = Load_All_Data_confirm();
                 include "../View/Admin/confirm.php";
                 break;          
