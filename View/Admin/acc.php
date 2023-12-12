@@ -20,7 +20,7 @@
                     <th>Quyền</th>
                     <th>Hành Động</th>
                     </tr>
-                </thead>
+                </thead> 
                 <tbody>
                     <?php foreach ($list_user as $value): extract($value)?>
                                 <tr>

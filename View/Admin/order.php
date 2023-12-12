@@ -52,7 +52,7 @@
                                 <?=$email?>
                             </td>
                             <td>
-                                <?=$method?>
+                                <?=$method?> 
                             </td>
                             <td>
                             <?php echo currency_format($total_price, ' VND'); ?>

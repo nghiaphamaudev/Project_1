@@ -89,7 +89,7 @@ if(isset($_GET['request']) && $_GET['request']){
             case "create_acc":
                 if(isset($_POST['submit']) && $_POST['submit']){
                     $email = $_POST['email'];
-                    $password = $_POST['password'];
+                    $password = $_POST['pass'];
                     $full_name = $_POST['full_name'];
                     $role = $_POST['role'];
                     Add_Data_Acc($email,$password,$full_name,$role);

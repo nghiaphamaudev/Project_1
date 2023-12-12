@@ -14,7 +14,7 @@
     $sql = "SELECT * FROM `user`";
     $list_acc = pdo_query($sql);
     return $list_acc;
-}
+} 
 function Delete_Data_Acc($id){
   $sql = "DELETE FROM `user` WHERE id_user =".$id;
   pdo_query($sql);
