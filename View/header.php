@@ -103,6 +103,11 @@
 .normal:hover {
   background-color: #006600; /* Màu nền có thay đổi khi di chuột qua */
 }
+
+.align-items-center {
+  align-items: center !important;
+    justify-content: center;
+}
   </style>
 </head>
 

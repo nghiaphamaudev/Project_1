@@ -16,15 +16,16 @@
       }
       ?>
     </ul>
-    <div class="">
+    
       <div class="d-flex flex-row gap-3 align-items-center">
         <div class="d-flex align-items-center">
           <i class="fa fa-heart-o"></i>
           <a href="#"class="changeContentLink result ms-1 fs-10" data-id="0" data-text="1">Giá từ Cao đến Thấp</a>
-        </div>
-      <div class="d-flex flex-row">
           <a href="#"class="changeContentLink result ms-1 fs-10" data-id="0" data-text="2" >Giá từ Thấp đến Cao</a>
-      </div>
+        </div>
+      <!-- <div class="d-flex flex-row">
+          <a href="#"class="changeContentLink result ms-1 fs-10" data-id="0" data-text="2" >Giá từ Thấp đến Cao</a>
+      </div> -->
     </div>
     <div class="filters-content" id="content">
       <!-- phần ajax thay đổi  -->
@@ -33,7 +34,7 @@
       <a href="">
         View More
       </a>
-    </div>
+    
   </div>
 </section>
 <script>
