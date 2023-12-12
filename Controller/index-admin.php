@@ -78,11 +78,12 @@ if(isset($_GET['request']) && $_GET['request']){
                     Update_Data_Acc($id, $email,$password,$full_name, $role);
                     $_SESSION['status'] = "Cập nhật thành công";
                     // $_SESSION['status_code'] = "success";
+             
                 }
                 
                 $list_user = Load_All_Data_Acc();
                 include "../View/Admin/sweetalert.php";
-                include "../View/Admin/acc.php";
+                include "../View/Admin/add-acc.php";
                 break;
             
                 //tạo acc mới trong admin
@@ -93,8 +94,13 @@ if(isset($_GET['request']) && $_GET['request']){
                     $full_name = $_POST['full_name'];
                     $role = $_POST['role'];
                     Add_Data_Acc($email,$password,$full_name,$role);
-                    $_SESSION['status'] = "Tạo thành công";
+                    $_SESSION['status'] = "Tạo thành công";  
+                    $list_user = Load_All_Data_Acc();
+                    include "../View/Admin/sweetalert.php";
+                    include "../View/Admin/acc.php";      
+                    break;    
                 }
+                $list_user = Load_All_Data_Acc();
                 include "../View/Admin/sweetalert.php";
                 include "../View/Admin/add-acc.php";
                 break;
