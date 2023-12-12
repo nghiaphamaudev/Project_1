@@ -6,7 +6,12 @@ include_once "../Model/action-product.php";
 }else{
     $id=0;
 } 
-$text=$_GET['text'];
+if(isset($_GET['text']) && ($_GET['text']>0)){
+  $text=$_GET['text'];
+}else{
+  $text=0;
+} 
+
 
 $list_productss=Load_All_Categories_Products($id, $text);
 ?>
