@@ -6,7 +6,9 @@ include_once "../Model/action-product.php";
 }else{
     $id=0;
 } 
-$list_productss=Load_All_Categories_Products($id);
+$text=$_GET['text'];
+
+$list_productss=Load_All_Categories_Products($id, $text);
 ?>
 <div class="row grid">
         <?php foreach ($list_productss as $value) : ?>
