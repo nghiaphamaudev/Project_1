@@ -120,9 +120,9 @@
 
 							</div>
 							<div class="product-price-discount"><span>
-									<?= currency_format($original_price, 'VND') ?>
+									<?= currency_format($original_price, ' VND') ?>
 								</span><span class="line-through">
-									<?php echo currency_format(30000, 'VND'); ?>
+									<?php echo currency_format(30000, ' VND'); ?>
 								</span></div>
 						</div>
 						<p>

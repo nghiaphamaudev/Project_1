@@ -18,21 +18,11 @@
     
      function Load_One_Data_Statistical($date){
             $sql = "SELECT  `revenue`
-                FROM `statistical` WHERE `date_created` = '".$date."'";
+            FROM `statistical` WHERE `date_created` = '".$date."'";
             $list_one_data_statistical = pdo_query_one($sql);
             return $list_one_data_statistical;
     }
         
-
-
-
-
-
-
-
-
-
-
     function Display_Categories_Circle_Diagram(){
         $sql = "SELECT `categories` .*, COUNT(products.id_categories) AS 'number_cate' FROM `products` 
         INNER JOIN `categories` ON products.id_categories = categories.id_categories GROUP BY products.id_categories";
@@ -61,7 +51,7 @@
     }
 
     function Count_Completed_Invoice(){
-        $sql = "SELECT COUNT(`id_bill`) AS `bill_count` FROM bill WHERE `status` = 1 ";
+        $sql = "SELECT COUNT(`id_bill`) AS `bill_count` FROM bill WHERE `state` = 1 ";
         $count_bill = pdo_query($sql);
         $total_bill;
         foreach($count_bill as $value){
@@ -94,10 +84,11 @@
     }
 
     function Display_Diagram_Revenue_Days(){
-        $sql = "SELECT  `date_created`, `revenue` FROM `statistical` ";
+        $sql = "SELECT `date_created`, `revenue` FROM `statistical` WHERE MONTH(`date_created`) = 12";
         $list_data_revenue_day = pdo_query($sql);
         return $list_data_revenue_day;
     }
+    
 
     function Display_Diagram_Revenue_Weeks(){
         $sql = "SELECT CONCAT('Tuần ', WEEK(date_created)) 
@@ -133,14 +124,5 @@
         $list_data_top_user = pdo_query($sql);
         return $list_data_top_user;
     }
-
-    
-
-    
-
-    
-    
-
-
 
 ?>

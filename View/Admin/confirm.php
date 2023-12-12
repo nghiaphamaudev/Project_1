@@ -51,7 +51,7 @@
                                 <?=$method?>
                             </td>
                             <td>
-                            <?php echo currency_format($total_price, 'VND'); ?>
+                            <?php echo currency_format($total_price, ' VND'); ?>
                             </td>
                             <td>
                                 <?=$date_created?>

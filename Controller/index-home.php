@@ -1,14 +1,14 @@
 <?php
 session_start();
 ob_start();
-include "../View/header.php";
+include_once "../View/header.php";
 include_once "../Model/pdo.php";
-include "../Model/action-categories.php";
+include_once "../Model/action-categories.php";
 include_once "../Model/action-product.php";
-include "../Model/action-account.php";
-include "../Model/action-shopping-cart.php";
-include "../Model/action-chart.php";
-include "../Model/action-reviews.php";
+include_once "../Model/action-account.php";
+include_once "../Model/action-shopping-cart.php";
+include_once "../Model/action-chart.php";
+include_once "../Model/action-reviews.php";
 
 
 $list_categories = Load_All_Data_Categories();
@@ -19,6 +19,7 @@ $list_topping = Load_All_Data_Topping();
 if (isset($_GET['request']) && $_GET['request']) {
 
     switch ($_GET['request']) {
+        //load thông tin chi tiết sp, bình luận
         case "detail":
             if (isset($_GET['idd']) && $_GET['idd']) {
                 $id = $_GET['idd'];
@@ -52,20 +53,23 @@ if (isset($_GET['request']) && $_GET['request']) {
             include "../View/detail-product.php";
             break;
 
+        // chuyển đến phần đăng nhập
         case "login":
             include "../View/login.php";
             break;
 
+        // chuyển đến trang menu
         case "menu":
             unset($_SESSION['code']);
             include "../View/menu.php";
             break;
 
+        // đăng xuất
         case "log-out":
             session_unset();
             header("Location:../../../../Dự_án_1/Controller/index-home.php?request=login");
             break;
-
+        // lấy dữ liệu từ form đăng kí
         case "add-data-user":
             include "../View/login.php";
             if (isset($_POST['submit']) && $_POST['submit']) {
@@ -98,7 +102,8 @@ if (isset($_GET['request']) && $_GET['request']) {
                 header("Location:../../../../Dự_án_1/Controller/index-home.php?request=create-user&err=$err");
             }
             break;
-
+        
+            //check thông tin đăng nhập
         case "login-user":
 
             $_SESSION[''] = "";
@@ -132,7 +137,8 @@ if (isset($_GET['request']) && $_GET['request']) {
             }
 
             break;
-
+        
+        //chuyển đến trang đăng kí
         case "create-user":
             if (isset($_SESSION['user'])) {
                 session_unset();
@@ -141,12 +147,16 @@ if (isset($_GET['request']) && $_GET['request']) {
             }
             include "../View/register.php";
             break;
-
+        
+        //trang thông tin 
         case "about":
             include "../View/infor.php";
             break;
 
+        // lựa chọn số lượng, toping thêm vào giỏ hàng
         case "select-option":
+            if(isset($_SESSION['user'])){
+                $id_user = $_SESSION['user']['id_user'];
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
             if (isset($_POST['submit']) && $_POST['submit']) {
                 $id_product = $_POST['id_product'];
@@ -184,10 +194,15 @@ if (isset($_GET['request']) && $_GET['request']) {
                 $list_one_data_reviews=Load_One_Data_Reviews($id_product); 
                 $list_reviews = Load_All_Data_Reviews($id_product);
             include "../View/detail-product.php";
+            }else{
+                include "../View/login.php";
+            }
+            
             break;
 
-
+        // hiện thông tin giỏ hàng theo người dùng
         case "shopping-cart":
+            if(isset($_SESSION['code'])) unset($_SESSION['code']);
             if (isset($_SESSION['user'])) {
                 $id_user = $_SESSION['user']['id_user'];
                 $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
@@ -203,7 +218,8 @@ if (isset($_GET['request']) && $_GET['request']) {
                 include "../View/login.php";
                 break;
             }
-
+        
+        // áp mã giảm giá
         case "promotion":
             if (isset($_POST['submit_promotion']) && $_POST['submit_promotion']) {
                 $promotion_code = $_POST['code_promotion'];
@@ -226,7 +242,8 @@ if (isset($_GET['request']) && $_GET['request']) {
             include "../View/Admin/sweetalert.php";
             include "../View/shopping-cart.php";
             break;
-
+        
+        // xóa 1 sp ra khoải giỏ hàng
         case "cancel-shopping-cart":
 
             $id_user = $_SESSION['user']['id_user'];
@@ -240,7 +257,8 @@ if (isset($_GET['request']) && $_GET['request']) {
             $total_cost = Total_Cost($totals);
             include "../View/shopping-cart.php";
             break;
-
+        
+        //điền mẫu nhận hàng
         case "payment":
             $id_user = $_SESSION['user']['id_user'];
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
@@ -260,7 +278,8 @@ if (isset($_GET['request']) && $_GET['request']) {
             $total_cost = $_POST['sub_total'];
             include "../View/payment.php";
             break;
-
+        
+        //xác nhận đặt hàng
         case "confirm-payment":
             unset($_SESSION['code']);
             $id_user = $_SESSION['user']['id_user'];
@@ -307,7 +326,8 @@ if (isset($_GET['request']) && $_GET['request']) {
             include "../View/Admin/sweetalert.php";
             include "../View/invoice.php";
             break;
-
+        
+        // hiện ra hóa đơn và lịch sử  hóa đơn
         case "invoice":
             $list_data_shopping_cart = Load_All_Data_Shopping_Cart($id_user);
             $id_user = $_SESSION['user']['id_user'];
@@ -318,12 +338,15 @@ if (isset($_GET['request']) && $_GET['request']) {
                 include "../View/invoice.php";
             }
             break;
-
+        
+        //đã nhận được hàng
         case "confirm-delivery":
             $id_bill = $_GET['id_invoice'];
             Update_State_Invoice($id_bill);
             $id_user = $_SESSION['user']['id_user'];
             $list_data_bill = Load_All_Data_Bill($id_user);
+            $_SESSION['status'] = "Xác nhận thành công";
+            include "../View/Admin/sweetalert.php";
             include "../View/invoice.php";
             break;
 
@@ -338,4 +361,12 @@ if (isset($_GET['request']) && $_GET['request']) {
 
 include "../View/footer.php";
 ob_end_flush();
+/*ob_start(): Hàm này bắt đầu bộ đệm đầu ra (output buffering). Tất cả đầu ra từ mã nguồn PHP sau dòng này sẽ được giữ lại trong bộ đệm thay vì được gửi trực tiếp đến trình duyệt.
+
+ob_end_flush(): Hàm này kết thúc và gửi đầu ra từ bộ đệm đến trình duyệt. Nó cũng có thể xóa bộ đệm nếu bạn không muốn giữ lại nó.
+
+Trong trường hợp của bạn, ob_start() được sử dụng để bắt đầu output buffering trước khi thực hiện các thao tác khác trong case "log-out". Output buffering giúp kiểm soát đầu ra và giữ nó lại cho đến khi bạn quyết định gửi nó đến trình duyệt.
+
+Sau khi bạn đã thực hiện các thao tác trong case "log-out", ob_end_flush() được gọi để kết thúc output buffering và gửi đầu ra đã được giữ lại đến trình duyệt. Cụ thể, sau khi ob_end_flush() được gọi, mọi đầu ra sau đó từ các hàm echo, print, hoặc bất kỳ hàm xuất nào khác sẽ được gửi đến trình duyệt.*/
 ?>
+

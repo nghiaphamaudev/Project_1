@@ -28,13 +28,13 @@
                         <div class="media-body">
                           <a href="#" class="d-block text-dark"><?=$name_products?></a>
                           <small>
-                            <span class="text-muted">Topping: <?=$name_topping?>(<?=currency_format($price_topping, 'VND')  ?>)</span>
+                            <span class="text-muted">Topping: <?=$name_topping?>(<?=currency_format($price_topping, ' VND')  ?>)</span>
                             <!-- <span class="text-muted">, </span> Vận chuyển: <?=$price_delivery?>$ -->
                           </small>
                         </div>
                       </div>
                     </td>
-                    <td class="text-center font-weight-semibold align-middle p-4"><?=currency_format($price_products, 'VND')?></td>
+                    <td class="text-center font-weight-semibold align-middle p-4"><?=currency_format($price_products, ' VND')?></td>
                     <td class="align-middle p-4" style="text-align: center"><?=$quantity?></td>
                     <td class="text-center font-weight-semibold align-middle p-4"><?=currency_format($total, 'VND')?></td>
                     <td class="text-center align-middle px-0">
